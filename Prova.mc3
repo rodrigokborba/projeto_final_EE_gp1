@@ -1,4 +1,4 @@
-<config configName="default" projectName="Prova" configVersion="1.1" device="PIC16F1827" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.7.0">
+<config configName="default" projectName="Prova" configVersion="1.1" device="PIC16F1827" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -712,19 +712,19 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA1"/>
-         <value/>
+         <value>SM1</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA2"/>
-         <value/>
+         <value>SM2</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA3"/>
-         <value/>
+         <value>SM3</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA4"/>
-         <value/>
+         <value>SM4</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA5"/>
@@ -788,19 +788,19 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RA1"/>
-         <value>disabled</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RA2"/>
-         <value>disabled</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RA3"/>
-         <value>disabled</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RA4"/>
-         <value>disabled</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RA5"/>
@@ -900,19 +900,19 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RA1"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RA2"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RA3"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RA4"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RA5"/>
@@ -1884,7 +1884,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="TRISA"/>
-         <value>255</value>
+         <value>225</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="TRISB"/>
@@ -2160,19 +2160,19 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISA" settingAlias="TRISA1"/>
-         <value>input</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISA" settingAlias="TRISA2"/>
-         <value>input</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISA" settingAlias="TRISA3"/>
-         <value>input</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISA" settingAlias="TRISA4"/>
-         <value>input</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISA" settingAlias="TRISA5"/>
@@ -2961,59 +2961,59 @@
          <hash>d4e8bcbcb679cb955632857da55ad0b3066ef3bbbe4442d3a9a3b768ccea7ca7</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\device_config.c</file>
+         <file>mcc_generated_files/device_config.c</file>
          <hash>42f5de9d140a2b1a569f5b4d8b040d709a1f9df6a0d06374bfe0155fe86af9de</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\device_config.h</file>
+         <file>mcc_generated_files/device_config.h</file>
          <hash>bb4cd0885bc3606b9999026f72c97e5321555747c0842fae44d7a349f9c6cb4e</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\epwm1.c</file>
+         <file>mcc_generated_files/epwm1.c</file>
          <hash>851ae47942ae175481b2e41368913763d0311dfaeb7bbfc13c9d256edf98d1e8</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\epwm1.h</file>
+         <file>mcc_generated_files/epwm1.h</file>
          <hash>d4ad574912c9ed66cb74c21d4d6345defd7ee6ed0e7e551090ac5c1ff1eb593a</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.c</file>
+         <file>mcc_generated_files/interrupt_manager.c</file>
          <hash>b7458f0c956c0351722fed6cd0331e524c914dd8a6a154ab173d503473de38f4</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
+         <file>mcc_generated_files/interrupt_manager.h</file>
          <hash>d707b2a356c0d56e10561211cb9780623b38f6ab520391b38b5ec2bcbab45497</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\mcc.c</file>
+         <file>mcc_generated_files/mcc.c</file>
          <hash>e66497ea264049bc6367266c644e4634969ec50b85b1e9c067548a0be4074210</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\mcc.h</file>
-         <hash>1865fb98734207363e730de11dfd19418b838e1d6a13766ad52d356ec87c9979</hash>
+         <file>mcc_generated_files/mcc.h</file>
+         <hash>33b0d83b6db1fb775d24723b29bfa4f4705b7f28eee7aef10b31767ba8d9b573</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\pin_manager.c</file>
-         <hash>a2e52ae5d2e676b0dd7fcb6b44ad456a38d381fd3430643c858ac026beabecaa</hash>
+         <file>mcc_generated_files/pin_manager.c</file>
+         <hash>541cebd48470201e3c3cc39f35fbc36f5472afd9aed2e551e25d0cfb12ffe6c7</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>7d128038b364ff69d4ec1cc0bf02bef56b936d37053e88956e5a3d4ef2451cd6</hash>
+         <file>mcc_generated_files/pin_manager.h</file>
+         <hash>417c8a496e5a8144554983a994bb4657e1a158d1fa40ecd181ed2f08936804e1</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr2.c</file>
+         <file>mcc_generated_files/tmr2.c</file>
          <hash>48054a2327549a398ae9e182eac5bf3f74eeade061ce7724dd8d864cda34d766</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr2.h</file>
+         <file>mcc_generated_files/tmr2.h</file>
          <hash>ff9cd458725a2612bb55636b38815a75edf189f5db9bcea269c1a73ddc555bc5</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr4.c</file>
-         <hash>2d31ebe19fd9c7ad6701b3d77931754a2d9a8916e7de68b8318d385ca604a473</hash>
+         <file>mcc_generated_files/tmr4.c</file>
+         <hash>291be854fa0429628da62c687c199a4b3308aaa4dcc5f62354d392435ff0b4c0</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr4.h</file>
+         <file>mcc_generated_files/tmr4.h</file>
          <hash>93e13d192b9eba138896f96765e232bba53b2b1b3253349a7a221550ec5a88e9</hash>
       </entry>
    </generatedFileHashHistoryMap>

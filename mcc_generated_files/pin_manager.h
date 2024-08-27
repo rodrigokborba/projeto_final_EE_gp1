@@ -65,6 +65,62 @@
 #define PULL_UP_ENABLED      1
 #define PULL_UP_DISABLED     0
 
+// get/set SM1 aliases
+#define SM1_TRIS                 TRISAbits.TRISA1
+#define SM1_LAT                  LATAbits.LATA1
+#define SM1_PORT                 PORTAbits.RA1
+#define SM1_ANS                  ANSELAbits.ANSA1
+#define SM1_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
+#define SM1_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
+#define SM1_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
+#define SM1_GetValue()           PORTAbits.RA1
+#define SM1_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
+#define SM1_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
+#define SM1_SetAnalogMode()      do { ANSELAbits.ANSA1 = 1; } while(0)
+#define SM1_SetDigitalMode()     do { ANSELAbits.ANSA1 = 0; } while(0)
+
+// get/set SM2 aliases
+#define SM2_TRIS                 TRISAbits.TRISA2
+#define SM2_LAT                  LATAbits.LATA2
+#define SM2_PORT                 PORTAbits.RA2
+#define SM2_ANS                  ANSELAbits.ANSA2
+#define SM2_SetHigh()            do { LATAbits.LATA2 = 1; } while(0)
+#define SM2_SetLow()             do { LATAbits.LATA2 = 0; } while(0)
+#define SM2_Toggle()             do { LATAbits.LATA2 = ~LATAbits.LATA2; } while(0)
+#define SM2_GetValue()           PORTAbits.RA2
+#define SM2_SetDigitalInput()    do { TRISAbits.TRISA2 = 1; } while(0)
+#define SM2_SetDigitalOutput()   do { TRISAbits.TRISA2 = 0; } while(0)
+#define SM2_SetAnalogMode()      do { ANSELAbits.ANSA2 = 1; } while(0)
+#define SM2_SetDigitalMode()     do { ANSELAbits.ANSA2 = 0; } while(0)
+
+// get/set SM3 aliases
+#define SM3_TRIS                 TRISAbits.TRISA3
+#define SM3_LAT                  LATAbits.LATA3
+#define SM3_PORT                 PORTAbits.RA3
+#define SM3_ANS                  ANSELAbits.ANSA3
+#define SM3_SetHigh()            do { LATAbits.LATA3 = 1; } while(0)
+#define SM3_SetLow()             do { LATAbits.LATA3 = 0; } while(0)
+#define SM3_Toggle()             do { LATAbits.LATA3 = ~LATAbits.LATA3; } while(0)
+#define SM3_GetValue()           PORTAbits.RA3
+#define SM3_SetDigitalInput()    do { TRISAbits.TRISA3 = 1; } while(0)
+#define SM3_SetDigitalOutput()   do { TRISAbits.TRISA3 = 0; } while(0)
+#define SM3_SetAnalogMode()      do { ANSELAbits.ANSA3 = 1; } while(0)
+#define SM3_SetDigitalMode()     do { ANSELAbits.ANSA3 = 0; } while(0)
+
+// get/set SM4 aliases
+#define SM4_TRIS                 TRISAbits.TRISA4
+#define SM4_LAT                  LATAbits.LATA4
+#define SM4_PORT                 PORTAbits.RA4
+#define SM4_ANS                  ANSELAbits.ANSA4
+#define SM4_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
+#define SM4_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
+#define SM4_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
+#define SM4_GetValue()           PORTAbits.RA4
+#define SM4_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
+#define SM4_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
+#define SM4_SetAnalogMode()      do { ANSELAbits.ANSA4 = 1; } while(0)
+#define SM4_SetDigitalMode()     do { ANSELAbits.ANSA4 = 0; } while(0)
+
 // get/set RB3 procedures
 #define RB3_SetHigh()            do { LATBbits.LATB3 = 1; } while(0)
 #define RB3_SetLow()             do { LATBbits.LATB3 = 0; } while(0)

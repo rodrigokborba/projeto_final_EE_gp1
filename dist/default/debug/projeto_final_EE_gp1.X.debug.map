@@ -2,19 +2,17 @@ Microchip MPLAB XC8 Compiler V2.46
 
 Linker command line:
 
--W-3 \
-  --edf=C:\Program Files\Microchip\xc8\v2.46\pic\dat\20240104201356_en.msgs \
-  -cn -h+dist/default/debug\Prova.X.debug.sym \
-  --cmf=dist/default/debug\Prova.X.debug.cmf -z -Q16F1827 \
-  -oC:\Users\LABSIS~1\AppData\Local\Temp\xcBs8ho.1\driver_tmp_3.o \
-  --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
-  -Mdist/default/debug/Prova.X.debug.map \
-  --md=C:\Users\LABSIS~1\AppData\Local\Temp\xcBs8ho.1\driver_tmp_0.dat -E1 \
-  -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-07FFhx2 -ASTRCODE=00h-0FFFh \
-  -ASTRING=00h-0FFhx16 -ACONST=00h-0FFhx16 -AENTRY=00h-0FFhx16 \
-  -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
-  -ABANK2=0120h-016Fh -ABANK3=01A0h-01EFh -ABANK4=0220h-024Fh \
-  -ABIGRAM=02000h-0216Fh \
+-W-3 --edf=/opt/microchip/xc8/v2.46/pic/dat/20240104201356_en.msgs -cn \
+  -h+dist/default/debug/projeto_final_EE_gp1.X.debug.sym \
+  --cmf=dist/default/debug/projeto_final_EE_gp1.X.debug.cmf -z -Q16F1827 \
+  -o/tmp/xcXhiCkKC/driver_tmp_3.o --defsym=__MPLAB_BUILD=1 \
+  --fixupoverflow=error \
+  -Mdist/default/debug/projeto_final_EE_gp1.X.debug.map \
+  --md=/tmp/xcXhiCkKC/driver_tmp_0.dat -E1 -ver=XC8 Compiler --acfsm=1493 \
+  -ACODE=00h-07FFhx2 -ASTRCODE=00h-0FFFh -ASTRING=00h-0FFhx16 \
+  -ACONST=00h-0FFhx16 -AENTRY=00h-0FFhx16 -ACOMMON=070h-07Fh \
+  -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh \
+  -ABANK3=01A0h-01EFh -ABANK4=0220h-024Fh -ABIGRAM=02000h-0216Fh \
   -ARAM=020h-06Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-024Fh \
   -AABS1=020h-07Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-024Fh \
   -ASFR0=00h-01Fh -ASFR1=080h-09Fh -ASFR2=0100h-011Fh -ASFR3=0180h-019Fh \
@@ -31,9 +29,8 @@ Linker command line:
   -AIDLOC=08000h-08003h -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
   -DENTRY=2 -preset_vec=00h,intentry=04h,sivt,init,end_init -ppowerup=CODE \
-  -pcinit=CODE -pfunctab=ENTRY -k \
-  C:\Users\LABSIS~1\AppData\Local\Temp\xcBs8ho.1\driver_tmp_15.o \
-  dist/default/debug\Prova.X.debug.o 
+  -pcinit=CODE -pfunctab=ENTRY -k /tmp/xcXhiCkKC/driver_tmp_15.o \
+  dist/default/debug/projeto_final_EE_gp1.X.debug.o 
 
 Object code version is 3.11
 
@@ -42,11 +39,11 @@ Machine type is 16F1827
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\LABSIS~1\AppData\Local\Temp\xcBs8ho.1\driver_tmp_15.o
+/tmp/xcXhiCkKC/driver_tmp_15.o
                 end_init                             13       13        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2        0       4
-dist/default/debug\Prova.X.debug.o
+dist/default/debug/projeto_final_EE_gp1.X.debug.o
                 cinit                                15       15       18        8       0
                 intentry                              4        4        F        8       0
                 config                             8007     8007        2        0       4
@@ -69,12 +66,12 @@ dist/default/debug\Prova.X.debug.o
                 text2                                2D       2D       8D        8       0
                 text1                               20C      20C        B        8       0
                 maintext                            19B      19B       17        8       0
-                cstackBANK0                          38       38        4       20       1
+                cstackBANK0                          3A       3A        4       20       1
                 cstackCOMMON                         70       70        E       70       1
                 clrtext                             236      236        6        8       0
                 inittext                            230      230        6        8       0
-                dataBANK0                            2D       2D        B       20       1
-                bssBANK0                             20       20        D       20       1
+                dataBANK0                            2F       2F        B       20       1
+                bssBANK0                             20       20        F       20       1
                 idataBANK0                          201      201        B        8       0
 
 TOTAL           Name                               Link     Load   Length     Space
@@ -118,9 +115,9 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cstackCOMMON                         70       70        E         1
 
         CLASS   BANK0          
-                cstackBANK0                          38       38        4         1
-                dataBANK0                            2D       2D        B         1
-                bssBANK0                             20       20        D         1
+                cstackBANK0                          3A       3A        4         1
+                dataBANK0                            2F       2F        B         1
+                bssBANK0                             20       20        F         1
 
         CLASS   BANK1          
 
@@ -271,15 +268,15 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000002  000002         0       0  CODE        2
+                bssBANK0                       000020  00001E  00003E        20       1  BANK0       1
                 intentry                       000004  00024D  000251         8       0  CODE        2
-                bssBANK0                       000020  00001C  00003C        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            0003C-0006F              34           1
+        BANK0            0003E-0006F              32           1
         BANK1            000A0-000EF              50           1
         BANK2            00120-0016F              50           1
         BANK3            001A0-001EF              50           1
@@ -293,7 +290,7 @@ UNUSED ADDRESS RANGES
         ENTRY            00002-00003               2           2
                          00251-00FFF             100
         IDLOC            08000-08003               4           2
-        RAM              0003C-0006F              34           1
+        RAM              0003E-0006F              32           1
                          000A0-000EF              50
                          00120-0016F              50
                          001A0-001EF              50
@@ -357,6 +354,7 @@ _EPWM1_LoadDutyValue                text3        001B2
 _INTCONbits                         (abs)        0000B
 _INTERRUPT_InterruptManager         intentry     00004
 _LATA                               (abs)        0010C
+_LATAbits                           (abs)        0010C
 _LATB                               (abs)        0010D
 _OPTION_REGbits                     (abs)        00095
 _OSCCON                             (abs)        00099
@@ -629,9 +627,9 @@ __end_of_main                       maintext     001B2
 __end_of_pwmcontrol                 text2        000BA
 __initialization                    cinit        00015
 __pbssBANK0                         bssBANK0     00020
-__pcstackBANK0                      cstackBANK0  00038
+__pcstackBANK0                      cstackBANK0  0003A
 __pcstackCOMMON                     cstackCOMMON 00070
-__pdataBANK0                        dataBANK0    0002D
+__pdataBANK0                        dataBANK0    0002F
 __pidataBANK0                       idataBANK0   00201
 __pintentry                         intentry     00004
 __pmaintext                         maintext     0019B
@@ -656,13 +654,15 @@ __ptext9                            text9        0024D
 _controlchoose                      text1        0020C
 _error                              bssBANK0     0002A
 _fluxcontrol                        text4        000BA
-_fluxcontrol$1057                   cstackBANK0  0003A
+_fluxcontrol$1108                   cstackBANK0  0003C
 _main                               maintext     0019B
 _output                             bssBANK0     00020
 _outputsum                          bssBANK0     00022
+_pas                                bssBANK0     0002C
+_position                           bssBANK0     0002D
 _pwmcontrol                         text2        0002D
-_pwmcontrol$1058                    cstackBANK0  0003A
-_timecontrol                        bssBANK0     0002C
+_pwmcontrol$1109                    cstackBANK0  0003C
+_timecontrol                        bssBANK0     0002E
 btemp                               (abs)        0007E
 clear_ram0                          clrtext      00236
 end_of_initialization               cinit        00029
@@ -692,10 +692,10 @@ mcc_generated_files/tmr4.c
 
 mcc_generated_files/tmr4.c estimated size: 26
 
-C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\lwdiv.c
-		___lwdiv       		CODE           	0140	0000	60
+/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+		___wmul        		CODE           	017C	0000	31
 
-C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\lwdiv.c estimated size: 60
+/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c estimated size: 31
 
 mcc_generated_files/tmr2.c
 		_TMR2_Initialize		CODE           	0221	0000	8
@@ -713,15 +713,15 @@ mcc_generated_files/pin_manager.c
 
 mcc_generated_files/pin_manager.c estimated size: 24
 
+/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+		___lwdiv       		CODE           	0140	0000	60
+
+/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c estimated size: 60
+
 shared
 		__initialization		CODE           	0015	0000	20
 
 shared estimated size: 20
-
-C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul16.c
-		___wmul        		CODE           	017C	0000	31
-
-C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul16.c estimated size: 31
 
 mcc_generated_files/mcc.c
 		_WDT_Initialize		CODE           	0246	0000	4

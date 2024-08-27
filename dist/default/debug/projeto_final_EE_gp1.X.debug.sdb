@@ -3,45 +3,47 @@
 [d edition pro ]
 [d chip 16F1827 ]
 [d frameptr 6 ]
-"5 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\lwdiv.c
+"5 /opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcadd.c
+"10 /opt/microchip/xc8/v2.46/pic/sources/c99/common/sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul16.c
+"15 /opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
-"4 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul8_16.c
+"4 /opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"6 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\pic\__eeprom.c
+"6 /opt/microchip/xc8/v2.46/pic/sources/c99/pic/__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"51 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\main.c
+"51 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
 [v _fluxcontrol fluxcontrol `(v  1 e 1 0 ]
 "61
 [v _pwmcontrol pwmcontrol `(v  1 e 1 0 ]
 "76
 [v _controlchoose controlchoose `(v  1 e 1 0 ]
 "86
+[v _meioPasso meioPasso `(v  1 e 1 0 ]
+"159
 [v _main main `(v  1 e 1 0 ]
-"64 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/epwm1.c
+"64 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
 [v _EPWM1_Initialize EPWM1_Initialize `(v  1 e 1 0 ]
 "90
 [v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
-"52 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/interrupt_manager.c
+"52 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"50 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/mcc.c
+"50 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "61
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "71
 [v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
-"55 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/pin_manager.c
+"55 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 "98
 [v _PIN_MANAGER_IOC PIN_MANAGER_IOC `(v  1 e 1 0 ]
-"62 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/tmr2.c
+"62 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
-"62 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/tmr4.c
+"62 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
 [v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
 "79
 [v _TMR4_StartTimer TMR4_StartTimer `(v  1 e 1 0 ]
@@ -51,13 +53,19 @@
 [v _TMR4_ReadTimer TMR4_ReadTimer `(uc  1 e 1 0 ]
 "106
 [v _TMR4_LoadPeriodRegister TMR4_LoadPeriodRegister `(v  1 e 1 0 ]
-"10 C:\Users\Labsisco 06\MPLABXProjects\Prova.X/main.h
+"17 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.h
 [v _error error `s  1 e 2 0 ]
-"17
+"24
 [v _outputsum outputsum `us  1 e 2 0 ]
 [v _output output `us  1 e 2 0 ]
-"19
+"26
 [v _timecontrol timecontrol `uc  1 e 1 0 ]
+"29
+[v _position position `uc  1 e 1 0 ]
+[s S365 . 1 `uc 1 sos 1 0 :2:0 
+]
+"33
+[v _pas pas `S365  1 e 1 0 ]
 [s S95 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
@@ -67,7 +75,7 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"374 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h
+"374 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
 [s S104 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -75,7 +83,7 @@
 ]
 [u S109 . 1 `S95 1 . 1 0 `S104 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES109  1 e 1 @11 ]
-[s S196 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S147 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSP1IF 1 0 :1:3 
@@ -85,9 +93,9 @@
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
 "570
-[u S205 . 1 `S196 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES205  1 e 1 @17 ]
-[s S274 . 1 `uc 1 . 1 0 :1:0 
+[u S156 . 1 `S147 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES156  1 e 1 @17 ]
+[s S225 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 TMR4IF 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 TMR6IF 1 0 :1:3 
@@ -95,15 +103,15 @@
 `uc 1 CCP4IF 1 0 :1:5 
 ]
 "681
-[u S281 . 1 `S274 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES281  1 e 1 @19 ]
+[u S232 . 1 `S225 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES232  1 e 1 @19 ]
 "941
 [v _TMR2 TMR2 `VEuc  1 e 1 @26 ]
 "961
 [v _PR2 PR2 `VEuc  1 e 1 @27 ]
 "981
 [v _T2CON T2CON `VEuc  1 e 1 @28 ]
-[s S218 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S169 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -112,12 +120,12 @@
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
 "1002
-[s S226 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[s S177 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
-[u S230 . 1 `S218 1 . 1 0 `S226 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES230  1 e 1 @28 ]
+[u S181 . 1 `S169 1 . 1 0 `S177 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES181  1 e 1 @28 ]
 "1152
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
 "1214
@@ -147,6 +155,18 @@
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
 "2039
 [v _LATA LATA `VEuc  1 e 1 @268 ]
+[s S370 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"2056
+[u S379 . 1 `S370 1 . 1 0 ]
+[v _LATAbits LATAbits `VES379  1 e 1 @268 ]
 "2096
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "2430
@@ -175,7 +195,7 @@
 [v _ECCP1AS ECCP1AS `VEuc  1 e 1 @661 ]
 "4947
 [v _PSTR1CON PSTR1CON `VEuc  1 e 1 @662 ]
-[s S350 . 1 `uc 1 C1TSEL0 1 0 :1:0 
+[s S301 . 1 `uc 1 C1TSEL0 1 0 :1:0 
 `uc 1 C1TSEL1 1 0 :1:1 
 `uc 1 C2TSEL0 1 0 :1:2 
 `uc 1 C2TSEL1 1 0 :1:3 
@@ -185,20 +205,20 @@
 `uc 1 C4TSEL1 1 0 :1:7 
 ]
 "5505
-[s S359 . 1 `uc 1 C1TSEL 1 0 :2:0 
+[s S310 . 1 `uc 1 C1TSEL 1 0 :2:0 
 `uc 1 C2TSEL 1 0 :2:2 
 `uc 1 C3TSEL 1 0 :2:4 
 `uc 1 C4TSEL 1 0 :2:6 
 ]
-[u S364 . 1 `S350 1 . 1 0 `S359 1 . 1 0 ]
-[v _CCPTMRS0bits CCPTMRS0bits `VES364  1 e 1 @670 ]
+[u S315 . 1 `S301 1 . 1 0 `S310 1 . 1 0 ]
+[v _CCPTMRS0bits CCPTMRS0bits `VES315  1 e 1 @670 ]
 "6312
 [v _TMR4 TMR4 `VEuc  1 e 1 @1045 ]
 "6332
 [v _PR4 PR4 `VEuc  1 e 1 @1046 ]
 "6352
 [v _T4CON T4CON `VEuc  1 e 1 @1047 ]
-[s S292 . 1 `uc 1 T4CKPS0 1 0 :1:0 
+[s S243 . 1 `uc 1 T4CKPS0 1 0 :1:0 
 `uc 1 T4CKPS1 1 0 :1:1 
 `uc 1 TMR4ON 1 0 :1:2 
 `uc 1 T4OUTPS0 1 0 :1:3 
@@ -207,16 +227,16 @@
 `uc 1 T4OUTPS3 1 0 :1:6 
 ]
 "6373
-[s S300 . 1 `uc 1 T4CKPS 1 0 :2:0 
+[s S251 . 1 `uc 1 T4CKPS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T4OUTPS 1 0 :4:3 
 ]
-[u S304 . 1 `S292 1 . 1 0 `S300 1 . 1 0 ]
-[v _T4CONbits T4CONbits `VES304  1 e 1 @1047 ]
-"86 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\main.c
+[u S255 . 1 `S243 1 . 1 0 `S251 1 . 1 0 ]
+[v _T4CONbits T4CONbits `VES255  1 e 1 @1047 ]
+"159 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"115
+"188
 } 0
 "76
 [v _controlchoose controlchoose `(v  1 e 1 0 ]
@@ -228,18 +248,18 @@
 {
 "70
 } 0
-"90 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/epwm1.c
+"90 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
 [v _EPWM1_LoadDutyValue EPWM1_LoadDutyValue `(v  1 e 1 0 ]
 {
 [v EPWM1_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
 "97
 } 0
-"51 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\main.c
+"51 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
 [v _fluxcontrol fluxcontrol `(v  1 e 1 0 ]
 {
 "59
 } 0
-"15 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul16.c
+"15 /opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
@@ -249,7 +269,7 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
-"5 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\lwdiv.c
+"5 /opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "10
@@ -261,7 +281,7 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 "30
 } 0
-"79 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/tmr4.c
+"79 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
 [v _TMR4_StartTimer TMR4_StartTimer `(v  1 e 1 0 ]
 {
 "83
@@ -287,7 +307,7 @@
 [v TMR4_ReadTimer@readVal readVal `uc  1 a 1 0 ]
 "98
 } 0
-"50 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/mcc.c
+"50 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "59
@@ -297,37 +317,37 @@
 {
 "75
 } 0
-"62 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/tmr4.c
+"62 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
 [v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
 {
 "77
 } 0
-"62 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/tmr2.c
+"62 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 {
 "77
 } 0
-"55 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/pin_manager.c
+"55 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "96
 } 0
-"61 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/mcc.c
+"61 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "69
 } 0
-"64 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/epwm1.c
+"64 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
 [v _EPWM1_Initialize EPWM1_Initialize `(v  1 e 1 0 ]
 {
 "88
 } 0
-"52 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/interrupt_manager.c
+"52 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
 "63
 } 0
-"98 C:\Users\Labsisco 06\MPLABXProjects\Prova.X\mcc_generated_files/pin_manager.c
+"98 /home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_IOC PIN_MANAGER_IOC `(v  1 e 1 0 ]
 {
 "100
