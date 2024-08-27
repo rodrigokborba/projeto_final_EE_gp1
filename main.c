@@ -48,7 +48,7 @@
                          Main application
  */
 
-void fluxcontrol (){
+void fluxcontrol(){
     error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
     if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%
         outputsum += ((kif*timecontrol*error)/1000); //Kintegrativa com erro e o tempo do timer   
@@ -58,7 +58,7 @@ void fluxcontrol (){
     }
 }
 
-void pwmcontrol (){
+void pwmcontrol(){
     error = ballset-balldist; //Calculo do erro baseado na dist setado com a dist real
     if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%, roda o codigo
         outputsum += ((kip*timecontrol*error)/1000);//Kintegrativa com erro e o tempo do timer 
@@ -69,7 +69,7 @@ void pwmcontrol (){
     }
 }
 
-void fluxpos (){
+void fluxpos(){
     
 }
 
@@ -81,6 +81,79 @@ void controlchoose(){
     }
     TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
+}
+
+void meioPasso(bool sentido){
+    if(sentido){
+        switch(pas.sos){
+            case 0:
+                SM1_SetHigh();
+                SM2_SetHigh();
+                SM3_SetLow();
+                SM4_SetLow();
+                break;
+            case 1:
+                SM1_SetLow();
+                SM2_SetHigh();
+                SM3_SetHigh();
+                SM4_SetLow();
+                break;
+            case 2:
+                SM1_SetLow();
+                SM2_SetLow();
+                SM3_SetHigh();
+                SM4_SetHigh();
+                break;
+            case 3:
+                SM1_SetHigh();
+                SM2_SetLow();
+                SM3_SetLow();
+                SM4_SetHigh();
+                break;
+        }
+    }else{
+        switch(pas.sos){
+            case 0:
+                SM4_SetHigh();
+                SM3_SetHigh();
+                SM2_SetLow();
+                SM1_SetLow();
+                break;
+            case 1:
+                SM4_SetLow();
+                SM3_SetHigh();
+                SM2_SetHigh();
+                SM1_SetLow();
+                break;
+            case 2:
+                SM4_SetLow();
+                SM3_SetLow();
+                SM2_SetHigh();
+                SM1_SetHigh();
+                break;
+            case 3:
+                SM4_SetHigh();
+                SM3_SetLow();
+                SM2_SetLow();
+                SM1_SetHigh();
+                break;
+        }
+    }
+}
+
+void move(uint8_t n_passos, bool sentido){
+    uint8_t incPos = 0;
+    if(sentido){
+        incPos = 1;
+    }else{
+        incPos = -1;
+    }
+    for(uint8_t i=0; i<=n_passos; i = i++){
+        pas.sos++;
+        position = position + incPos;
+        meioPasso(sentido);
+        __delay_ms(3);
+    }
 }
 
 void main(void)
