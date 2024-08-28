@@ -38,41 +38,45 @@ bool controlchoice = true;
 uint8_t timecontrol;
 
 //Comunicação Serial
-union{                  //estrutura de união para temperatura
-    uint16_t t;
-    struct{
-        uint8_t tL;
-        uint8_t tH;
-    };
-}tTx;
-
-union{                  //estrutura de união para distância, usada no envio
-    uint16_t d;
-    struct{
-        uint8_t dL;
-        uint8_t dH;
-    };
-}dTx;
-
-union{                 //estrutura de união para distância, usada no recebimento
-    uint16_t d;
+union{                  ///< União para temperatura, usada na transmissão
+    uint16_t t;         ///< Valor inteiro de 16 bits. Contém os 4 nibles
     struct{
         uint8_t n0 : 4; ///< Nible n0 
         uint8_t n1 : 4; ///< Nible n1  
         uint8_t n2 : 4; ///< Nible n2 
         uint8_t n3 : 4; ///< Nible n3
     };
-}dRx;
+}tTx;                   ///< Variável com os valores guardados para temperatura
 
-union{                //estrutura de união para duty cycle, usada no Recebimento
-    uint16_t dc;
+union{                  ///< União para altura, usada na transmissão
+    uint16_t d;         ///< Valor inteiro de 16 bits. Contém os 4 nibles
     struct{
         uint8_t n0 : 4; ///< Nible n0 
         uint8_t n1 : 4; ///< Nible n1  
         uint8_t n2 : 4; ///< Nible n2 
         uint8_t n3 : 4; ///< Nible n3
     };
-}dcRx;
+}dTx;                   ///< Variável com os valores guardados para altura
+
+union{                  ///< União para altura, usada no Recebimento
+    uint16_t d;         ///< Valor inteiro de 16 bits. Contém os 4 nibles
+    struct{
+        uint8_t n0 : 4; ///< Nible n0 
+        uint8_t n1 : 4; ///< Nible n1  
+        uint8_t n2 : 4; ///< Nible n2 
+        uint8_t n3 : 4; ///< Nible n3
+    };
+}dRx;                   ///< Variável com os valores guardados para altura
+
+union{                      ///< União para duty cycle, usada no Recebimento
+    uint16_t dc;            ///< Valor inteiro de 16 bits. Contém os 4 nibles
+    struct{
+        uint8_t n0 : 4;     ///< Nible n0 
+        uint8_t n1 : 4;     ///< Nible n1  
+        uint8_t n2 : 4;     ///< Nible n2 
+        uint8_t n3 : 4;     ///< Nible n3
+    };  
+}dcRx;                      ///< Variável com os valores guardados de duty cycle
 
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
@@ -95,10 +99,34 @@ void fluxpos();
 void controlchoose();
 
 //Comunicação Serial
+
+/**
+ * Analisa a mensagem recebida pelo EUSART e realiza o comando.
+ */
 void analisa_Rx ();
+
+/**
+ * Realiza o envio de altura e temperatura. Acionada na interrupção do TMR0.
+ */
 void envia_Tx ();
+
+/**
+ * Converte um valor binário de quatro bits para ASCII.
+ * @param vBin
+ * @return Valor ASCII
+ */
 uint8_t bin_ascii(uint8_t vBin);
+
+/**
+ * Converte um valor ASCII para um valor binário de quatro bits.
+ * @param vAscii
+ * @return Valor binário de 4 bits
+ */
 uint8_t ascii_bin(uint8_t vAscii);
+
+/**
+ * Função utilizada para receber mensagens de comunicação. Acionada na interrupção do EUSART.
+ */
 void receive();
 
 //Movimento do motor de passo
