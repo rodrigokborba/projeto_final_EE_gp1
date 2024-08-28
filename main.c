@@ -136,10 +136,14 @@ void analisa_Rx (){
 }
 
 void envia_Tx (){         //função para enviar dados de altura e temperatura
-    EUSART_Write(bin_ascii(dTx.dH));     //Envia MSB da distância
-    EUSART_Write(bin_ascii(dTx.dL));     //Envia LSB da distância
-    EUSART_Write(bin_ascii(tTx.tH));     //Envia MSB da temperatura
-    EUSART_Write(bin_ascii(tTx.tL));     //Envia LSB da temperatura
+    EUSART_Write(bin_ascii(dTx.n3));     //Envia n3 da altura
+    EUSART_Write(bin_ascii(dTx.n2));     //Envia n2 da altura
+    EUSART_Write(bin_ascii(dTx.n1));     //Envia n1 da altura
+    EUSART_Write(bin_ascii(dTx.n0));     //Envia n0 da altura
+    EUSART_Write(bin_ascii(tTx.n3));     //Envia n3 da temperatura
+    EUSART_Write(bin_ascii(tTx.n2));     //Envia n2 da temperatura
+    EUSART_Write(bin_ascii(tTx.n1));     //Envia n1 da temperatura
+    EUSART_Write(bin_ascii(tTx.n0));     //Envia n0 da temperatura
     EUSART_Write(RX_END);     //Envia caracter de final de mensagem
 }
 
