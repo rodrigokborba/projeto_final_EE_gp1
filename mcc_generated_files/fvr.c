@@ -1,26 +1,24 @@
 /**
-  Generated Pin Manager File
+  FVR Generated Driver File
 
-  Company:
+  @Company
     Microchip Technology Inc.
 
-  File Name:
-    pin_manager.c
+  @File Name
+    fvr.c
 
-  Summary:
-    This is the Pin Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+  @Summary
+    This is the generated driver implementation file for the FVR driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
-  Description:
-    This header file provides implementations for pin APIs for all pins selected in the GUI.
+  @Description
+    This source file provides APIs for FVR.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16F1827
-        Driver Version    :  2.11
+        Driver Version    :  2.01
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
         MPLAB             :  MPLAB X 6.00
-
-    Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
 */
 
 /*
@@ -46,59 +44,28 @@
     SOFTWARE.
 */
 
-#include "pin_manager.h"
+/**
+  Section: Included Files
+*/
 
+#include <xc.h>
+#include "fvr.h"
 
+/**
+  Section: FVR APIs
+*/
 
-
-
-void PIN_MANAGER_Initialize(void)
+void FVR_Initialize(void)
 {
-    /**
-    LATx registers
-    */
-    LATA = 0x00;
-    LATB = 0x00;
-
-    /**
-    TRISx registers
-    */
-    TRISA = 0xE1;
-    TRISB = 0xF7;
-
-    /**
-    ANSELx registers
-    */
-    ANSELB = 0xF0;
-    ANSELA = 0x01;
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x00;
-    WPUA = 0x00;
-    OPTION_REGbits.nWPUEN = 1;
-
-
-    /**
-    APFCONx registers
-    */
-    APFCON0 = 0x00;
-    APFCON1 = 0x00;
-
-
-
-
-   
-    // Enable IOCI interrupt 
-    INTCONbits.IOCIE = 1; 
-    
-}
-  
-void PIN_MANAGER_IOC(void)
-{   
+    // CDAFVR 1x; FVREN enabled; TSRNG Lo_range; ADFVR off; TSEN disabled; 
+    FVRCON = 0x84;
 }
 
+bool FVR_IsOutputReady(void)
+{
+    return (FVRCONbits.FVRRDY);
+}
 /**
  End of File
 */
+
