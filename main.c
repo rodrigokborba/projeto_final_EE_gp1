@@ -83,6 +83,104 @@ void controlchoose(){
     TMR4_StartTimer();
 }
 
+void analisa_Rx (){
+    switch(bufferRx[0]){
+        case RX_CMD_PWM:
+            if(countRx==RX_CMD_PWM_SZ){
+                dcRx.n3 = ascii_bin(bufferRx[1]);
+                dcRx.n2 = ascii_bin(bufferRx[2]);
+                dcRx.n1 = ascii_bin(bufferRx[3]);
+                dcRx.n0 = ascii_bin(bufferRx[4]);
+                EPWM1_LoadDutyValue(dcRx.dc);
+            }
+            else{
+                //se houver mensagem de erro no roteiro
+            }
+            break;
+        case RX_CMD_STEP:
+            if(countRx==RX_CMD_STEP_SZ){
+                
+            }
+            else{
+                //se houver mensagem de erro no roteiro
+            }
+            break;            
+        case RX_CMD_HEIGHT:
+            if(countRx==RX_CMD_HEIGHT_SZ){
+                dRx.n3 = ascii_bin(bufferRx[1]);
+                dRx.n2 = ascii_bin(bufferRx[2]);
+                dRx.n1 = ascii_bin(bufferRx[3]);
+                dRx.n0 = ascii_bin(bufferRx[4]);
+                ballset = dRx.d / 20;
+            }
+            else{
+                //se houver mensagem de erro no roteiro
+            }
+            break;
+        case RX_CMD_CTRL:
+            if(countRx==RX_CMD_CTRL_SZ){
+                if(ascii_bin(bufferRx[1])== 0){
+                    controlchoice = false;
+                }
+                else{
+                    controlchoice = true;
+                }
+            }
+            else{
+                //se houver mensagem de erro no roteiro
+            }
+            break;
+        default:
+            ; //se houver mensagem de erro no roteiro
+    } 
+}
+
+void envia_Tx (){         //função para enviar dados de altura e temperatura
+    EUSART_Write(bin_ascii(dTx.dH));     //Envia MSB da distância
+    EUSART_Write(bin_ascii(dTx.dL));     //Envia LSB da distância
+    EUSART_Write(bin_ascii(tTx.tH));     //Envia MSB da temperatura
+    EUSART_Write(bin_ascii(tTx.tL));     //Envia LSB da temperatura
+    EUSART_Write(RX_END);     //Envia caracter de final de mensagem
+}
+
+uint8_t bin_ascii(uint8_t vBin){
+    vBin = vBin & 0x0F;                        // Apaga nible alto
+    if(vBin<10){                               // Se valor < 0xA
+        vBin = vBin + 0x30; // 0..9            // Acresecenta 0x30 (ascii '0')
+    }
+    else{                                      // se não
+        vBin = vBin + 0x37; // A..F            // accrescenta 0x37 (ascii '0'+7)
+    }
+    return vBin;
+}
+
+uint8_t ascii_bin(uint8_t vAscii){
+    if(vAscii<0x3A){                               // Se valor <= 0x39 ('9') 
+        vAscii = vAscii - 0x30; // '0'..'9'        // subtrai 0x30 (ascii '0')
+    }
+    else{                                          // se não
+        vAscii = vAscii - 0x37; // 'A'..'F'        // subtrai 0x37 (ascii '0'+7)
+    }
+    return vAscii;
+}
+
+void receive(){
+    uint8_t rx_byte = EUSART_Read();       // Lê-se EUSART e guarda-se em rxChar
+    if(rx_byte==RX_INI){                   // Se for o inicio do quadro
+        countRx = 0;                       // zera contador
+    }
+    else if(rx_byte==RX_END){              // Se for o final
+        analisa_Rx();                      // analiza dados recebidos
+    }
+    else{                                  // se não é nem inicio nem fim
+        if(countRx<BUFFER_MAX-1){          // e o buffer não etsá cheio
+            bufferRx[countRx] = rx_byte;   // guarda valor
+            countRx++;
+        }
+    }
+}
+
+
 void meioPasso(bool sentido){
     if(sentido){
         switch(pas.sos){
@@ -160,15 +258,17 @@ void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
+    TMR0_SetInterruptHandler(envia_Tx);
+    EUSART_SetRxInterruptHandler(receive);
 
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
     // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
