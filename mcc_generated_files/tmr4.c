@@ -63,8 +63,8 @@ void TMR4_Initialize(void)
 {
     // Set TMR4 to the options selected in the User Interface
 
-    // PR4 255; 
-    PR4 = 0xFF;
+    // PR4 250; 
+    PR4 = 0xFA;
 
     // TMR4 0; 
     TMR4 = 0x00;
