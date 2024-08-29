@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/pin_manager.c"
+# 1 "mcc_generated_files/fvr.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/pin_manager.c" 2
-# 49 "mcc_generated_files/pin_manager.c"
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 54 "mcc_generated_files/pin_manager.h"
+# 1 "mcc_generated_files/fvr.c" 2
+# 51 "mcc_generated_files/fvr.c"
 # 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4341,60 +4339,28 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
-# 55 "mcc_generated_files/pin_manager.h" 2
-# 197 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 209 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 50 "mcc_generated_files/pin_manager.c" 2
+# 52 "mcc_generated_files/fvr.c" 2
+# 1 "mcc_generated_files/fvr.h" 1
+# 54 "mcc_generated_files/fvr.h"
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdbool.h" 1 3
+# 55 "mcc_generated_files/fvr.h" 2
+# 93 "mcc_generated_files/fvr.h"
+ void FVR_Initialize(void);
+# 127 "mcc_generated_files/fvr.h"
+_Bool FVR_IsOutputReady(void);
+# 53 "mcc_generated_files/fvr.c" 2
 
 
 
 
 
-void PIN_MANAGER_Initialize(void)
+void FVR_Initialize(void)
 {
 
-
-
-    LATA = 0x00;
-    LATB = 0x00;
-
-
-
-
-    TRISA = 0xE1;
-    TRISB = 0xF7;
-
-
-
-
-    ANSELB = 0xF0;
-    ANSELA = 0x01;
-
-
-
-
-    WPUB = 0x00;
-    WPUA = 0x00;
-    OPTION_REGbits.nWPUEN = 1;
-
-
-
-
-
-    APFCON0 = 0x00;
-    APFCON1 = 0x00;
-
-
-
-
-
-
-    INTCONbits.IOCIE = 1;
-
+    FVRCON = 0x84;
 }
 
-void PIN_MANAGER_IOC(void)
+_Bool FVR_IsOutputReady(void)
 {
+    return (FVRCONbits.FVRRDY);
 }

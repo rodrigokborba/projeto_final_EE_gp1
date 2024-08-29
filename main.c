@@ -244,18 +244,26 @@ void meioPasso(bool sentido){
 }
 
 void move(uint8_t n_passos, bool sentido){
-    uint8_t incPos = 0;
+    signed int incPos = 0;
     if(sentido){
         incPos = 1;
     }else{
         incPos = -1;
     }
-    for(uint8_t i=0; i<=n_passos; i = i++){
+    for(uint8_t i=0; i<=n_passos; i++){
+        meioPasso(sentido);
         pas.sos++;
         position = position + incPos;
-        meioPasso(sentido);
-        __delay_ms(3);
+        __delay_ms(10);
     }
+}
+
+void encontraFimCurso(){
+    while(!CMP1_GetOutputStatus()){
+        meioPasso(0);
+        pas.sos++;
+    }
+    position = 0;
 }
 
 void main(void)
@@ -279,7 +287,6 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    
             
     while (1)
     {

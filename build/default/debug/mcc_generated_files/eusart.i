@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/pin_manager.c"
+# 1 "mcc_generated_files/eusart.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,10 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/pin_manager.c" 2
-# 49 "mcc_generated_files/pin_manager.c"
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 54 "mcc_generated_files/pin_manager.h"
+# 1 "mcc_generated_files/eusart.c" 2
+# 50 "mcc_generated_files/eusart.c"
+# 1 "mcc_generated_files/eusart.h" 1
+# 54 "mcc_generated_files/eusart.h"
 # 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4341,60 +4341,281 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
-# 55 "mcc_generated_files/pin_manager.h" 2
-# 197 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 209 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 50 "mcc_generated_files/pin_manager.c" 2
+# 55 "mcc_generated_files/eusart.h" 2
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdbool.h" 1 3
+# 56 "mcc_generated_files/eusart.h" 2
+# 75 "mcc_generated_files/eusart.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart_status_t;
 
 
 
 
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
 
-void PIN_MANAGER_Initialize(void)
+
+
+
+extern void (*EUSART_TxDefaultInterruptHandler)(void);
+extern void (*EUSART_RxDefaultInterruptHandler)(void);
+# 117 "mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+# 165 "mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_ready(void);
+# 213 "mcc_generated_files/eusart.h"
+_Bool EUSART_is_rx_ready(void);
+# 260 "mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_done(void);
+# 308 "mcc_generated_files/eusart.h"
+eusart_status_t EUSART_get_last_status(void);
+# 328 "mcc_generated_files/eusart.h"
+uint8_t EUSART_Read(void);
+# 348 "mcc_generated_files/eusart.h"
+void EUSART_Write(uint8_t txData);
+# 369 "mcc_generated_files/eusart.h"
+void EUSART_Transmit_ISR(void);
+# 390 "mcc_generated_files/eusart.h"
+void EUSART_Receive_ISR(void);
+# 411 "mcc_generated_files/eusart.h"
+void EUSART_RxDataHandler(void);
+# 429 "mcc_generated_files/eusart.h"
+void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 447 "mcc_generated_files/eusart.h"
+void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 465 "mcc_generated_files/eusart.h"
+void EUSART_SetErrorHandler(void (* interruptHandler)(void));
+# 485 "mcc_generated_files/eusart.h"
+void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 505 "mcc_generated_files/eusart.h"
+void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 51 "mcc_generated_files/eusart.c" 2
+# 62 "mcc_generated_files/eusart.c"
+volatile uint8_t eusartTxHead = 0;
+volatile uint8_t eusartTxTail = 0;
+volatile uint8_t eusartTxBuffer[8];
+volatile uint8_t eusartTxBufferRemaining;
+
+volatile uint8_t eusartRxHead = 0;
+volatile uint8_t eusartRxTail = 0;
+volatile uint8_t eusartRxBuffer[8];
+volatile eusart_status_t eusartRxStatusBuffer[8];
+volatile uint8_t eusartRxCount;
+volatile eusart_status_t eusartRxLastError;
+
+
+
+
+void (*EUSART_TxDefaultInterruptHandler)(void);
+void (*EUSART_RxDefaultInterruptHandler)(void);
+
+void (*EUSART_FramingErrorHandler)(void);
+void (*EUSART_OverrunErrorHandler)(void);
+void (*EUSART_ErrorHandler)(void);
+
+void EUSART_DefaultFramingErrorHandler(void);
+void EUSART_DefaultOverrunErrorHandler(void);
+void EUSART_DefaultErrorHandler(void);
+
+void EUSART_Initialize(void)
+{
+
+    PIE1bits.RCIE = 0;
+    EUSART_SetRxInterruptHandler(EUSART_Receive_ISR);
+    PIE1bits.TXIE = 0;
+    EUSART_SetTxInterruptHandler(EUSART_Transmit_ISR);
+
+
+
+    BAUDCON = 0x08;
+
+
+    RCSTA = 0x90;
+
+
+    TXSTA = 0x24;
+
+
+    SPBRGL = 0x22;
+
+
+    SPBRGH = 0x00;
+
+
+    EUSART_SetFramingErrorHandler(EUSART_DefaultFramingErrorHandler);
+    EUSART_SetOverrunErrorHandler(EUSART_DefaultOverrunErrorHandler);
+    EUSART_SetErrorHandler(EUSART_DefaultErrorHandler);
+
+    eusartRxLastError.status = 0;
+
+
+    eusartTxHead = 0;
+    eusartTxTail = 0;
+    eusartTxBufferRemaining = sizeof(eusartTxBuffer);
+
+    eusartRxHead = 0;
+    eusartRxTail = 0;
+    eusartRxCount = 0;
+
+
+    PIE1bits.RCIE = 1;
+}
+
+_Bool EUSART_is_tx_ready(void)
+{
+    return (eusartTxBufferRemaining ? 1 : 0);
+}
+
+_Bool EUSART_is_rx_ready(void)
+{
+    return (eusartRxCount ? 1 : 0);
+}
+
+_Bool EUSART_is_tx_done(void)
+{
+    return TXSTAbits.TRMT;
+}
+
+eusart_status_t EUSART_get_last_status(void){
+    return eusartRxLastError;
+}
+
+uint8_t EUSART_Read(void)
+{
+    uint8_t readValue = 0;
+
+    while(0 == eusartRxCount)
+    {
+    }
+
+    eusartRxLastError = eusartRxStatusBuffer[eusartRxTail];
+
+    readValue = eusartRxBuffer[eusartRxTail++];
+    if(sizeof(eusartRxBuffer) <= eusartRxTail)
+    {
+        eusartRxTail = 0;
+    }
+    PIE1bits.RCIE = 0;
+    eusartRxCount--;
+    PIE1bits.RCIE = 1;
+
+    return readValue;
+}
+
+void EUSART_Write(uint8_t txData)
+{
+    while(0 == eusartTxBufferRemaining)
+    {
+    }
+
+    if(0 == PIE1bits.TXIE)
+    {
+        TXREG = txData;
+    }
+    else
+    {
+        PIE1bits.TXIE = 0;
+        eusartTxBuffer[eusartTxHead++] = txData;
+        if(sizeof(eusartTxBuffer) <= eusartTxHead)
+        {
+            eusartTxHead = 0;
+        }
+        eusartTxBufferRemaining--;
+    }
+    PIE1bits.TXIE = 1;
+}
+
+
+void EUSART_Transmit_ISR(void)
 {
 
 
+    if(sizeof(eusartTxBuffer) > eusartTxBufferRemaining)
+    {
+        TXREG = eusartTxBuffer[eusartTxTail++];
+        if(sizeof(eusartTxBuffer) <= eusartTxTail)
+        {
+            eusartTxTail = 0;
+        }
+        eusartTxBufferRemaining++;
+    }
+    else
+    {
+        PIE1bits.TXIE = 0;
+    }
+}
 
-    LATA = 0x00;
-    LATB = 0x00;
+void EUSART_Receive_ISR(void)
+{
 
+    eusartRxStatusBuffer[eusartRxHead].status = 0;
 
+    if(RCSTAbits.FERR){
+        eusartRxStatusBuffer[eusartRxHead].ferr = 1;
+        EUSART_FramingErrorHandler();
+    }
 
+    if(RCSTAbits.OERR){
+        eusartRxStatusBuffer[eusartRxHead].oerr = 1;
+        EUSART_OverrunErrorHandler();
+    }
 
-    TRISA = 0xE1;
-    TRISB = 0xF7;
+    if(eusartRxStatusBuffer[eusartRxHead].status){
+        EUSART_ErrorHandler();
+    } else {
+        EUSART_RxDataHandler();
+    }
 
-
-
-
-    ANSELB = 0xF0;
-    ANSELA = 0x01;
-
-
-
-
-    WPUB = 0x00;
-    WPUA = 0x00;
-    OPTION_REGbits.nWPUEN = 1;
-
-
-
-
-
-    APFCON0 = 0x00;
-    APFCON1 = 0x00;
-
-
-
-
-
-
-    INTCONbits.IOCIE = 1;
 
 }
 
-void PIN_MANAGER_IOC(void)
-{
+void EUSART_RxDataHandler(void){
+
+    eusartRxBuffer[eusartRxHead++] = RCREG;
+    if(sizeof(eusartRxBuffer) <= eusartRxHead)
+    {
+        eusartRxHead = 0;
+    }
+    eusartRxCount++;
+}
+
+void EUSART_DefaultFramingErrorHandler(void){}
+
+void EUSART_DefaultOverrunErrorHandler(void){
+
+
+    RCSTAbits.CREN = 0;
+    RCSTAbits.CREN = 1;
+
+}
+
+void EUSART_DefaultErrorHandler(void){
+    EUSART_RxDataHandler();
+}
+
+void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void)){
+    EUSART_FramingErrorHandler = interruptHandler;
+}
+
+void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void)){
+    EUSART_OverrunErrorHandler = interruptHandler;
+}
+
+void EUSART_SetErrorHandler(void (* interruptHandler)(void)){
+    EUSART_ErrorHandler = interruptHandler;
+}
+
+void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void)){
+    EUSART_TxDefaultInterruptHandler = interruptHandler;
+}
+
+void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void)){
+    EUSART_RxDefaultInterruptHandler = interruptHandler;
 }

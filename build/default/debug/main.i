@@ -4345,9 +4345,9 @@ extern __bank0 __bit __timeout;
 # 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 146 "./mcc_generated_files/pin_manager.h"
+# 197 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 158 "./mcc_generated_files/pin_manager.h"
+# 209 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 
@@ -4516,11 +4516,21 @@ char *tempnam(const char *, const char *);
 # 55 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 56 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/epwm1.h" 1
-# 96 "./mcc_generated_files/epwm1.h"
-void EPWM1_Initialize(void);
-# 122 "./mcc_generated_files/epwm1.h"
-void EPWM1_LoadDutyValue(uint16_t dutyValue);
+# 1 "./mcc_generated_files/tmr4.h" 1
+# 103 "./mcc_generated_files/tmr4.h"
+void TMR4_Initialize(void);
+# 132 "./mcc_generated_files/tmr4.h"
+void TMR4_StartTimer(void);
+# 164 "./mcc_generated_files/tmr4.h"
+void TMR4_StopTimer(void);
+# 199 "./mcc_generated_files/tmr4.h"
+uint8_t TMR4_ReadTimer(void);
+# 238 "./mcc_generated_files/tmr4.h"
+void TMR4_WriteTimer(uint8_t timerVal);
+# 290 "./mcc_generated_files/tmr4.h"
+void TMR4_LoadPeriodRegister(uint8_t periodVal);
+# 325 "./mcc_generated_files/tmr4.h"
+_Bool TMR4_HasOverflowOccured(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 103 "./mcc_generated_files/tmr2.h"
@@ -4538,31 +4548,150 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
 # 325 "./mcc_generated_files/tmr2.h"
 _Bool TMR2_HasOverflowOccured(void);
 # 58 "./mcc_generated_files/mcc.h" 2
-# 1 "./mcc_generated_files/tmr4.h" 1
-# 103 "./mcc_generated_files/tmr4.h"
-void TMR4_Initialize(void);
-# 132 "./mcc_generated_files/tmr4.h"
-void TMR4_StartTimer(void);
-# 164 "./mcc_generated_files/tmr4.h"
-void TMR4_StopTimer(void);
-# 199 "./mcc_generated_files/tmr4.h"
-uint8_t TMR4_ReadTimer(void);
-# 238 "./mcc_generated_files/tmr4.h"
-void TMR4_WriteTimer(uint8_t timerVal);
-# 290 "./mcc_generated_files/tmr4.h"
-void TMR4_LoadPeriodRegister(uint8_t periodVal);
-# 325 "./mcc_generated_files/tmr4.h"
-_Bool TMR4_HasOverflowOccured(void);
+# 1 "./mcc_generated_files/cmp1.h" 1
+# 92 "./mcc_generated_files/cmp1.h"
+void CMP1_Initialize(void);
+# 132 "./mcc_generated_files/cmp1.h"
+_Bool CMP1_GetOutputStatus(void);
 # 59 "./mcc_generated_files/mcc.h" 2
-# 73 "./mcc_generated_files/mcc.h"
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 104 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 135 "./mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 174 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 210 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 225 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 243 "./mcc_generated_files/tmr0.h"
+void TMR0_CallBack(void);
+# 261 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 279 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 297 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 60 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/fvr.h" 1
+# 93 "./mcc_generated_files/fvr.h"
+ void FVR_Initialize(void);
+# 127 "./mcc_generated_files/fvr.h"
+_Bool FVR_IsOutputReady(void);
+# 61 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/epwm1.h" 1
+# 96 "./mcc_generated_files/epwm1.h"
+void EPWM1_Initialize(void);
+# 122 "./mcc_generated_files/epwm1.h"
+void EPWM1_LoadDutyValue(uint16_t dutyValue);
+# 62 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/dac.h" 1
+# 93 "./mcc_generated_files/dac.h"
+void DAC_Initialize(void);
+# 129 "./mcc_generated_files/dac.h"
+void DAC_SetOutput(uint8_t inputData);
+# 163 "./mcc_generated_files/dac.h"
+uint8_t DAC_GetOutput(void);
+# 63 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/adc.h" 1
+# 72 "./mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+
+
+
+typedef struct
+{
+    adc_result_t adcResult1;
+    adc_result_t adcResult2;
+} adc_sync_double_result_t;
+# 95 "./mcc_generated_files/adc.h"
+typedef enum
+{
+    channel_AN8 = 0x8,
+    channel_Temp = 0x1D,
+    channel_DAC = 0x1E,
+    channel_FVR = 0x1F
+} adc_channel_t;
+# 136 "./mcc_generated_files/adc.h"
+void ADC_Initialize(void);
+# 166 "./mcc_generated_files/adc.h"
+void ADC_SelectChannel(adc_channel_t channel);
+# 193 "./mcc_generated_files/adc.h"
+void ADC_StartConversion(void);
+# 225 "./mcc_generated_files/adc.h"
+_Bool ADC_IsConversionDone(void);
+# 258 "./mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversionResult(void);
+# 288 "./mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+# 316 "./mcc_generated_files/adc.h"
+void ADC_TemperatureAcquisitionDelay(void);
+# 64 "./mcc_generated_files/mcc.h" 2
+# 1 "./mcc_generated_files/eusart.h" 1
+# 75 "./mcc_generated_files/eusart.h"
+typedef union {
+    struct {
+        unsigned perr : 1;
+        unsigned ferr : 1;
+        unsigned oerr : 1;
+        unsigned reserved : 5;
+    };
+    uint8_t status;
+}eusart_status_t;
+
+
+
+
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+
+
+
+extern void (*EUSART_TxDefaultInterruptHandler)(void);
+extern void (*EUSART_RxDefaultInterruptHandler)(void);
+# 117 "./mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+# 165 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_ready(void);
+# 213 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_rx_ready(void);
+# 260 "./mcc_generated_files/eusart.h"
+_Bool EUSART_is_tx_done(void);
+# 308 "./mcc_generated_files/eusart.h"
+eusart_status_t EUSART_get_last_status(void);
+# 328 "./mcc_generated_files/eusart.h"
+uint8_t EUSART_Read(void);
+# 348 "./mcc_generated_files/eusart.h"
+void EUSART_Write(uint8_t txData);
+# 369 "./mcc_generated_files/eusart.h"
+void EUSART_Transmit_ISR(void);
+# 390 "./mcc_generated_files/eusart.h"
+void EUSART_Receive_ISR(void);
+# 411 "./mcc_generated_files/eusart.h"
+void EUSART_RxDataHandler(void);
+# 429 "./mcc_generated_files/eusart.h"
+void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
+# 447 "./mcc_generated_files/eusart.h"
+void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
+# 465 "./mcc_generated_files/eusart.h"
+void EUSART_SetErrorHandler(void (* interruptHandler)(void));
+# 485 "./mcc_generated_files/eusart.h"
+void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
+# 505 "./mcc_generated_files/eusart.h"
+void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
+# 65 "./mcc_generated_files/mcc.h" 2
+# 79 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 86 "./mcc_generated_files/mcc.h"
+# 92 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 98 "./mcc_generated_files/mcc.h"
+# 104 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
 # 45 "main.c" 2
 # 1 "./main.h" 1
-# 17 "./main.h"
+# 29 "./main.h"
 int16_t error;
 int16_t balldist,ballset;
 uint16_t kpf = 055;
@@ -4573,6 +4702,51 @@ uint16_t kdp = 01;
 uint16_t dinput,outputsum,output;
 _Bool controlchoice = 1;
 uint8_t timecontrol;
+
+
+union{
+    uint16_t t;
+    struct{
+        uint8_t n0 : 4;
+        uint8_t n1 : 4;
+        uint8_t n2 : 4;
+        uint8_t n3 : 4;
+    };
+}tTx;
+
+union{
+    uint16_t d;
+    struct{
+        uint8_t n0 : 4;
+        uint8_t n1 : 4;
+        uint8_t n2 : 4;
+        uint8_t n3 : 4;
+    };
+}dTx;
+
+union{
+    uint16_t d;
+    struct{
+        uint8_t n0 : 4;
+        uint8_t n1 : 4;
+        uint8_t n2 : 4;
+        uint8_t n3 : 4;
+    };
+}dRx;
+
+union{
+    uint16_t dc;
+    struct{
+        uint8_t n0 : 4;
+        uint8_t n1 : 4;
+        uint8_t n2 : 4;
+        uint8_t n3 : 4;
+    };
+}dcRx;
+
+uint8_t bufferRx[8];
+uint8_t countRx = 0;
+
 
 
 uint8_t position;
@@ -4591,8 +4765,40 @@ void fluxpos();
 void controlchoose();
 
 
+
+
+
+
+void analisa_Rx ();
+
+
+
+
+void envia_Tx ();
+
+
+
+
+
+
+uint8_t bin_ascii(uint8_t vBin);
+
+
+
+
+
+
+uint8_t ascii_bin(uint8_t vAscii);
+
+
+
+
+void receive();
+
+
 void meioPasso(_Bool sentido);
 void move(uint8_t n_passos, _Bool sentido);
+void encontraFimCurso();
 # 46 "main.c" 2
 
 
@@ -4633,6 +4839,108 @@ void controlchoose(){
     TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
 }
+
+void analisa_Rx (){
+    switch(bufferRx[0]){
+        case 'G':
+            if(countRx==5){
+                dcRx.n3 = ascii_bin(bufferRx[1]);
+                dcRx.n2 = ascii_bin(bufferRx[2]);
+                dcRx.n1 = ascii_bin(bufferRx[3]);
+                dcRx.n0 = ascii_bin(bufferRx[4]);
+                EPWM1_LoadDutyValue(dcRx.dc);
+            }
+            else{
+
+            }
+            break;
+        case 'H':
+            if(countRx==5){
+
+            }
+            else{
+
+            }
+            break;
+        case 'I':
+            if(countRx==5){
+                dRx.n3 = ascii_bin(bufferRx[1]);
+                dRx.n2 = ascii_bin(bufferRx[2]);
+                dRx.n1 = ascii_bin(bufferRx[3]);
+                dRx.n0 = ascii_bin(bufferRx[4]);
+                ballset = dRx.d / 20;
+            }
+            else{
+
+            }
+            break;
+        case 'J':
+            if(countRx==2){
+                if(ascii_bin(bufferRx[1])== 0){
+                    controlchoice = 0;
+                }
+                else{
+                    controlchoice = 1;
+                }
+            }
+            else{
+
+            }
+            break;
+        default:
+            ;
+    }
+}
+
+void envia_Tx (){
+    EUSART_Write(bin_ascii(dTx.n3));
+    EUSART_Write(bin_ascii(dTx.n2));
+    EUSART_Write(bin_ascii(dTx.n1));
+    EUSART_Write(bin_ascii(dTx.n0));
+    EUSART_Write(bin_ascii(tTx.n3));
+    EUSART_Write(bin_ascii(tTx.n2));
+    EUSART_Write(bin_ascii(tTx.n1));
+    EUSART_Write(bin_ascii(tTx.n0));
+    EUSART_Write(0x0D);
+}
+
+uint8_t bin_ascii(uint8_t vBin){
+    vBin = vBin & 0x0F;
+    if(vBin<10){
+        vBin = vBin + 0x30;
+    }
+    else{
+        vBin = vBin + 0x37;
+    }
+    return vBin;
+}
+
+uint8_t ascii_bin(uint8_t vAscii){
+    if(vAscii<0x3A){
+        vAscii = vAscii - 0x30;
+    }
+    else{
+        vAscii = vAscii - 0x37;
+    }
+    return vAscii;
+}
+
+void receive(){
+    uint8_t rx_byte = EUSART_Read();
+    if(rx_byte=='$'){
+        countRx = 0;
+    }
+    else if(rx_byte==0x0D){
+        analisa_Rx();
+    }
+    else{
+        if(countRx<8 -1){
+            bufferRx[countRx] = rx_byte;
+            countRx++;
+        }
+    }
+}
+
 
 void meioPasso(_Bool sentido){
     if(sentido){
@@ -4693,25 +5001,50 @@ void meioPasso(_Bool sentido){
 }
 
 void move(uint8_t n_passos, _Bool sentido){
-    uint8_t incPos = 0;
+    signed int incPos = 0;
     if(sentido){
         incPos = 1;
     }else{
         incPos = -1;
     }
-    for(uint8_t i=0; i<=n_passos; i = i++){
+    for(uint8_t i=0; i<=n_passos; i++){
+        meioPasso(sentido);
         pas.sos++;
         position = position + incPos;
-        meioPasso(sentido);
-        _delay((unsigned long)((3)*(16000000/4000.0)));
+        _delay((unsigned long)((10)*(16000000/4000.0)));
     }
+}
+
+void encontraFimCurso(){
+    while(!CMP1_GetOutputStatus()){
+        meioPasso(0);
+        pas.sos++;
+    }
+    position = 0;
 }
 
 void main(void)
 {
 
     SYSTEM_Initialize();
-# 180 "main.c"
+    TMR0_SetInterruptHandler(envia_Tx);
+    EUSART_SetRxInterruptHandler(receive);
+
+
+
+
+
+    (INTCONbits.GIE = 1);
+
+
+    (INTCONbits.PEIE = 1);
+
+
+
+
+
+
+
     while (1)
     {
 

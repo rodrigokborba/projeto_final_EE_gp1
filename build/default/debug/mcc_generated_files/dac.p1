@@ -1,24 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[t ~ __interrupt . k ]
-[t T1 __interrupt ]
-"357 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
-[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 357:     struct {
-[s S31 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S31 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
-"367
-[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 367:     struct {
-[s S32 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S32 . . T0IF . T0IE ]
-"356
-[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 356: typedef union {
-[u S30 `S31 1 `S32 1 ]
-[n S30 . . . ]
-"374
-[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 374: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
-[v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
-"209 mcc_generated_files/pin_manager.h
-[; ;mcc_generated_files/pin_manager.h: 209: void PIN_MANAGER_IOC(void);
-[v _PIN_MANAGER_IOC `(v ~T0 @X0 0 ef ]
+"2533 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
+[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 2533: extern volatile unsigned char DACCON0 __attribute__((address(0x118)));
+[v _DACCON0 `Vuc ~T0 @X0 0 e@280 ]
+"2594
+[; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 2594: extern volatile unsigned char DACCON1 __attribute__((address(0x119)));
+[v _DACCON1 `Vuc ~T0 @X0 0 e@281 ]
 "54 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -493,39 +479,57 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6748
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 6748: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-[v $root$_INTERRUPT_InterruptManager `(v ~T0 @X0 0 e ]
-"52 mcc_generated_files/interrupt_manager.c
-[; ;mcc_generated_files/interrupt_manager.c: 52: void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void)
-[v _INTERRUPT_InterruptManager `(v ~T1 @X0 1 ef ]
-"53
-[; ;mcc_generated_files/interrupt_manager.c: 53: {
-{
-[e :U _INTERRUPT_InterruptManager ]
-[f ]
-"55
-[; ;mcc_generated_files/interrupt_manager.c: 55:     if(INTCONbits.IOCIE == 1 && INTCONbits.IOCIF == 1)
-[e $ ! && == -> . . _INTCONbits 0 3 `i -> 1 `i == -> . . _INTCONbits 0 0 `i -> 1 `i 360  ]
-"56
-[; ;mcc_generated_files/interrupt_manager.c: 56:     {
-{
-"57
-[; ;mcc_generated_files/interrupt_manager.c: 57:         PIN_MANAGER_IOC();
-[e ( _PIN_MANAGER_IOC ..  ]
-"58
-[; ;mcc_generated_files/interrupt_manager.c: 58:     }
-}
-[e $U 361  ]
+"58 mcc_generated_files/dac.c
+[; ;mcc_generated_files/dac.c: 58: void DAC_Initialize(void)
+[v _DAC_Initialize `(v ~T0 @X0 1 ef ]
 "59
-[; ;mcc_generated_files/interrupt_manager.c: 59:     else
-[e :U 360 ]
-"60
-[; ;mcc_generated_files/interrupt_manager.c: 60:     {
+[; ;mcc_generated_files/dac.c: 59: {
 {
-"62
-[; ;mcc_generated_files/interrupt_manager.c: 62:     }
-}
-[e :U 361 ]
+[e :U _DAC_Initialize ]
+[f ]
+"61
+[; ;mcc_generated_files/dac.c: 61:     DACCON0 = 0x80;
+[e = _DACCON0 -> -> 128 `i `uc ]
 "63
-[; ;mcc_generated_files/interrupt_manager.c: 63: }
-[e :UE 359 ]
+[; ;mcc_generated_files/dac.c: 63:     DACCON1 = 0x06;
+[e = _DACCON1 -> -> 6 `i `uc ]
+"64
+[; ;mcc_generated_files/dac.c: 64: }
+[e :UE 354 ]
+}
+"66
+[; ;mcc_generated_files/dac.c: 66: void DAC_SetOutput(uint8_t inputData)
+[v _DAC_SetOutput `(v ~T0 @X0 1 ef1`uc ]
+"67
+[; ;mcc_generated_files/dac.c: 67: {
+{
+[e :U _DAC_SetOutput ]
+"66
+[; ;mcc_generated_files/dac.c: 66: void DAC_SetOutput(uint8_t inputData)
+[v _inputData `uc ~T0 @X0 1 r1 ]
+"67
+[; ;mcc_generated_files/dac.c: 67: {
+[f ]
+"68
+[; ;mcc_generated_files/dac.c: 68:     DACCON1 = inputData;
+[e = _DACCON1 _inputData ]
+"69
+[; ;mcc_generated_files/dac.c: 69: }
+[e :UE 355 ]
+}
+"71
+[; ;mcc_generated_files/dac.c: 71: uint8_t DAC_GetOutput(void)
+[v _DAC_GetOutput `(uc ~T0 @X0 1 ef ]
+"72
+[; ;mcc_generated_files/dac.c: 72: {
+{
+[e :U _DAC_GetOutput ]
+[f ]
+"73
+[; ;mcc_generated_files/dac.c: 73:     return DACCON1;
+[e ) _DACCON1 ]
+[e $UE 356  ]
+"74
+[; ;mcc_generated_files/dac.c: 74: }
+[e :UE 356 ]
 }

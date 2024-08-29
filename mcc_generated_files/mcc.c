@@ -54,6 +54,8 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     WDT_Initialize();
     FVR_Initialize();
+    DAC_Initialize();
+    CMP1_Initialize();
     ADC_Initialize();
     EPWM1_Initialize();
     TMR4_Initialize();

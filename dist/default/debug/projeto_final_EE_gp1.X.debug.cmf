@@ -12,36 +12,51 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/debug/projeto_final_EE_gp1.X.debug.o
-cinit CODE 0 15 15 18 2 1
-text1 CODE 0 20C 20C B 2 1
-text2 CODE 0 2D 2D 8D 2 1
-text3 CODE 0 1B2 1B2 17 2 1
-text4 CODE 0 BA BA 86 2 1
-text5 CODE 0 17C 17C 1F 2 1
-text6 CODE 0 140 140 3C 2 1
-text7 CODE 0 24A 24A 3 2 1
-text8 CODE 0 23C 23C 5 2 1
-text9 CODE 0 24D 24D 3 2 1
-text10 CODE 0 241 241 5 2 1
-text11 CODE 0 1E0 1E0 13 2 1
-text12 CODE 0 246 246 4 2 1
-text13 CODE 0 217 217 A 2 1
-text14 CODE 0 221 221 8 2 1
-text15 CODE 0 1C9 1C9 17 2 1
-text16 CODE 0 229 229 7 2 1
-text17 CODE 0 1F3 1F3 E 2 1
-text19 CODE 0 250 250 1 2 1
-maintext CODE 0 19B 19B 17 2 1
+cinit CODE 0 15 15 20 2 1
+text1 CODE 0 26A 26A 15 2 1
+text2 CODE 0 C9 C9 8F 2 1
+text3 CODE 0 23C 23C 17 2 1
+text4 CODE 0 35 35 94 2 1
+text5 CODE 0 21D 21D 1F 2 1
+text6 CODE 0 195 195 3C 2 1
+text7 CODE 0 319 319 3 2 1
+text8 CODE 0 307 307 5 2 1
+text9 CODE 0 31C 31C 3 2 1
+text10 CODE 0 30C 30C 5 2 1
+text11 CODE 0 1F8 1F8 25 2 1
+text12 CODE 0 311 311 4 2 1
+text13 CODE 0 2AA 2AA A 2 1
+text14 CODE 0 2B4 2B4 8 2 1
+text15 CODE 0 27F 27F 12 2 1
+text16 CODE 0 2D7 2D7 6 2 1
+text17 CODE 0 253 253 17 2 1
+text18 CODE 0 2C4 2C4 7 2 1
+text19 CODE 0 315 315 4 2 1
+text20 CODE 0 158 158 3D 2 1
+text21 CODE 0 2DD 2DD 6 2 1
+text22 CODE 0 2E3 2E3 6 2 1
+text23 CODE 0 2E9 2E9 6 2 1
+text24 CODE 0 2EF 2EF 6 2 1
+text25 CODE 0 2F5 2F5 6 2 1
+text26 CODE 0 291 291 E 2 1
+text27 CODE 0 2FB 2FB 6 2 1
+text28 CODE 0 301 301 6 2 1
+text29 CODE 0 2BC 2BC 8 2 1
+text31 CODE 0 31F 31F 1 2 1
+nvBANK0 BANK0 1 67 67 4 1 1
+nvBANK1 BANK1 1 A0 A0 8 1 1
+maintext CODE 0 1D1 1D1 27 2 1
 cstackCOMMON COMMON 1 70 70 E 1 1
-cstackBANK0 BANK0 1 3A 3A 4 1 1
-inittext CODE 0 230 230 6 2 1
+cstackBANK0 BANK0 1 6B 6B 4 1 1
+inittext CODE 0 2CB 2CB 6 2 1
 intentry CODE 0 4 4 F 2 1
-bssBANK0 BANK0 1 20 20 F 1 1
-idataBANK0 CODE 0 201 201 B 2 1
-dataBANK0 BANK0 1 2F 2F B 1 1
-clrtext CODE 0 236 236 6 2 1
+bssBANK0 BANK0 1 20 20 3C 1 1
+bssBANK1 BANK1 1 A8 A8 8 1 1
+idataBANK0 CODE 0 29F 29F B 2 1
+dataBANK0 BANK0 1 5C 5C B 1 1
+clrtext CODE 0 2D1 2D1 6 2 1
 config CONFIG 4 8007 8007 2 2 1
-$/tmp/xcXhiCkKC/driver_tmp_15.o
+$/tmp/xcXLeEdDn/driver_tmp_15.o
 reset_vec CODE 0 0 0 2 2 1
 end_init CODE 0 13 13 2 2 1
 config CONFIG 4 8007 8007 2 2 1
@@ -51,20 +66,20 @@ config CONFIG 4 8007 8007 2 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 3E-6F 1
-RAM A0-EF 1
+RAM 6F-6F 1
+RAM B0-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
 RAM 220-24F 1
-BANK0 3E-6F 1
-BANK1 A0-EF 1
+BANK0 6F-6F 1
+BANK1 B0-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
 BANK4 220-24F 1
 CONST 2-3 2
-CONST 251-FFF 2
+CONST 320-FFF 2
 ENTRY 2-3 2
-ENTRY 251-FFF 2
+ENTRY 320-FFF 2
 IDLOC 8000-8003 2
 SFR10 500-56F 1
 SFR11 580-5EF 1
@@ -89,7 +104,7 @@ SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
 CODE 2-3 2
-CODE 251-FFF 2
+CODE 320-FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -103,9 +118,9 @@ SFR9 480-4EF 1
 BIGRAM 2000-216F 1
 EEDATA F000-F0FF 2
 STRCODE 2-3 2
-STRCODE 251-FFF 2
+STRCODE 320-FFF 2
 STRING 2-3 2
-STRING 251-FFF 2
+STRING 320-FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -120,190 +135,274 @@ STRING 251-FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug/projeto_final_EE_gp1.X.debug.o
-15 cinit CODE >2784:/tmp/xcXhiCkKC/driver_tmp_1.s
-15 cinit CODE >2787:/tmp/xcXhiCkKC/driver_tmp_1.s
-15 cinit CODE >2871:/tmp/xcXhiCkKC/driver_tmp_1.s
-16 cinit CODE >2872:/tmp/xcXhiCkKC/driver_tmp_1.s
-17 cinit CODE >2873:/tmp/xcXhiCkKC/driver_tmp_1.s
-18 cinit CODE >2874:/tmp/xcXhiCkKC/driver_tmp_1.s
-19 cinit CODE >2875:/tmp/xcXhiCkKC/driver_tmp_1.s
-1A cinit CODE >2876:/tmp/xcXhiCkKC/driver_tmp_1.s
-1B cinit CODE >2877:/tmp/xcXhiCkKC/driver_tmp_1.s
-1C cinit CODE >2878:/tmp/xcXhiCkKC/driver_tmp_1.s
-1D cinit CODE >2879:/tmp/xcXhiCkKC/driver_tmp_1.s
-1E cinit CODE >2880:/tmp/xcXhiCkKC/driver_tmp_1.s
-21 cinit CODE >2897:/tmp/xcXhiCkKC/driver_tmp_1.s
-22 cinit CODE >2898:/tmp/xcXhiCkKC/driver_tmp_1.s
-23 cinit CODE >2899:/tmp/xcXhiCkKC/driver_tmp_1.s
-24 cinit CODE >2900:/tmp/xcXhiCkKC/driver_tmp_1.s
-25 cinit CODE >2901:/tmp/xcXhiCkKC/driver_tmp_1.s
-26 cinit CODE >2902:/tmp/xcXhiCkKC/driver_tmp_1.s
-29 cinit CODE >2908:/tmp/xcXhiCkKC/driver_tmp_1.s
-29 cinit CODE >2910:/tmp/xcXhiCkKC/driver_tmp_1.s
-2A cinit CODE >2911:/tmp/xcXhiCkKC/driver_tmp_1.s
-2B cinit CODE >2912:/tmp/xcXhiCkKC/driver_tmp_1.s
+15 cinit CODE >4816:/tmp/xcXLeEdDn/driver_tmp_1.s
+15 cinit CODE >4819:/tmp/xcXLeEdDn/driver_tmp_1.s
+15 cinit CODE >4963:/tmp/xcXLeEdDn/driver_tmp_1.s
+16 cinit CODE >4964:/tmp/xcXLeEdDn/driver_tmp_1.s
+17 cinit CODE >4965:/tmp/xcXLeEdDn/driver_tmp_1.s
+18 cinit CODE >4966:/tmp/xcXLeEdDn/driver_tmp_1.s
+19 cinit CODE >4967:/tmp/xcXLeEdDn/driver_tmp_1.s
+1A cinit CODE >4968:/tmp/xcXLeEdDn/driver_tmp_1.s
+1B cinit CODE >4969:/tmp/xcXLeEdDn/driver_tmp_1.s
+1C cinit CODE >4970:/tmp/xcXLeEdDn/driver_tmp_1.s
+1D cinit CODE >4971:/tmp/xcXLeEdDn/driver_tmp_1.s
+1E cinit CODE >4972:/tmp/xcXLeEdDn/driver_tmp_1.s
+21 cinit CODE >4989:/tmp/xcXLeEdDn/driver_tmp_1.s
+22 cinit CODE >4990:/tmp/xcXLeEdDn/driver_tmp_1.s
+23 cinit CODE >4991:/tmp/xcXLeEdDn/driver_tmp_1.s
+24 cinit CODE >4992:/tmp/xcXLeEdDn/driver_tmp_1.s
+25 cinit CODE >4993:/tmp/xcXLeEdDn/driver_tmp_1.s
+26 cinit CODE >4994:/tmp/xcXLeEdDn/driver_tmp_1.s
+29 cinit CODE >4998:/tmp/xcXLeEdDn/driver_tmp_1.s
+2A cinit CODE >4999:/tmp/xcXLeEdDn/driver_tmp_1.s
+2B cinit CODE >5000:/tmp/xcXLeEdDn/driver_tmp_1.s
+2C cinit CODE >5001:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D cinit CODE >5002:/tmp/xcXLeEdDn/driver_tmp_1.s
+2E cinit CODE >5003:/tmp/xcXLeEdDn/driver_tmp_1.s
+31 cinit CODE >5009:/tmp/xcXLeEdDn/driver_tmp_1.s
+31 cinit CODE >5011:/tmp/xcXLeEdDn/driver_tmp_1.s
+32 cinit CODE >5012:/tmp/xcXLeEdDn/driver_tmp_1.s
+33 cinit CODE >5013:/tmp/xcXLeEdDn/driver_tmp_1.s
 4 intentry CODE >52:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
 E intentry CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
 11 intentry CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/interrupt_manager.c
-250 text19 CODE >98:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-250 text19 CODE >100:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1F3 text17 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1F3 text17 CODE >69:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1F6 text17 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1F7 text17 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1F9 text17 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1FB text17 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1FC text17 CODE >84:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1FE text17 CODE >87:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-200 text17 CODE >88:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-229 text16 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-229 text16 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-22C text16 CODE >66:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-22D text16 CODE >68:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-22F text16 CODE >69:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1C9 text15 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1C9 text15 CODE >60:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1CB text15 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1CC text15 CODE >66:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1CF text15 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1D1 text15 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1D4 text15 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1D6 text15 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1D8 text15 CODE >79:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1D9 text15 CODE >80:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1DB text15 CODE >86:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1DD text15 CODE >87:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1DE text15 CODE >94:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-1DF text15 CODE >96:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
-221 text14 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-221 text14 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-224 text14 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-225 text14 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-226 text14 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-228 text14 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
-217 text13 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-217 text13 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-21A text13 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-21B text13 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-21D text13 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-220 text13 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-246 text12 CODE >71:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-246 text12 CODE >74:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-249 text12 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1E0 text11 CODE >50:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1E0 text11 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1E3 text11 CODE >54:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1E6 text11 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1E9 text11 CODE >56:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1EC text11 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1EF text11 CODE >58:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-1F2 text11 CODE >59:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
-241 text10 CODE >91:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-241 text10 CODE >95:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-244 text10 CODE >97:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-245 text10 CODE >98:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24D text9 CODE >85:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24D text9 CODE >88:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24F text9 CODE >89:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-23C text8 CODE >106:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-23D text8 CODE >108:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-240 text8 CODE >109:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24A text7 CODE >79:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24A text7 CODE >82:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-24C text7 CODE >83:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
-140 text6 CODE >5:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-140 text6 CODE >13:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-142 text6 CODE >14:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-148 text6 CODE >15:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-14A text6 CODE >16:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-14B text6 CODE >17:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-150 text6 CODE >18:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-154 text6 CODE >16:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-158 text6 CODE >21:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-15D text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-15F text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-163 text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-167 text6 CODE >23:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-16B text6 CODE >24:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-16C text6 CODE >26:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-171 text6 CODE >27:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-177 text6 CODE >29:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-17B text6 CODE >30:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
-17C text5 CODE >15:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-17C text5 CODE >43:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-17E text5 CODE >45:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-182 text5 CODE >46:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-186 text5 CODE >47:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-18B text5 CODE >48:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-190 text5 CODE >49:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-196 text5 CODE >52:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-19A text5 CODE >53:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
-BA text4 CODE >51:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-BA text4 CODE >52:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-BD text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-C2 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-C6 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-D0 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-D4 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-D8 text4 CODE >54:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-107 text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-10A text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-10C text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-114 text4 CODE >56:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-132 text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-135 text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-137 text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-13F text4 CODE >59:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-1B2 text3 CODE >90:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1B2 text3 CODE >93:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1BD text3 CODE >96:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-1C8 text3 CODE >97:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
-2D text2 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-2D text2 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-30 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-35 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-39 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-43 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-47 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-4B text2 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-7A text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-7D text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-7F text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-87 text2 CODE >66:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-A5 text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-A8 text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-AA text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-B2 text2 CODE >68:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-B9 text2 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-20C text1 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-20C text1 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-20F text1 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-20F text1 CODE >82:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-213 text1 CODE >83:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-216 text1 CODE >84:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-19B maintext CODE >159:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-19B maintext CODE >162:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-19E maintext CODE >183:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-1A5 maintext CODE >183:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-1A9 maintext CODE >184:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-1AC maintext CODE >185:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
-236 clrtext CODE >2886:/tmp/xcXhiCkKC/driver_tmp_1.s
-236 clrtext CODE >2887:/tmp/xcXhiCkKC/driver_tmp_1.s
-237 clrtext CODE >2888:/tmp/xcXhiCkKC/driver_tmp_1.s
-237 clrtext CODE >2889:/tmp/xcXhiCkKC/driver_tmp_1.s
-238 clrtext CODE >2890:/tmp/xcXhiCkKC/driver_tmp_1.s
-239 clrtext CODE >2891:/tmp/xcXhiCkKC/driver_tmp_1.s
-23A clrtext CODE >2892:/tmp/xcXhiCkKC/driver_tmp_1.s
-23B clrtext CODE >2893:/tmp/xcXhiCkKC/driver_tmp_1.s
-230 inittext CODE >2860:/tmp/xcXhiCkKC/driver_tmp_1.s
-230 inittext CODE >2861:/tmp/xcXhiCkKC/driver_tmp_1.s
-231 inittext CODE >2862:/tmp/xcXhiCkKC/driver_tmp_1.s
-231 inittext CODE >2863:/tmp/xcXhiCkKC/driver_tmp_1.s
-232 inittext CODE >2864:/tmp/xcXhiCkKC/driver_tmp_1.s
-233 inittext CODE >2865:/tmp/xcXhiCkKC/driver_tmp_1.s
-234 inittext CODE >2866:/tmp/xcXhiCkKC/driver_tmp_1.s
-235 inittext CODE >2867:/tmp/xcXhiCkKC/driver_tmp_1.s
+31F text31 CODE >98:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+31F text31 CODE >100:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+2BC text29 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+2BC text29 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+2BF text29 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+2C0 text29 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+2C1 text29 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+2C3 text29 CODE >83:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/adc.c
+301 text28 CODE >58:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/cmp1.c
+301 text28 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/cmp1.c
+304 text28 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/cmp1.c
+306 text28 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/cmp1.c
+2FB text27 CODE >58:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/dac.c
+2FB text27 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/dac.c
+2FE text27 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/dac.c
+300 text27 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/dac.c
+291 text26 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+291 text26 CODE >69:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+294 text26 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+295 text26 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+297 text26 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+299 text26 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+29A text26 CODE >84:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+29C text26 CODE >87:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+29E text26 CODE >88:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+2F5 text25 CODE >272:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2F5 text25 CODE >273:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2FA text25 CODE >274:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2EF text24 CODE >264:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2EF text24 CODE >265:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2F4 text24 CODE >266:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E9 text23 CODE >268:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E9 text23 CODE >269:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2EE text23 CODE >270:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E3 text22 CODE >280:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E3 text22 CODE >281:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E8 text22 CODE >282:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2DD text21 CODE >276:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2DD text21 CODE >277:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+2E2 text21 CODE >278:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+158 text20 CODE >88:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+158 text20 CODE >91:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+15A text20 CODE >92:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+161 text20 CODE >93:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+163 text20 CODE >94:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+16A text20 CODE >98:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+16D text20 CODE >101:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+16F text20 CODE >104:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+171 text20 CODE >107:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+173 text20 CODE >110:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+174 text20 CODE >113:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+17B text20 CODE >114:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+182 text20 CODE >115:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+189 text20 CODE >117:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+18B text20 CODE >120:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+18C text20 CODE >121:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+18D text20 CODE >122:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+18F text20 CODE >124:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+190 text20 CODE >125:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+191 text20 CODE >126:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+192 text20 CODE >129:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+194 text20 CODE >130:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/eusart.c
+315 text19 CODE >58:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/fvr.c
+315 text19 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/fvr.c
+318 text19 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/fvr.c
+2C4 text18 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+2C4 text18 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+2C7 text18 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+2C8 text18 CODE >74:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+2CA text18 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+253 text17 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+253 text17 CODE >60:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+255 text17 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+256 text17 CODE >66:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+259 text17 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+25B text17 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+25E text17 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+260 text17 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+262 text17 CODE >79:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+263 text17 CODE >80:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+265 text17 CODE >86:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+267 text17 CODE >87:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+268 text17 CODE >94:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+269 text17 CODE >96:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/pin_manager.c
+2D7 text16 CODE >140:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+2D7 text16 CODE >141:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+2DC text16 CODE >142:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+27F text15 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+27F text15 CODE >69:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+284 text15 CODE >72:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+286 text15 CODE >75:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+287 text15 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+288 text15 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+289 text15 CODE >84:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+290 text15 CODE >85:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr0.c
+2B4 text14 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2B4 text14 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2B7 text14 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2B8 text14 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2B9 text14 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2BB text14 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr2.c
+2AA text13 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+2AA text13 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+2AD text13 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+2AE text13 CODE >73:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+2B0 text13 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+2B3 text13 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+311 text12 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+311 text12 CODE >80:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+314 text12 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+1F8 text11 CODE >50:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+1F8 text11 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+1FB text11 CODE >54:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+1FE text11 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+201 text11 CODE >56:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+204 text11 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+207 text11 CODE >58:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+20A text11 CODE >59:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+20D text11 CODE >60:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+210 text11 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+213 text11 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+216 text11 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+219 text11 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+21C text11 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/mcc.c
+30C text10 CODE >91:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+30C text10 CODE >95:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+30F text10 CODE >97:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+310 text10 CODE >98:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+31C text9 CODE >85:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+31C text9 CODE >88:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+31E text9 CODE >89:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+307 text8 CODE >106:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+308 text8 CODE >108:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+30B text8 CODE >109:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+319 text7 CODE >79:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+319 text7 CODE >82:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+31B text7 CODE >83:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/tmr4.c
+195 text6 CODE >5:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+195 text6 CODE >13:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+197 text6 CODE >14:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+19D text6 CODE >15:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+19F text6 CODE >16:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1A0 text6 CODE >17:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1A5 text6 CODE >18:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1A9 text6 CODE >16:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1AD text6 CODE >21:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1B2 text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1B4 text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1B8 text6 CODE >22:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1BC text6 CODE >23:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1C0 text6 CODE >24:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1C1 text6 CODE >26:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1C6 text6 CODE >27:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1CC text6 CODE >29:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+1D0 text6 CODE >30:/opt/microchip/xc8/v2.46/pic/sources/c99/common/lwdiv.c
+21D text5 CODE >15:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+21D text5 CODE >43:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+21F text5 CODE >45:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+223 text5 CODE >46:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+227 text5 CODE >47:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+22C text5 CODE >48:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+231 text5 CODE >49:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+237 text5 CODE >52:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+23B text5 CODE >53:/opt/microchip/xc8/v2.46/pic/sources/c99/common/Umul16.c
+35 text4 CODE >51:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+35 text4 CODE >52:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+46 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+4B text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+4F text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+59 text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+5D text4 CODE >53:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+61 text4 CODE >54:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+90 text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+93 text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+95 text4 CODE >55:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+9D text4 CODE >56:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+BB text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+BE text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+C0 text4 CODE >57:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+C8 text4 CODE >59:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+23C text3 CODE >90:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+23C text3 CODE >93:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+247 text3 CODE >96:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+252 text3 CODE >97:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/mcc_generated_files/epwm1.c
+C9 text2 CODE >61:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+C9 text2 CODE >62:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+CE text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+D3 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+D7 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+E1 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+E5 text2 CODE >63:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+E9 text2 CODE >64:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+118 text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+11B text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+11D text2 CODE >65:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+125 text2 CODE >66:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+143 text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+146 text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+148 text2 CODE >67:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+150 text2 CODE >68:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+157 text2 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+26A text1 CODE >76:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+26A text1 CODE >77:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+270 text1 CODE >78:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+273 text1 CODE >79:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+274 text1 CODE >80:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+277 text1 CODE >81:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+277 text1 CODE >82:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+27B text1 CODE >83:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+27E text1 CODE >84:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1D1 maintext CODE >269:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1D1 maintext CODE >272:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1D4 maintext CODE >273:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1DB maintext CODE >274:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1E2 maintext CODE >280:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1E3 maintext CODE >283:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1E4 maintext CODE >294:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1EB maintext CODE >294:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1EF maintext CODE >295:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+1F2 maintext CODE >296:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
+2D1 clrtext CODE >4978:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D1 clrtext CODE >4979:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D2 clrtext CODE >4980:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D2 clrtext CODE >4981:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D3 clrtext CODE >4982:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D4 clrtext CODE >4983:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D5 clrtext CODE >4984:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D6 clrtext CODE >4985:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CB inittext CODE >4952:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CB inittext CODE >4953:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CC inittext CODE >4954:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CC inittext CODE >4955:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CD inittext CODE >4956:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CE inittext CODE >4957:/tmp/xcXLeEdDn/driver_tmp_1.s
+2CF inittext CODE >4958:/tmp/xcXLeEdDn/driver_tmp_1.s
+2D0 inittext CODE >4959:/tmp/xcXLeEdDn/driver_tmp_1.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -318,80 +417,119 @@ B9 text2 CODE >70:/home/andre/MPLABXProjects/projeto_final_EE_gp1.X/main.c
 %SYMTAB
 ___latbits 1 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
-__Hspace_0 251 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+__Hspace_0 320 0 ABS 0 - -
+__Hspace_1 B0 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 10010 0 ABS 0 - -
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
-_TMR4_StopTimer 49A 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR4_StopTimer 638 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_CM1CON0 111 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_CM1CON1 112 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _PWM1CON 294 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_PIN_MANAGER_IOC 4A2 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_PIN_MANAGER_IOC 640 0 CODE 0 text31 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __L__absolute__ 0 0 ABS 0 __absolute__ -
-__end_of_WDT_Initialize 494 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_WDT_Initialize 62A 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hstrings 0 0 ABS 0 strings -
+_EUSART_RxDefaultInterruptHandler A4 0 BANK1 1 nvBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _LATA 10C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _LATB 10D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR0 15 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _TMR2 1A 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _TMR4 415 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _WPUA 20C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _WPUB 20D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___sp 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
-_main 336 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___sp 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
+_dcRx 38 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_main 3A2 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___stack_hi 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
-___stack_lo 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
-start 26 0 CODE 0 init /tmp/xcXhiCkKC/driver_tmp_15.o
+___stack_hi 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
+___stack_lo 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
+start 26 0 CODE 0 init /tmp/xcXLeEdDn/driver_tmp_15.o
+_TMR0_InterruptHandler 67 0 BANK0 1 nvBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR0_SetInterruptHandler 5BA 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EUSART_SetFramingErrorHandler 5EA 0 CODE 0 text24 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EUSART_SetOverrunErrorHandler 5DE 0 CODE 0 text23 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ?___wmul 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_controlchoose 42E 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_controlchoose 4FE 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _OPTION_REGbits 95 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
+__end_of_EUSART_Initialize 32A 0 CODE 0 text20 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hpowerup 0 0 CODE 0 powerup -
-_TMR2_Initialize 442 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_EPWM1_Initialize 3E6 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR2_Initialize 568 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EPWM1_Initialize 522 0 CODE 0 text26 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 TMR4_LoadPeriodRegister@periodVal 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_EPWM1_LoadDutyValue 364 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_outputsum 22 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXhiCkKC/driver_tmp_15.o
-__end_of_TMR4_StopTimer 4A0 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_fluxcontrol 174 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EPWM1_LoadDutyValue 478 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+TMR0_SetInterruptHandler@InterruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_outputsum 42 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXLeEdDn/driver_tmp_15.o
+__end_of_TMR4_StopTimer 63E 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_fluxcontrol 6A 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 wtemp0 7E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
-_PIN_MANAGER_IOC 4A0 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_DefaultFramingErrorHandler 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_DefaultOverrunErrorHandler 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_PIN_MANAGER_IOC 63E 0 CODE 0 text31 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hclrtext 0 0 ABS 0 clrtext -
+_eusartTxBuffer 30 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ___wmul@multiplicand 72 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADCON0 9D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADCON1 9E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADRESH 9C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADRESL 9B 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _ANSELA 18C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _ANSELB 18D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_FVR_Initialize 62A 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR0_DefaultInterruptHandler 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _BORCON 116 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _CCPR1H 292 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _CCPR1L 291 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_FVRCONbits 117 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __end_of_INTERRUPT_InterruptManager 26 0 CODE 0 intentry dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_timecontrol 2E 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of___wmul 336 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_DACCON0 118 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_DACCON1 119 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_timecontrol 53 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of___wmul 478 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+EUSART_SetRxInterruptHandler@interruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
-__end_of___lwdiv 2F8 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___stackhi 0 0 ABS 0 - /tmp/xcXhiCkKC/driver_tmp_15.o
-___stacklo 0 0 ABS 0 - /tmp/xcXhiCkKC/driver_tmp_15.o
+_FVRCON 117 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__LnvBANK0 0 0 ABS 0 nvBANK0 -
+__LnvBANK1 0 0 ABS 0 nvBANK1 -
+__end_of___lwdiv 3A2 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_OPTION_REG 95 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___stackhi 0 0 ABS 0 - /tmp/xcXLeEdDn/driver_tmp_15.o
+___stacklo 0 0 ABS 0 - /tmp/xcXLeEdDn/driver_tmp_15.o
+_EUSART_Initialize 2B0 0 CODE 0 text20 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ___lwdiv@quotient 7B 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_EPWM1_Initialize 402 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_PIN_MANAGER_Initialize 392 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EPWM1_Initialize 53E 0 CODE 0 text26 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_PIN_MANAGER_Initialize 4A6 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_FVR_Initialize 632 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 start_initialization 2A 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_EPWM1_LoadDutyValue 392 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EPWM1_LoadDutyValue 4A6 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_SetErrorHandler 5EA 0 CODE 0 text25 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _OSCCON 99 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_SYSTEM_Initialize 3E6 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-clear_ram0 46C 0 CODE 0 clrtext dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__pcstackBANK0 3A 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_TMR4_Initialize 442 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_TMR4_StartTimer 49A 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+EUSART_SetOverrunErrorHandler@interruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxBuffer A8 0 BANK1 1 bssBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_CMP1_Initialize 60E 0 CODE 0 text28 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_SYSTEM_Initialize 43A 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_DAC_Initialize 5F6 0 CODE 0 text27 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+clear_ram0 5A2 0 CODE 0 clrtext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_SPBRGH 19C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_SPBRGL 19B 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pcstackBANK0 6B 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR4_Initialize 568 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR4_StartTimer 638 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_receive 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _WDTCON 97 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_TMR4_ReadTimer 482 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___int_sp 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
+_EUSART_TxDefaultInterruptHandler A6 0 BANK1 1 nvBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR4_ReadTimer 618 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -402,7 +540,7 @@ __Hbank6 0 0 BANK6 1 bank6 -
 __Hbank7 0 0 BANK7 1 bank7 -
 __Hbank8 0 0 BANK8 1 bank8 -
 __Hbank9 0 0 BANK9 1 bank9 -
-__Hcinit 5A 0 CODE 0 cinit -
+__Hcinit 6A 0 CODE 0 cinit -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
 __Hsfr12 0 0 ABS 0 sfr12 -
@@ -464,6 +602,7 @@ __Lbank7 0 0 BANK7 1 bank7 -
 __Lbank8 0 0 BANK8 1 bank8 -
 __Lbank9 0 0 BANK9 1 bank9 -
 __Lcinit 2A 0 CODE 0 cinit -
+EUSART_SetErrorHandler@interruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lsfr10 0 0 ABS 0 sfr10 -
 __Lsfr11 0 0 ABS 0 sfr11 -
 __Lsfr12 0 0 ABS 0 sfr12 -
@@ -489,8 +628,9 @@ __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
 _APFCON0 11D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _APFCON1 11E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-init_ram 460 0 CODE 0 inittext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+init_ram 596 0 CODE 0 inittext dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Linittext 0 0 ABS 0 inittext -
+_CMP1_Initialize 602 0 CODE 0 text28 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _INTCONbits B 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -524,41 +664,72 @@ __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Lsivt 26 0 CODE 0 sivt -
 __Ltext 0 0 ABS 0 text -
-___wmul 2F8 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pnvBANK0 67 0 BANK0 1 nvBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pnvBANK1 A0 0 BANK1 1 nvBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_DAC_Initialize 602 0 CODE 0 text27 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___wmul 43A 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 int$flags 7E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 1B 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _PR4 416 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__S0 251 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S0 320 0 ABS 0 - -
+__S1 B0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_pas 2C 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_TMR4_Initialize 42E 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_TMR4_StartTimer 494 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_dRx 3A 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_dTx 3C 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_pas 50 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_tTx 3E 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR4_Initialize 554 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR4_StartTimer 632 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 TMR4_ReadTimer@readVal 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_TMR4_ReadTimer 48C 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR4_ReadTimer 622 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _ECCP1AS 295 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_SYSTEM_Initialize 3C0 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_fluxcontrol 280 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_SYSTEM_Initialize 3F0 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ballset 46 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_SetTxInterruptHandler 5BA 0 CODE 0 text21 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_fluxcontrol 192 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__HnvBANK0 0 0 ABS 0 nvBANK0 -
+__HnvBANK1 0 0 ABS 0 nvBANK1 -
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXhiCkKC/driver_tmp_15.o
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXLeEdDn/driver_tmp_15.o
+_envia_Tx 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _CCPTMRS0bits 29E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__pdataBANK0 2F 0 BANK0 1 dataBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pdataBANK0 5C 0 BANK0 1 dataBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
+__LbssBANK1 0 0 ABS 0 bssBANK1 -
 _INTERRUPT_InterruptManager 8 0 CODE 0 intentry dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext10 482 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext11 3C0 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext12 48C 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext13 42E 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext14 442 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext15 392 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext16 452 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext17 3E6 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext19 4A0 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADC_Initialize 578 0 CODE 0 text29 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_RCSTAbits 19D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_PIE1bits 91 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+EUSART_SetFramingErrorHandler@interruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext10 618 0 CODE 0 text10 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext11 3F0 0 CODE 0 text11 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext12 622 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext13 554 0 CODE 0 text13 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext14 568 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext15 4FE 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext16 5AE 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext17 4A6 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext18 588 0 CODE 0 text18 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext19 62A 0 CODE 0 text19 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext20 2B0 0 CODE 0 text20 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext21 5BA 0 CODE 0 text21 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext22 5C6 0 CODE 0 text22 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext23 5D2 0 CODE 0 text23 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext24 5DE 0 CODE 0 text24 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext25 5EA 0 CODE 0 text25 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext26 522 0 CODE 0 text26 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext27 5F6 0 CODE 0 text27 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext28 602 0 CODE 0 text28 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext29 578 0 CODE 0 text29 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext31 63E 0 CODE 0 text31 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_Receive_ISR 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 EPWM1_LoadDutyValue@dutyValue 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_PIN_MANAGER_Initialize 3C0 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___lwdiv 280 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_PIN_MANAGER_Initialize 4D4 0 CODE 0 text17 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR0_Initialize 522 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_BAUDCON 19F 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___lwdiv 32A 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lbank10 0 0 BANK10 1 bank10 -
 __Lbank11 0 0 BANK11 1 bank11 -
 __Lbank12 0 0 BANK12 1 bank12 -
@@ -581,85 +752,122 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 336 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pmaintext 3A2 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lbigram 0 0 ABS 0 bigram -
-_output 20 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_output 40 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EUSART_SetErrorHandler 5F6 0 CODE 0 text25 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 __Hinittext 0 0 ABS 0 inittext -
 ___wmul@multiplier 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _LATAbits 10C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+TMR0_ISR@CountCallBack 4E 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ___lwdiv@divisor 76 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR0_SetInterruptHandler 5AE 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_FramingErrorHandler 69 0 BANK0 1 nvBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_OverrunErrorHandler A2 0 BANK1 1 nvBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_SetRxInterruptHandler 5C6 0 CODE 0 text22 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _OSCTUNE 98 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_ADCON0bits 9D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_ErrorHandler A0 0 BANK1 1 nvBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
+__end_of_ADC_Initialize 588 0 CODE 0 text29 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+EUSART_SetTxInterruptHandler@interruptHandler 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 _PIR1bits 11 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _PIR3bits 13 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lend_init 26 0 CODE 0 end_init -
+_EUSART_DefaultErrorHandler 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 52 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_pwmcontrol 5A 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_SetFramingErrorHandler 5DE 0 CODE 0 text24 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_SetOverrunErrorHandler 5D2 0 CODE 0 text23 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+end_of_initialization 62 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_pwmcontrol 192 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR0_Initialize 4FE 0 CODE 0 text15 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hintentry 26 0 CODE 0 intentry -
-_TMR4_LoadPeriodRegister 478 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TMR4_LoadPeriodRegister 60E 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lstrings 0 0 ABS 0 strings -
 ___lwdiv@dividend 78 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ?___lwdiv 76 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _PSTR1CON 296 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hreset_vec 4 0 CODE 0 reset_vec -
-__end_of_TMR4_LoadPeriodRegister 482 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_bufferRx 20 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR4_LoadPeriodRegister 618 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__ptext1 418 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext2 5A 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext3 364 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext4 174 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext5 2F8 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext6 280 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext7 494 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext8 478 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__ptext9 49A 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__HbssBANK1 0 0 ABS 0 bssBANK1 -
+__ptext1 4D4 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext2 192 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext3 478 0 CODE 0 text3 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext4 6A 0 CODE 0 text4 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext5 43A 0 CODE 0 text5 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext6 32A 0 CODE 0 text6 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext7 632 0 CODE 0 text7 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext8 60E 0 CODE 0 text8 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__ptext9 638 0 CODE 0 text9 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartTxBufferRemaining 59 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __H__absolute__ 0 0 ABS 0 __absolute__ -
-_controlchoose 418 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_controlchoice 66 0 BANK0 1 dataBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_controlchoose 4D4 0 CODE 0 text1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _T4CONbits 417 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_CMOUTbits 115 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
-___heap_hi 0 0 ABS 0 - /tmp/xcXhiCkKC/driver_tmp_15.o
-___heap_lo 0 0 ABS 0 - /tmp/xcXhiCkKC/driver_tmp_15.o
-__end_of__initialization 52 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxStatusBuffer 28 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___heap_hi 0 0 ABS 0 - /tmp/xcXLeEdDn/driver_tmp_15.o
+___heap_lo 0 0 ABS 0 - /tmp/xcXLeEdDn/driver_tmp_15.o
+__end_of__initialization 62 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
-_fluxcontrol$1108 3C 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__pidataBANK0 402 0 CODE 0 idataBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_fluxcontrol$1740 6D 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_timer0ReloadVal 54 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pidataBANK0 53E 0 CODE 0 idataBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_EUSART_SetTxInterruptHandler 5C6 0 CODE 0 text21 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxCount 56 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Lclrtext 0 0 ABS 0 clrtext -
-__end_of_pwmcontrol 174 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_pwmcontrol 2B0 0 CODE 0 text2 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TXSTAbits 19E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hend_init 2A 0 CODE 0 end_init -
-_pwmcontrol$1109 3C 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_main 364 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_pwmcontrol$1741 6D 0 BANK0 1 cstackBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_main 3F0 0 CODE 0 maintext dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_RCREG 199 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_RCSTA 19D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _T2CON 1C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _T4CON 417 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _TRISA 8C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _TRISB 8D 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TXREG 19A 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_TXSTA 19E 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_error 2A 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_WDT_Initialize 48C 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_error 4A 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxLastError 55 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_WDT_Initialize 622 0 CODE 0 text12 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _CCP1CON 293 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __pintentry 8 0 CODE 0 intentry dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __HdataBANK0 0 0 ABS 0 dataBANK0 -
-__end_of_OSCILLATOR_Initialize 460 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_OSCILLATOR_Initialize 596 0 CODE 0 text18 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __initialization 2A 0 CODE 0 cinit dist/default/debug/projeto_final_EE_gp1.X.debug.o
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__pbssBANK1 A8 0 BANK1 1 bssBANK1 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 _T2CONbits 1C 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_EUSART_Transmit_ISR 0 0 ABS 0 - dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxHead 58 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartRxTail 57 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_countRx 52 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 ___wmul@product 74 0 COMMON 1 cstackCOMMON dist/default/debug/projeto_final_EE_gp1.X.debug.o
-_position 2D 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-___int_stack_hi 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
-___int_stack_lo 0 0 STACK 2 stack /tmp/xcXhiCkKC/driver_tmp_15.o
-_OSCILLATOR_Initialize 452 0 CODE 0 text16 dist/default/debug/projeto_final_EE_gp1.X.debug.o
-__end_of_TMR2_Initialize 452 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartTxHead 5B 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_eusartTxTail 5A 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_position 51 0 BANK0 1 bssBANK0 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+___int_stack_hi 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
+___int_stack_lo 0 0 STACK 2 stack /tmp/xcXLeEdDn/driver_tmp_15.o
+__end_of_EUSART_SetRxInterruptHandler 5D2 0 CODE 0 text22 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+_OSCILLATOR_Initialize 588 0 CODE 0 text18 dist/default/debug/projeto_final_EE_gp1.X.debug.o
+__end_of_TMR2_Initialize 578 0 CODE 0 text14 dist/default/debug/projeto_final_EE_gp1.X.debug.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -685,10 +893,11 @@ __end_of_TMR2_Initialize 452 0 CODE 0 text14 dist/default/debug/projeto_final_EE
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
+nvBANK1 1 A0 A0 10 1
 cstackCOMMON 1 70 70 E 1
-intentry 0 4 8 24D 2
+intentry 0 4 8 31C 2
 reset_vec 0 0 0 2 2
-bssBANK0 1 20 20 1E 1
+bssBANK0 1 20 20 4F 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

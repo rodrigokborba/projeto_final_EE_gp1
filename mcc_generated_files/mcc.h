@@ -55,9 +55,11 @@
 #include "interrupt_manager.h"
 #include "tmr4.h"
 #include "tmr2.h"
+#include "cmp1.h"
 #include "tmr0.h"
 #include "fvr.h"
 #include "epwm1.h"
+#include "dac.h"
 #include "adc.h"
 #include "eusart.h"
 

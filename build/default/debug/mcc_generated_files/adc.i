@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/pin_manager.c"
+# 1 "mcc_generated_files/adc.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.46/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/pin_manager.c" 2
-# 49 "mcc_generated_files/pin_manager.c"
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 54 "mcc_generated_files/pin_manager.h"
+# 1 "mcc_generated_files/adc.c" 2
+# 51 "mcc_generated_files/adc.c"
 # 1 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4341,60 +4339,129 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "/opt/microchip/xc8/v2.46/pic/include/xc.h" 2 3
-# 55 "mcc_generated_files/pin_manager.h" 2
-# 197 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 209 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 50 "mcc_generated_files/pin_manager.c" 2
+# 52 "mcc_generated_files/adc.c" 2
+# 1 "mcc_generated_files/adc.h" 1
+# 56 "mcc_generated_files/adc.h"
+# 1 "/opt/microchip/xc8/v2.46/pic/include/c99/stdbool.h" 1 3
+# 57 "mcc_generated_files/adc.h" 2
+# 72 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+
+
+
+typedef struct
+{
+    adc_result_t adcResult1;
+    adc_result_t adcResult2;
+} adc_sync_double_result_t;
+# 95 "mcc_generated_files/adc.h"
+typedef enum
+{
+    channel_AN8 = 0x8,
+    channel_Temp = 0x1D,
+    channel_DAC = 0x1E,
+    channel_FVR = 0x1F
+} adc_channel_t;
+# 136 "mcc_generated_files/adc.h"
+void ADC_Initialize(void);
+# 166 "mcc_generated_files/adc.h"
+void ADC_SelectChannel(adc_channel_t channel);
+# 193 "mcc_generated_files/adc.h"
+void ADC_StartConversion(void);
+# 225 "mcc_generated_files/adc.h"
+_Bool ADC_IsConversionDone(void);
+# 258 "mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversionResult(void);
+# 288 "mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+# 316 "mcc_generated_files/adc.h"
+void ADC_TemperatureAcquisitionDelay(void);
+# 53 "mcc_generated_files/adc.c" 2
+# 1 "mcc_generated_files/device_config.h" 1
+# 54 "mcc_generated_files/adc.c" 2
 
 
 
 
 
-void PIN_MANAGER_Initialize(void)
+
+
+void (*ADC_InterruptHandler)(void);
+
+
+
+
+
+void ADC_Initialize(void)
 {
 
 
 
-    LATA = 0x00;
-    LATB = 0x00;
+    ADCON1 = 0xD3;
 
 
+    ADRESL = 0x00;
 
 
-    TRISA = 0xE1;
-    TRISB = 0xF7;
+    ADRESH = 0x00;
 
 
-
-
-    ANSELB = 0xF0;
-    ANSELA = 0x01;
-
-
-
-
-    WPUB = 0x00;
-    WPUA = 0x00;
-    OPTION_REGbits.nWPUEN = 1;
-
-
-
-
-
-    APFCON0 = 0x00;
-    APFCON1 = 0x00;
-
-
-
-
-
-
-    INTCONbits.IOCIE = 1;
+    ADCON0 = 0x01;
 
 }
 
-void PIN_MANAGER_IOC(void)
+void ADC_SelectChannel(adc_channel_t channel)
 {
+
+    ADCON0bits.CHS = channel;
+
+    ADCON0bits.ADON = 1;
+}
+
+void ADC_StartConversion(void)
+{
+
+    ADCON0bits.GO_nDONE = 1;
+}
+
+
+_Bool ADC_IsConversionDone(void)
+{
+
+   return ((_Bool)(!ADCON0bits.GO_nDONE));
+}
+
+adc_result_t ADC_GetConversionResult(void)
+{
+
+    return ((adc_result_t)((ADRESH << 8) + ADRESL));
+}
+
+adc_result_t ADC_GetConversion(adc_channel_t channel)
+{
+
+    ADCON0bits.CHS = channel;
+
+
+    ADCON0bits.ADON = 1;
+
+
+    _delay((unsigned long)((5)*(16000000/4000000.0)));
+
+
+    ADCON0bits.GO_nDONE = 1;
+
+
+    while (ADCON0bits.GO_nDONE)
+    {
+    }
+
+
+    return ((adc_result_t)((ADRESH << 8) + ADRESL));
+}
+
+void ADC_TemperatureAcquisitionDelay(void)
+{
+    _delay((unsigned long)((200)*(16000000/4000000.0)));
 }

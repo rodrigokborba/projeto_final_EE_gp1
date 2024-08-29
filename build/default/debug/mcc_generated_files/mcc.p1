@@ -1,13 +1,25 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"146 mcc_generated_files/pin_manager.h
-[; ;mcc_generated_files/pin_manager.h: 146: void PIN_MANAGER_Initialize (void);
+"197 mcc_generated_files/pin_manager.h
+[; ;mcc_generated_files/pin_manager.h: 197: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"86 mcc_generated_files/mcc.h
-[; ;mcc_generated_files/mcc.h: 86: void OSCILLATOR_Initialize(void);
+"92 mcc_generated_files/mcc.h
+[; ;mcc_generated_files/mcc.h: 92: void OSCILLATOR_Initialize(void);
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
-"98
-[; ;mcc_generated_files/mcc.h: 98: void WDT_Initialize(void);
+"104
+[; ;mcc_generated_files/mcc.h: 104: void WDT_Initialize(void);
 [v _WDT_Initialize `(v ~T0 @X0 0 ef ]
+"93 mcc_generated_files/fvr.h
+[; ;mcc_generated_files/fvr.h: 93:  void FVR_Initialize(void);
+[v _FVR_Initialize `(v ~T0 @X0 0 ef ]
+"93 mcc_generated_files/dac.h
+[; ;mcc_generated_files/dac.h: 93: void DAC_Initialize(void);
+[v _DAC_Initialize `(v ~T0 @X0 0 ef ]
+"92 mcc_generated_files/cmp1.h
+[; ;mcc_generated_files/cmp1.h: 92: void CMP1_Initialize(void);
+[v _CMP1_Initialize `(v ~T0 @X0 0 ef ]
+"136 mcc_generated_files/adc.h
+[; ;mcc_generated_files/adc.h: 136: void ADC_Initialize(void);
+[v _ADC_Initialize `(v ~T0 @X0 0 ef ]
 "96 mcc_generated_files/epwm1.h
 [; ;mcc_generated_files/epwm1.h: 96: void EPWM1_Initialize(void);
 [v _EPWM1_Initialize `(v ~T0 @X0 0 ef ]
@@ -17,6 +29,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "103 mcc_generated_files/tmr2.h
 [; ;mcc_generated_files/tmr2.h: 103: void TMR2_Initialize(void);
 [v _TMR2_Initialize `(v ~T0 @X0 0 ef ]
+"104 mcc_generated_files/tmr0.h
+[; ;mcc_generated_files/tmr0.h: 104: void TMR0_Initialize(void);
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
+"117 mcc_generated_files/eusart.h
+[; ;mcc_generated_files/eusart.h: 117: void EUSART_Initialize(void);
+[v _EUSART_Initialize `(v ~T0 @X0 0 ef ]
 "1706 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 1706: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
@@ -521,51 +539,69 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 55:     WDT_Initialize();
 [e ( _WDT_Initialize ..  ]
 "56
-[; ;mcc_generated_files/mcc.c: 56:     EPWM1_Initialize();
-[e ( _EPWM1_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 56:     FVR_Initialize();
+[e ( _FVR_Initialize ..  ]
 "57
-[; ;mcc_generated_files/mcc.c: 57:     TMR4_Initialize();
-[e ( _TMR4_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 57:     DAC_Initialize();
+[e ( _DAC_Initialize ..  ]
 "58
-[; ;mcc_generated_files/mcc.c: 58:     TMR2_Initialize();
-[e ( _TMR2_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 58:     CMP1_Initialize();
+[e ( _CMP1_Initialize ..  ]
 "59
-[; ;mcc_generated_files/mcc.c: 59: }
-[e :UE 356 ]
-}
+[; ;mcc_generated_files/mcc.c: 59:     ADC_Initialize();
+[e ( _ADC_Initialize ..  ]
+"60
+[; ;mcc_generated_files/mcc.c: 60:     EPWM1_Initialize();
+[e ( _EPWM1_Initialize ..  ]
 "61
-[; ;mcc_generated_files/mcc.c: 61: void OSCILLATOR_Initialize(void)
-[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+[; ;mcc_generated_files/mcc.c: 61:     TMR4_Initialize();
+[e ( _TMR4_Initialize ..  ]
 "62
-[; ;mcc_generated_files/mcc.c: 62: {
+[; ;mcc_generated_files/mcc.c: 62:     TMR2_Initialize();
+[e ( _TMR2_Initialize ..  ]
+"63
+[; ;mcc_generated_files/mcc.c: 63:     TMR0_Initialize();
+[e ( _TMR0_Initialize ..  ]
+"64
+[; ;mcc_generated_files/mcc.c: 64:     EUSART_Initialize();
+[e ( _EUSART_Initialize ..  ]
+"65
+[; ;mcc_generated_files/mcc.c: 65: }
+[e :UE 359 ]
+}
+"67
+[; ;mcc_generated_files/mcc.c: 67: void OSCILLATOR_Initialize(void)
+[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+"68
+[; ;mcc_generated_files/mcc.c: 68: {
 {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-"64
-[; ;mcc_generated_files/mcc.c: 64:     OSCCON = 0x78;
+"70
+[; ;mcc_generated_files/mcc.c: 70:     OSCCON = 0x78;
 [e = _OSCCON -> -> 120 `i `uc ]
-"66
-[; ;mcc_generated_files/mcc.c: 66:     OSCTUNE = 0x00;
-[e = _OSCTUNE -> -> 0 `i `uc ]
-"68
-[; ;mcc_generated_files/mcc.c: 68:     BORCON = 0x00;
-[e = _BORCON -> -> 0 `i `uc ]
-"69
-[; ;mcc_generated_files/mcc.c: 69: }
-[e :UE 357 ]
-}
-"71
-[; ;mcc_generated_files/mcc.c: 71: void WDT_Initialize(void)
-[v _WDT_Initialize `(v ~T0 @X0 1 ef ]
 "72
-[; ;mcc_generated_files/mcc.c: 72: {
+[; ;mcc_generated_files/mcc.c: 72:     OSCTUNE = 0x00;
+[e = _OSCTUNE -> -> 0 `i `uc ]
+"74
+[; ;mcc_generated_files/mcc.c: 74:     BORCON = 0x00;
+[e = _BORCON -> -> 0 `i `uc ]
+"75
+[; ;mcc_generated_files/mcc.c: 75: }
+[e :UE 360 ]
+}
+"77
+[; ;mcc_generated_files/mcc.c: 77: void WDT_Initialize(void)
+[v _WDT_Initialize `(v ~T0 @X0 1 ef ]
+"78
+[; ;mcc_generated_files/mcc.c: 78: {
 {
 [e :U _WDT_Initialize ]
 [f ]
-"74
-[; ;mcc_generated_files/mcc.c: 74:     WDTCON = 0x16;
+"80
+[; ;mcc_generated_files/mcc.c: 80:     WDTCON = 0x16;
 [e = _WDTCON -> -> 22 `i `uc ]
-"75
-[; ;mcc_generated_files/mcc.c: 75: }
-[e :UE 358 ]
+"81
+[; ;mcc_generated_files/mcc.c: 81: }
+[e :UE 361 ]
 }

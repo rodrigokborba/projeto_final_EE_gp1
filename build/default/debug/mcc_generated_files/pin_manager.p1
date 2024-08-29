@@ -554,11 +554,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pin_manager.c: 67:     TRISB = 0xF7;
 [e = _TRISB -> -> 247 `i `uc ]
 "72
-[; ;mcc_generated_files/pin_manager.c: 72:     ANSELB = 0xF6;
-[e = _ANSELB -> -> 246 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 72:     ANSELB = 0xF0;
+[e = _ANSELB -> -> 240 `i `uc ]
 "73
-[; ;mcc_generated_files/pin_manager.c: 73:     ANSELA = 0x1F;
-[e = _ANSELA -> -> 31 `i `uc ]
+[; ;mcc_generated_files/pin_manager.c: 73:     ANSELA = 0x01;
+[e = _ANSELA -> -> 1 `i `uc ]
 "78
 [; ;mcc_generated_files/pin_manager.c: 78:     WPUB = 0x00;
 [e = _WPUB -> -> 0 `i `uc ]

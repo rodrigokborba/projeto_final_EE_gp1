@@ -65,6 +65,16 @@
 #define PULL_UP_ENABLED      1
 #define PULL_UP_DISABLED     0
 
+// get/set RA0 procedures
+#define RA0_SetHigh()            do { LATAbits.LATA0 = 1; } while(0)
+#define RA0_SetLow()             do { LATAbits.LATA0 = 0; } while(0)
+#define RA0_Toggle()             do { LATAbits.LATA0 = ~LATAbits.LATA0; } while(0)
+#define RA0_GetValue()              PORTAbits.RA0
+#define RA0_SetDigitalInput()    do { TRISAbits.TRISA0 = 1; } while(0)
+#define RA0_SetDigitalOutput()   do { TRISAbits.TRISA0 = 0; } while(0)
+#define RA0_SetAnalogMode()         do { ANSELAbits.ANSA0 = 1; } while(0)
+#define RA0_SetDigitalMode()        do { ANSELAbits.ANSA0 = 0; } while(0)
+
 // get/set SM1 aliases
 #define SM1_TRIS                 TRISAbits.TRISA1
 #define SM1_LAT                  LATAbits.LATA1
