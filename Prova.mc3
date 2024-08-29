@@ -1791,7 +1791,7 @@
          <value>enabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1SEL%aux2"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1SEL%aux0"/>
          <value>RB3</value>
       </entry>
       <entry>
@@ -1859,11 +1859,11 @@
          <value/>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1CSEL%aux3"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1CSEL%aux1"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1DSEL%aux4"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1DSEL%aux2"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
@@ -1935,11 +1935,11 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RXDTSEL%aux1"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RXDTSEL%aux4"/>
          <value>RB1</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="TXCKSEL%aux0"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="TXCKSEL%aux3"/>
          <value>RB2</value>
       </entry>
       <entry>
@@ -4294,7 +4294,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.c</file>
-         <hash>5bc86422380480518c354c6302a99f9f3d3648002505737e661830b6754885f4</hash>
+         <hash>5589fbb5e31229db9c82b91bfab49c837a3ae908337eb06e579a712676583912</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.h</file>

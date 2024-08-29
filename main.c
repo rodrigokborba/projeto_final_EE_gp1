@@ -266,6 +266,10 @@ void encontraFimCurso(){
     position = 0;
 }
 
+void calculaTemp(){
+    float_temp = adc_temp * GAIN_TEMP;
+}
+
 void main(void)
 {
     // initialize the device
@@ -287,10 +291,11 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-            
+    encontraFimCurso();        
     while (1)
     {
         // Add your application code
+        adc_temp = ADC_GetConversion(channel_AN8);
         if((timecontrol = TMR4_ReadTimer()) >= 209){//timer incrementa a cada 96us, 96us*209 = 20.096ms, tempo para escolher a malha de controle
             TMR4_StopTimer();
             controlchoose();
