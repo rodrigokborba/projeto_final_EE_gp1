@@ -1,38 +1,38 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"43 ./main.h
-[; ;./main.h: 43:     struct{
+"46 ./main.h
+[; ;./main.h: 46:     struct{
 [s S360 :4 `uc 1 :4 `uc 1 :4 `uc 1 :4 `uc 1 ]
 [n S360 . n0 n1 n2 n3 ]
-"41
-[; ;./main.h: 41: union{
+"44
+[; ;./main.h: 44: union{
 [u S359 `us 1 `S360 1 ]
 [n S359 . t . ]
-"53
-[; ;./main.h: 53:     struct{
+"56
+[; ;./main.h: 56:     struct{
 [s S362 :4 `uc 1 :4 `uc 1 :4 `uc 1 :4 `uc 1 ]
 [n S362 . n0 n1 n2 n3 ]
-"51
-[; ;./main.h: 51: union{
+"54
+[; ;./main.h: 54: union{
 [u S361 `us 1 `S362 1 ]
 [n S361 . d . ]
-"63
-[; ;./main.h: 63:     struct{
+"66
+[; ;./main.h: 66:     struct{
 [s S364 :4 `uc 1 :4 `uc 1 :4 `uc 1 :4 `uc 1 ]
 [n S364 . n0 n1 n2 n3 ]
-"61
-[; ;./main.h: 61: union{
+"64
+[; ;./main.h: 64: union{
 [u S363 `us 1 `S364 1 ]
 [n S363 . d . ]
-"73
-[; ;./main.h: 73:     struct{
+"76
+[; ;./main.h: 76:     struct{
 [s S366 :4 `uc 1 :4 `uc 1 :4 `uc 1 :4 `uc 1 ]
 [n S366 . n0 n1 n2 n3 ]
-"71
-[; ;./main.h: 71: union{
+"74
+[; ;./main.h: 74: union{
 [u S365 `us 1 `S366 1 ]
 [n S365 . dc . ]
-"88
-[; ;./main.h: 88: struct {
+"91
+[; ;./main.h: 91: struct {
 [s S367 :2 `uc 1 ]
 [n S367 . sos ]
 "122 ./mcc_generated_files/epwm1.h
@@ -44,14 +44,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "132
 [; ;./mcc_generated_files/tmr4.h: 132: void TMR4_StartTimer(void);
 [v _TMR4_StartTimer `(v ~T0 @X0 0 ef ]
-"125 ./main.h
-[; ;./main.h: 125: uint8_t ascii_bin(uint8_t vAscii);
+"131 ./main.h
+[; ;./main.h: 131: uint8_t ascii_bin(uint8_t vAscii);
 [v _ascii_bin `(uc ~T0 @X0 0 ef1`uc ]
 "348 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 348: void EUSART_Write(uint8_t txData);
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-"118 ./main.h
-[; ;./main.h: 118: uint8_t bin_ascii(uint8_t vBin);
+"124 ./main.h
+[; ;./main.h: 124: uint8_t bin_ascii(uint8_t vBin);
 [v _bin_ascii `(uc ~T0 @X0 0 ef1`uc ]
 "328 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 328: uint8_t EUSART_Read(void);
@@ -82,12 +82,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "261 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 261:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F2841 ]
-[v F3018 `(v ~T0 @X0 0 tf ]
+[v F3022 `(v ~T0 @X0 0 tf ]
 [v F2919 `(v ~T0 @X0 0 tf ]
 "505 ./mcc_generated_files/eusart.h
 [; ;./mcc_generated_files/eusart.h: 505: void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 [v _EUSART_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F2919 ]
-[v F3020 `(v ~T0 @X0 0 tf ]
+[v F3024 `(v ~T0 @X0 0 tf ]
 "357 /opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 357:     struct {
 [s S31 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -103,6 +103,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "374
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 374: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
+"298 main.c
+[; ;main.c: 298:         adc_temp = ADC_GetConversion(channel_AN8);
+[c E2861 8 29 30 31 .. ]
+[n E2861 . channel_AN8 channel_Temp channel_DAC channel_FVR  ]
+"288 ./mcc_generated_files/adc.h
+[; ;./mcc_generated_files/adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[v _ADC_GetConversion `(us ~T0 @X0 0 ef1`E2861 ]
 "199 ./mcc_generated_files/tmr4.h
 [; ;./mcc_generated_files/tmr4.h: 199: uint8_t TMR4_ReadTimer(void);
 [v _TMR4_ReadTimer `(uc ~T0 @X0 0 ef ]
@@ -583,84 +590,90 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6748
 [; ;/opt/microchip/mplabx/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8/pic/include/proc/pic16f1827.h: 6748: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"29 ./main.h
-[; ;./main.h: 29: int16_t error;
+"32 ./main.h
+[; ;./main.h: 32: int16_t error;
 [v _error `s ~T0 @X0 1 e ]
-"30
-[; ;./main.h: 30: int16_t balldist,ballset;
+"33
+[; ;./main.h: 33: int16_t balldist,ballset;
 [v _balldist `s ~T0 @X0 1 e ]
 [v _ballset `s ~T0 @X0 1 e ]
-"31
-[; ;./main.h: 31: uint16_t kpf = 055;
+"34
+[; ;./main.h: 34: uint16_t kpf = 055;
 [v _kpf `us ~T0 @X0 1 e ]
 [i _kpf
 -> -> 45 `i `us
 ]
-"32
-[; ;./main.h: 32: uint16_t kif = 105;
+"35
+[; ;./main.h: 35: uint16_t kif = 105;
 [v _kif `us ~T0 @X0 1 e ]
 [i _kif
 -> -> 105 `i `us
 ]
-"33
-[; ;./main.h: 33: uint16_t kpp = 12;
+"36
+[; ;./main.h: 36: uint16_t kpp = 12;
 [v _kpp `us ~T0 @X0 1 e ]
 [i _kpp
 -> -> 12 `i `us
 ]
-"34
-[; ;./main.h: 34: uint16_t kip = 19;
+"37
+[; ;./main.h: 37: uint16_t kip = 19;
 [v _kip `us ~T0 @X0 1 e ]
 [i _kip
 -> -> 19 `i `us
 ]
-"35
-[; ;./main.h: 35: uint16_t kdp = 01;
+"38
+[; ;./main.h: 38: uint16_t kdp = 01;
 [v _kdp `us ~T0 @X0 1 e ]
 [i _kdp
 -> -> 1 `i `us
 ]
-"36
-[; ;./main.h: 36: uint16_t dinput,outputsum,output;
+"39
+[; ;./main.h: 39: uint16_t dinput,outputsum,output;
 [v _dinput `us ~T0 @X0 1 e ]
 [v _outputsum `us ~T0 @X0 1 e ]
 [v _output `us ~T0 @X0 1 e ]
-"37
-[; ;./main.h: 37: _Bool controlchoice = 1;
+"40
+[; ;./main.h: 40: _Bool controlchoice = 1;
 [v _controlchoice `a ~T0 @X0 1 e ]
 [i _controlchoice
 -> -> 1 `i `a
 ]
-"38
-[; ;./main.h: 38: uint8_t timecontrol;
+"41
+[; ;./main.h: 41: uint8_t timecontrol;
 [v _timecontrol `uc ~T0 @X0 1 e ]
-"49
-[; ;./main.h: 49: }tTx;
+"52
+[; ;./main.h: 52: }tTx;
 [v _tTx `S359 ~T0 @X0 1 e ]
-"59
-[; ;./main.h: 59: }dTx;
+"62
+[; ;./main.h: 62: }dTx;
 [v _dTx `S361 ~T0 @X0 1 e ]
-"69
-[; ;./main.h: 69: }dRx;
+"72
+[; ;./main.h: 72: }dRx;
 [v _dRx `S363 ~T0 @X0 1 e ]
-"79
-[; ;./main.h: 79: }dcRx;
-[v _dcRx `S365 ~T0 @X0 1 e ]
-"81
-[; ;./main.h: 81: uint8_t bufferRx[8];
-[v _bufferRx `uc ~T0 @X0 -> 8 `i e ]
 "82
-[; ;./main.h: 82: uint8_t countRx = 0;
+[; ;./main.h: 82: }dcRx;
+[v _dcRx `S365 ~T0 @X0 1 e ]
+"84
+[; ;./main.h: 84: uint8_t bufferRx[8];
+[v _bufferRx `uc ~T0 @X0 -> 8 `i e ]
+"85
+[; ;./main.h: 85: uint8_t countRx = 0;
 [v _countRx `uc ~T0 @X0 1 e ]
 [i _countRx
 -> -> 0 `i `uc
 ]
-"86
-[; ;./main.h: 86: uint8_t position;
+"89
+[; ;./main.h: 89: uint8_t position;
 [v _position `uc ~T0 @X0 1 e ]
-"90
-[; ;./main.h: 90: }pas;
+"93
+[; ;./main.h: 93: }pas;
 [v _pas `S367 ~T0 @X0 1 e ]
+"96
+[; ;./main.h: 96: uint16_t adc_temp;
+[v _adc_temp `us ~T0 @X0 1 e ]
+"97
+[; ;./main.h: 97: float float_temp;
+[v _float_temp `f ~T0 @X0 1 e ]
 "51 main.c
 [; ;main.c: 51: void fluxcontrol(){
 [v _fluxcontrol `(v ~T0 @X0 1 ef ]
@@ -1549,57 +1562,76 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 267: }
 [e :UE 529 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
 "269
-[; ;main.c: 269: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;main.c: 269: void calculaTemp(){
+[v _calculaTemp `(v ~T0 @X0 1 ef ]
+{
+[e :U _calculaTemp ]
+[f ]
 "270
-[; ;main.c: 270: {
+[; ;main.c: 270:     float_temp = adc_temp * 0.1;
+[e = _float_temp -> * -> -> _adc_temp `ui `d .0.1 `f ]
+"271
+[; ;main.c: 271: }
+[e :UE 533 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"273
+[; ;main.c: 273: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"274
+[; ;main.c: 274: {
 {
 [e :U _main ]
 [f ]
-"272
-[; ;main.c: 272:     SYSTEM_Initialize();
+"276
+[; ;main.c: 276:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"273
-[; ;main.c: 273:     TMR0_SetInterruptHandler(envia_Tx);
-[e ( _TMR0_SetInterruptHandler (1 -> &U _envia_Tx `*F3018 ]
-"274
-[; ;main.c: 274:     EUSART_SetRxInterruptHandler(receive);
-[e ( _EUSART_SetRxInterruptHandler (1 -> &U _receive `*F3020 ]
-"280
-[; ;main.c: 280:     (INTCONbits.GIE = 1);
+"277
+[; ;main.c: 277:     TMR0_SetInterruptHandler(envia_Tx);
+[e ( _TMR0_SetInterruptHandler (1 -> &U _envia_Tx `*F3022 ]
+"278
+[; ;main.c: 278:     EUSART_SetRxInterruptHandler(receive);
+[e ( _EUSART_SetRxInterruptHandler (1 -> &U _receive `*F3024 ]
+"284
+[; ;main.c: 284:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"283
-[; ;main.c: 283:     (INTCONbits.PEIE = 1);
+"287
+[; ;main.c: 287:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"291
-[; ;main.c: 291:     while (1)
-[e :U 535 ]
-"292
-[; ;main.c: 292:     {
-{
 "294
-[; ;main.c: 294:         if((timecontrol = TMR4_ReadTimer()) >= 209){
-[e $ ! >= -> = _timecontrol ( _TMR4_ReadTimer ..  `i -> 209 `i 537  ]
-{
+[; ;main.c: 294:     encontraFimCurso();
+[e ( _encontraFimCurso ..  ]
 "295
-[; ;main.c: 295:             TMR4_StopTimer();
-[e ( _TMR4_StopTimer ..  ]
-"296
-[; ;main.c: 296:             controlchoose();
-[e ( _controlchoose ..  ]
-"297
-[; ;main.c: 297:         }
-}
-[e :U 537 ]
-"298
-[; ;main.c: 298:     }
-}
-[e :U 534 ]
-[e $U 535  ]
+[; ;main.c: 295:     while (1)
 [e :U 536 ]
+"296
+[; ;main.c: 296:     {
+{
+"298
+[; ;main.c: 298:         adc_temp = ADC_GetConversion(channel_AN8);
+[e = _adc_temp ( _ADC_GetConversion (1 . `E2861 0 ]
 "299
-[; ;main.c: 299: }
-[e :UE 533 ]
+[; ;main.c: 299:         if((timecontrol = TMR4_ReadTimer()) >= 209){
+[e $ ! >= -> = _timecontrol ( _TMR4_ReadTimer ..  `i -> 209 `i 538  ]
+{
+"300
+[; ;main.c: 300:             TMR4_StopTimer();
+[e ( _TMR4_StopTimer ..  ]
+"301
+[; ;main.c: 301:             controlchoose();
+[e ( _controlchoose ..  ]
+"302
+[; ;main.c: 302:         }
+}
+[e :U 538 ]
+"303
+[; ;main.c: 303:     }
+}
+[e :U 535 ]
+[e $U 536  ]
+[e :U 537 ]
+"304
+[; ;main.c: 304: }
+[e :UE 534 ]
 }

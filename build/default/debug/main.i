@@ -4691,7 +4691,7 @@ void OSCILLATOR_Initialize(void);
 void WDT_Initialize(void);
 # 45 "main.c" 2
 # 1 "./main.h" 1
-# 29 "./main.h"
+# 32 "./main.h"
 int16_t error;
 int16_t balldist,ballset;
 uint16_t kpf = 055;
@@ -4756,6 +4756,9 @@ struct {
 }pas;
 
 
+uint16_t adc_temp;
+float float_temp;
+
 
 
 
@@ -4796,9 +4799,26 @@ uint8_t ascii_bin(uint8_t vAscii);
 void receive();
 
 
+
+
+
+
+
 void meioPasso(_Bool sentido);
+
+
+
+
+
+
 void move(uint8_t n_passos, _Bool sentido);
+
+
+
+
 void encontraFimCurso();
+
+void calculaTemp();
 # 46 "main.c" 2
 
 
@@ -5023,6 +5043,10 @@ void encontraFimCurso(){
     position = 0;
 }
 
+void calculaTemp(){
+    float_temp = adc_temp * 0.1;
+}
+
 void main(void)
 {
 
@@ -5044,10 +5068,11 @@ void main(void)
 
 
 
-
+    encontraFimCurso();
     while (1)
     {
 
+        adc_temp = ADC_GetConversion(channel_AN8);
         if((timecontrol = TMR4_ReadTimer()) >= 209){
             TMR4_StopTimer();
             controlchoose();

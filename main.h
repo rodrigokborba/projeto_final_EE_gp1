@@ -10,7 +10,7 @@
 
 #include <xc.h> //include processor files - each processor file is guarded.
 
-/*Macros*/
+/*Macros do Sistema de Comunicação*/
 #define RX_INI '$'      ///< Inicio do quadro de comunicação.
 #define RX_END 0x0D     ///< Fim do quadro de comunicação.
 #define BUFFER_MAX 8    ///< Máxima quantidade de bytes a serem recebidos.
@@ -23,8 +23,11 @@
 #define RX_CMD_CTRL 'J'  ///< Comando para selecionar o módulo de controle
 #define RX_CMD_CTRL_SZ 2  ///< Comprimento da mensagem RX_CMD_CTRL.
 
-/*Variáveis de programa*/
+/*Macros do Sistema de Sensoriamento*/
+#define GAIN_TEMP 0.1 ///< Aproximação do calculo: (1.024/1023)/0.01
+#define POSITION_GAIN 0 ///< Aproximação do calculo: ;
 
+/*Variáveis de programa*/
 //Controle PID
 int16_t error;
 int16_t balldist,ballset;
@@ -89,6 +92,9 @@ struct {
     uint8_t sos : 2; //Esta é a variável que se incrementa para determinar a configuração das bobinas.
 }pas;                //Ela tem 2 bits para contar de 0 ate 3 (sao 4 combinacoes diferentes de bobina)
 
+//Sensor de Temperatura
+uint16_t adc_temp;
+float float_temp;
 
 /*Funcoes*/
 
@@ -149,6 +155,6 @@ void move(uint8_t n_passos, bool sentido);
  */
 void encontraFimCurso();
 
-
+void calculaTemp();
 #endif	/* MAIN_H */
 
