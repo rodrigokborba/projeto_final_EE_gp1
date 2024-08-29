@@ -130,8 +130,23 @@ uint8_t ascii_bin(uint8_t vAscii);
 void receive();
 
 //Movimento do motor de passo
+/**
+ * Funcao de passo do motor
+ * @param sentido variavel booleana que indica se o motor esta andando no sentido horario ou anti-horario
+ * 
+ */
 void meioPasso(bool sentido);
+
+/**
+ * Atualizacao da posicao da porta de acordo com o incremento ou decremento do passo
+ * @param n_passos numero de passos
+ * @param sentido variavel booleana que indica se o motor esta andando no sentido horario ou anti-horario
+ */
 void move(uint8_t n_passos, bool sentido);
+
+/**
+ * Indica se aporta atingiu o fim da abertura 
+ */
 void encontraFimCurso();
 
 
