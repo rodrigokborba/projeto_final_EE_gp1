@@ -63,14 +63,14 @@ void pwmcontrol(){
     if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%, roda o codigo
         outputsum += ((kip*timecontrol*error)/1000);//Kintegrativa com erro e o tempo do timer 
         if (outputsum > 10230) outputsum = 10230; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimai) fixa em 1023
-        output = ((kpp*error + outputsum)/10); //voltando a escala padrão
+        output = ((kpp*error + outputsum)/10); //voltando a escala padrï¿½o
         if(output > 1023) output = 1023; //saturando o output
-        EPWM1_LoadDutyValue(output); //mandando o valor após o controle
+        EPWM1_LoadDutyValue(output); //mandando o valor apï¿½s o controle
     }
 }
 
 void fluxpos(){
-    
+    //mnnjn
 }
 
 void controlchoose(){
@@ -135,7 +135,7 @@ void analisa_Rx (){
     } 
 }
 
-void envia_Tx (){         //função para enviar dados de altura e temperatura
+void envia_Tx (){         //funï¿½ï¿½o para enviar dados de altura e temperatura
     EUSART_Write(bin_ascii(dTx.n3));     //Envia n3 da altura
     EUSART_Write(bin_ascii(dTx.n2));     //Envia n2 da altura
     EUSART_Write(bin_ascii(dTx.n1));     //Envia n1 da altura
@@ -152,7 +152,7 @@ uint8_t bin_ascii(uint8_t vBin){
     if(vBin<10){                               // Se valor < 0xA
         vBin = vBin + 0x30; // 0..9            // Acresecenta 0x30 (ascii '0')
     }
-    else{                                      // se não
+    else{                                      // se nï¿½o
         vBin = vBin + 0x37; // A..F            // accrescenta 0x37 (ascii '0'+7)
     }
     return vBin;
@@ -162,22 +162,22 @@ uint8_t ascii_bin(uint8_t vAscii){
     if(vAscii<0x3A){                               // Se valor <= 0x39 ('9') 
         vAscii = vAscii - 0x30; // '0'..'9'        // subtrai 0x30 (ascii '0')
     }
-    else{                                          // se não
+    else{                                          // se nï¿½o
         vAscii = vAscii - 0x37; // 'A'..'F'        // subtrai 0x37 (ascii '0'+7)
     }
     return vAscii;
 }
 
 void receive(){
-    uint8_t rx_byte = EUSART_Read();       // Lê-se EUSART e guarda-se em rxChar
+    uint8_t rx_byte = EUSART_Read();       // Lï¿½-se EUSART e guarda-se em rxChar
     if(rx_byte==RX_INI){                   // Se for o inicio do quadro
         countRx = 0;                       // zera contador
     }
     else if(rx_byte==RX_END){              // Se for o final
         analisa_Rx();                      // analiza dados recebidos
     }
-    else{                                  // se não é nem inicio nem fim
-        if(countRx<BUFFER_MAX-1){          // e o buffer não etsá cheio
+    else{                                  // se nï¿½o ï¿½ nem inicio nem fim
+        if(countRx<BUFFER_MAX-1){          // e o buffer nï¿½o etsï¿½ cheio
             bufferRx[countRx] = rx_byte;   // guarda valor
             countRx++;
         }
