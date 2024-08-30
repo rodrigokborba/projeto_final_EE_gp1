@@ -55,6 +55,7 @@ void fluxcontrol(){
         if (outputsum > 45000) outputsum = 45000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
         output = ((kpf*error + outputsum)/100); // definindo output com kpf e voltando a escala
         if (output > 450) output = 450; //saturando o output
+        fluxpos();
     }
 }
 
@@ -70,7 +71,9 @@ void pwmcontrol(){
 }
 
 void fluxpos(){
-    //mnnjn
+    flux = output - position;
+    if(flux>0) meioPasso(true);
+    else if( flux <0) meioPasso(false);
 }
 
 void controlchoose(){
