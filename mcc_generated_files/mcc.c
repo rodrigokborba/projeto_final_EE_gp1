@@ -55,12 +55,13 @@ void SYSTEM_Initialize(void)
     WDT_Initialize();
     DAC_Initialize();
     FVR_Initialize();
-    CMP1_Initialize();
-    ADC_Initialize();
-    EPWM1_Initialize();
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();
+    TMR6_Initialize();
+    CMP1_Initialize();
+    ADC_Initialize();
+    EPWM1_Initialize();
     EUSART_Initialize();
 }
 

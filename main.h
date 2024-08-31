@@ -27,6 +27,13 @@
 #define GAIN_TEMP 0.1 ///< Aproximaï¿½ï¿½o do calculo: (1.024/1023)/0.01
 #define POSITION_GAIN 0 ///< Aproximaï¿½ï¿½o do calculo: ;
 
+/**
+ Macros do Motor de Passos
+ */
+#define HORARIO 1
+#define ANTIHORARIO 0
+
+
 /*Variï¿½veis de programa*/
 //Controle PID
 int16_t error;
@@ -39,6 +46,7 @@ uint16_t kdp = 01;
 uint16_t dinput,outputsum,output;
 bool controlchoice = true;
 uint8_t timecontrol;
+
 
 //Comunicaï¿½ï¿½o Serial
 union{                  ///< Uniï¿½o para temperatura, usada na transmissï¿½o
@@ -87,6 +95,9 @@ uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
 
 //Movimento do motor de passo
 uint8_t position;
+uint8_t incPos = 1;
+uint8_t passo;
+bool fim_curso;
 
 struct {
     uint8_t sos : 2; //Esta ï¿½ a variï¿½vel que se incrementa para determinar a configuraï¿½ï¿½o das bobinas.
@@ -135,26 +146,31 @@ uint8_t ascii_bin(uint8_t vAscii);
  */
 void receive();
 
-//Movimento do motor de passo
+// -------------------------------------------- Motor de passos -------------------------------------------------------- 
+
 /**
  * Funcao de passo do motor
  * @param sentido variavel booleana que indica se o motor esta andando no sentido horario ou anti-horario
  * 
  */
-void meioPasso(bool sentido);
+void daUmPasso(bool sentido);
+/**
+ * Função que decide se a função fluxcontrol vai ser chamada a partir da variável controlchoice
+ */
+void fluxControlChoice(); 
 
 /**
- * Atualizacao da posicao da porta de acordo com o incremento ou decremento do passo
- * @param n_passos numero de passos
- * @param sentido variavel booleana que indica se o motor esta andando no sentido horario ou anti-horario
+ * 
+ * @param passo
+ * @param sentido
  */
-void move(uint8_t n_passos, bool sentido);
+void definePassoMotor(uint8_t passo, bool sentido);
+
+// ------------------------------------------- Temperatura --------------------------------------------------------------
 
 /**
- * Indica se aporta atingiu o fim da abertura 
+ Função de cálculo da temperatura do sensor LM35
  */
-void encontraFimCurso();
-
 void calculaTemp();
 #endif	/* MAIN_H */
 

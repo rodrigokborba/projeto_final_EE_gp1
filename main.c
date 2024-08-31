@@ -72,17 +72,18 @@ void pwmcontrol(){
 
 void fluxpos(){
     flux = output - position;
-    if(flux>0) meioPasso(true);
-    else if( flux <0) meioPasso(false);
+    if(flux>0) daUmPasso(true);
+    else if( flux <0) daUmPasso(false);
     
 }
 
 void controlchoose(){
     if (controlchoice == true){ //escolhendo qual malha de controle com uma variavel bool
         pwmcontrol ();
-    } else {
-        fluxcontrol ();
     }
+//        else {
+//        fluxcontrol ();
+//    }
     TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
 }
@@ -188,10 +189,15 @@ void receive(){
     }
 }
 
+void fluxControlChoice(){
+    if(!controlchoice){
+        fluxcontrol();
+    }
+}
 
-void meioPasso(bool sentido){
-    if(sentido){
-        switch(pas.sos){
+void definePassoMotor(uint8_t passo, bool sentido) {
+    if (sentido) {  // Sentido horário (abrindo a porta)
+        switch(passo) {
             case 0:
                 SM1_SetHigh();
                 SM2_SetHigh();
@@ -217,8 +223,8 @@ void meioPasso(bool sentido){
                 SM4_SetHigh();
                 break;
         }
-    }else{
-        switch(pas.sos){
+    } else {  // Sentido anti-horário (fechando a porta)
+        switch(passo) {
             case 0:
                 SM4_SetHigh();
                 SM3_SetHigh();
@@ -247,27 +253,29 @@ void meioPasso(bool sentido){
     }
 }
 
-void move(uint8_t n_passos, bool sentido){
-    signed int incPos = 0;
-    if(sentido){
-        incPos = 1;
-    }else{
-        incPos = -1;
+void daUmPasso(bool sentido) {
+    // Atualiza o passo e garante que ele esteja no intervalo de 0 a 3
+    passo++;
+    passo = passo & 0b00000011;
+    // Verifica o fim de curso e atualiza a posição se necessário
+    if (CMP1_GetOutputStatus()) {
+        fim_curso = true;
+        position = 0;  // Reset da posição no fim de curso
+    } else {
+        fim_curso = false;
     }
-    for(uint8_t i=0; i<=n_passos; i++){
-        meioPasso(sentido);
-        pas.sos++;
-        position = position + incPos;
-        __delay_ms(10);
+    // Atualiza a posição com base no sentido e fim de curso
+    if (fim_curso) {
+        // Incrementa ou decrementa a posição conforme o sentido
+        if(sentido){
+            position = position - incPos;
+        } else {
+            position = position + incPos;
+        }
+        definePassoMotor(passo, sentido);
+    } else {
+        definePassoMotor(passo, HORARIO);
     }
-}
-
-void encontraFimCurso(){
-    while(!CMP1_GetOutputStatus()){
-        meioPasso(0);
-        pas.sos++;
-    }
-    position = 0;
 }
 
 void calculaTemp(){
@@ -280,7 +288,7 @@ void main(void)
     SYSTEM_Initialize();
     TMR0_SetInterruptHandler(envia_Tx);
     EUSART_SetRxInterruptHandler(receive);
-
+    TMR6_SetInterruptHandler(fluxControlChoice);
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -295,7 +303,7 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    encontraFimCurso();        
+           
     while (1)
     {
         // Add your application code

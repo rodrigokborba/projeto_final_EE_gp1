@@ -52,10 +52,33 @@
 void __interrupt() INTERRUPT_InterruptManager (void)
 {
     // interrupt handler
-    if(INTCONbits.IOCIE == 1 && INTCONbits.IOCIF == 1)
+    if(INTCONbits.TMR0IE == 1 && INTCONbits.TMR0IF == 1)
+    {
+        TMR0_ISR();
+    }
+    else if(INTCONbits.IOCIE == 1 && INTCONbits.IOCIF == 1)
     {
         PIN_MANAGER_IOC();
     }
+    else if(INTCONbits.PEIE == 1)
+    {
+        if(PIE3bits.TMR6IE == 1 && PIR3bits.TMR6IF == 1)
+        {
+            TMR6_ISR();
+        } 
+        else if(PIE1bits.TXIE == 1 && PIR1bits.TXIF == 1)
+        {
+            EUSART_TxDefaultInterruptHandler();
+        } 
+        else if(PIE1bits.RCIE == 1 && PIR1bits.RCIF == 1)
+        {
+            EUSART_RxDefaultInterruptHandler();
+        } 
+        else
+        {
+            //Unhandled Interrupt
+        }
+    }      
     else
     {
         //Unhandled Interrupt
