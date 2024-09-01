@@ -89,103 +89,102 @@ void controlchoose(){
 }
 
 void analisa_Rx (){
+    Rx_ctrl = false;
     switch(bufferRx[0]){
-        case RX_CMD_PWM:
-            if(countRx==RX_CMD_PWM_SZ){
-                dcRx.n3 = ascii_bin(bufferRx[1]);
-                dcRx.n2 = ascii_bin(bufferRx[2]);
-                dcRx.n1 = ascii_bin(bufferRx[3]);
-                dcRx.n0 = ascii_bin(bufferRx[4]);
-                EPWM1_LoadDutyValue(dcRx.dc);
+        case RX_CMD_MNL:            //caso para comando em funcionamento manual
+            if(countRx==RX_CMD_SZ){     //se possui o tamanho correto
+                func_mode = bufferRx[0];    //atualiza modo de funcionamento
+                vRx.vH = bufferRx[3];   //MSB do setpoint de posicao da valvula salvo na uniao
+                vRx.vL = bufferRx[4];   //LSB do setpoint de posicao da valvula salvo na uniao
+                sp_position = vRx.v;    //Transfere-se valor recebido para variavel do setpoint da valvula
+                vRx.vH = bufferRx[5];   //MSB do setpoint do dutycycle salvo na uniao
+                vRx.vL = bufferRx[6];   //LSB do setpoint do dutycycle salvo na uniao
+                dc = vRx.v;             //Transfere-se valor recebido para variavel do dutycycle
+                EPWM1_LoadDutyValue(dc);    //atualiza-se PWM com novo dutycycle recebido
             }
-            else{
-                //se houver mensagem de erro no roteiro
-            }
+            countRx = 0;
             break;
-        case RX_CMD_STEP:
-            if(countRx==RX_CMD_STEP_SZ){
-                
+        case RX_CMD_VENT:
+            if(countRx==RX_CMD_SZ){
+                func_mode = bufferRx[0];    //atualiza modo de funcionamento
+                controlchoice = true;
+                vRx.vH = bufferRx[1];   //MSB do setpoint de altura salvo na uniao
+                vRx.vL = bufferRx[2];   //LSB do setpoint de altura salvo na uniao
+                sp_height = vRx.v;      //Transfere-se valor recebido para variavel do setpoint de altura
+                ballset = vRx.v / 2;    //Define-se ballset para on controle
+                vRx.vH = bufferRx[3];   //MSB do setpoint de posicao da valvula salvo na uniao
+                vRx.vL = bufferRx[4];   //LSB do setpoint de posicao da valvula salvo na uniao
+                sp_position = vRx.v;    //Transfere-se valor recebido para variavel do setpoint da valvula
             }
-            else{
-                //se houver mensagem de erro no roteiro
-            }
+            countRx = 0;
             break;            
-        case RX_CMD_HEIGHT:
-            if(countRx==RX_CMD_HEIGHT_SZ){
-                dRx.n3 = ascii_bin(bufferRx[1]);
-                dRx.n2 = ascii_bin(bufferRx[2]);
-                dRx.n1 = ascii_bin(bufferRx[3]);
-                dRx.n0 = ascii_bin(bufferRx[4]);
-                ballset = dRx.d / 20;
+        case RX_CMD_VAL:
+            if(countRx==RX_CMD_SZ){
+                func_mode = bufferRx[0];    //atualiza modo de funcionamento
+                controlchoice = false;
+                vRx.vH = bufferRx[1];   //MSB do setpoint de altura salvo na uniao
+                vRx.vL = bufferRx[2];   //LSB do setpoint de altura salvo na uniao
+                sp_height = vRx.v;      //Transfere-se valor recebido para variavel do setpoint de altura
+                ballset = vRx.v / 2;    //Define-se ballset para on controle
+                vRx.vH = bufferRx[5];   //MSB do setpoint do dutycycle salvo na uniao
+                vRx.vL = bufferRx[6];   //LSB do setpoint do dutycycle salvo na uniao
+                dc = vRx.v;             //Transfere-se valor recebido para variavel do dutycycle
+                EPWM1_LoadDutyValue(dc);    //atualiza-se PWM com novo dutycycle recebido
             }
-            else{
-                //se houver mensagem de erro no roteiro
-            }
+            countRx = 0;
             break;
-        case RX_CMD_CTRL:
-            if(countRx==RX_CMD_CTRL_SZ){
-                if(ascii_bin(bufferRx[1])== 0){
-                    controlchoice = false;
-                }
-                else{
-                    controlchoice = true;
-                }
+        case RX_CMD_RST:
+            if(countRx==RX_CMD_SZ){
+                ;//instrucao de reset
             }
-            else{
-                //se houver mensagem de erro no roteiro
-            }
+            countRx = 0;
             break;
         default:
-            ; //se houver mensagem de erro no roteiro
+            countRx = 0;
     } 
 }
 
-void envia_Tx (){         //fun��o para enviar dados de altura e temperatura
-    EUSART_Write(bin_ascii(dTx.n3));     //Envia n3 da altura
-    EUSART_Write(bin_ascii(dTx.n2));     //Envia n2 da altura
-    EUSART_Write(bin_ascii(dTx.n1));     //Envia n1 da altura
-    EUSART_Write(bin_ascii(dTx.n0));     //Envia n0 da altura
-    EUSART_Write(bin_ascii(tTx.n3));     //Envia n3 da temperatura
-    EUSART_Write(bin_ascii(tTx.n2));     //Envia n2 da temperatura
-    EUSART_Write(bin_ascii(tTx.n1));     //Envia n1 da temperatura
-    EUSART_Write(bin_ascii(tTx.n0));     //Envia n0 da temperatura
-    EUSART_Write(RX_END);     //Envia caracter de final de mensagem
+void envia_Tx (){                       //funcao para transmissao de dados
+    EUSART_Write(func_mode);            //Envia modo de funcionamento atual
+    vTx.v = sp_height;                  //Passa setpoint de altura para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB do setpoint de altura
+    EUSART_Write(vTx.vL);               //Envia LSB do setpoint de altura
+    vTx.v = height;                     //Passa a medicao de altura para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB da medicao de altura
+    EUSART_Write(vTx.vL);               //Envia LSB da medicao de altura
+    vTx.v = position;                   //Passa a medicao de altura para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB da posicao da valvula
+    EUSART_Write(vTx.vL);               //Envia LSB da posicao da valvula
+    vTx.v = dc;                         //Passa o valor do dutycycle do PWM para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB do dutycycle do PWM
+    EUSART_Write(vTx.vL);               //Envia LSB do dutycycle do PWM
+    /*vTx.v = tempo;                  //Passa o valor da contagem de tempo para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB do valor da contagem de tempo
+    EUSART_Write(vTx.vL); */             //Envia LSB do valor da contagem de tempo
+    vTx.v = float_temp*10;              //Passa o valor da temperatura com uma casa decimal para uniao de envio
+    EUSART_Write(vTx.vH);               //Envia MSB do valor da temperatura com uma casa decimal
+    EUSART_Write(vTx.vL);               //Envia LSB do valor da temperatura com uma casa decimal
 }
 
-uint8_t bin_ascii(uint8_t vBin){
-    vBin = vBin & 0x0F;                        // Apaga nible alto
-    if(vBin<10){                               // Se valor < 0xA
-        vBin = vBin + 0x30; // 0..9            // Acresecenta 0x30 (ascii '0')
+void end_Rx () {
+    if(count_40ms >= 10){
+        count_40ms = 0;
+        if(Rx_ctrl == true){
+            analisa_Rx();
+        }
     }
-    else{                                      // se n�o
-        vBin = vBin + 0x37; // A..F            // accrescenta 0x37 (ascii '0'+7)
+    else{
+        count_40ms++;
     }
-    return vBin;
-}
-
-uint8_t ascii_bin(uint8_t vAscii){
-    if(vAscii<0x3A){                               // Se valor <= 0x39 ('9') 
-        vAscii = vAscii - 0x30; // '0'..'9'        // subtrai 0x30 (ascii '0')
-    }
-    else{                                          // se n�o
-        vAscii = vAscii - 0x37; // 'A'..'F'        // subtrai 0x37 (ascii '0'+7)
-    }
-    return vAscii;
 }
 
 void receive(){
-    uint8_t rx_byte = EUSART_Read();       // L�-se EUSART e guarda-se em rxChar
-    if(rx_byte==RX_INI){                   // Se for o inicio do quadro
-        countRx = 0;                       // zera contador
-    }
-    else if(rx_byte==RX_END){              // Se for o final
-        analisa_Rx();                      // analiza dados recebidos
-    }
-    else{                                  // se n�o � nem inicio nem fim
-        if(countRx<BUFFER_MAX-1){          // e o buffer n�o ets� cheio
-            bufferRx[countRx] = rx_byte;   // guarda valor
-            countRx++;
-        }
+    count_40ms = 0;
+    TMR0_Reload();
+    Rx_ctrl = true;
+    if(countRx<BUFFER_MAX-1){          // se o buffer nao esta cheio
+        bufferRx[countRx] = EUSART_Read();   // guarda valor
+        countRx++;
     }
 }
 
@@ -286,7 +285,7 @@ void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    TMR0_SetInterruptHandler(envia_Tx);
+    TMR0_SetInterruptHandler(end_Rx);
     EUSART_SetRxInterruptHandler(receive);
     TMR6_SetInterruptHandler(fluxControlChoice);
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits

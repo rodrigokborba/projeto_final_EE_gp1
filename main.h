@@ -10,18 +10,13 @@
 
 #include <xc.h> //include processor files - each processor file is guarded.
 
-/*Macros do Sistema de Comunicaï¿½ï¿½o*/
-#define RX_INI '$'      ///< Inicio do quadro de comunicaï¿½ï¿½o.
-#define RX_END 0x0D     ///< Fim do quadro de comunicaï¿½ï¿½o.
-#define BUFFER_MAX 8    ///< Mï¿½xima quantidade de bytes a serem recebidos.
-#define RX_CMD_PWM 'G'   ///< Comando para definir duty cycle do PWM.
-#define RX_CMD_PWM_SZ 5  ///< Comprimento da mensagem RX_CMD_PWM.
-#define RX_CMD_STEP 'H'   ///< Comando para definir valor para o motor de passo.
-#define RX_CMD_STEP_SZ 5  ///< Comprimento da mensagem RX_CMD_STEP.
-#define RX_CMD_HEIGHT 'I'///< Comando para alterar altura da bolinha (set point)
-#define RX_CMD_HEIGHT_SZ 5  ///< Comprimento da mensagem RX_CMD_HEIGHT.
-#define RX_CMD_CTRL 'J'  ///< Comando para selecionar o mï¿½dulo de controle
-#define RX_CMD_CTRL_SZ 2  ///< Comprimento da mensagem RX_CMD_CTRL.
+/*Macros do Sistema de Comunicacao*/
+#define BUFFER_MAX 8        ///< Maxima quantidade de bytes a serem recebidos.
+#define RX_CMD_MNL 0x0     ///< Comando para funcionamento manual
+#define RX_CMD_VENT 0x1    ///< Comando para funcionamento controlando ventoinha
+#define RX_CMD_VAL 0x2     ///< Comando para funcionamento controlando valvula
+#define RX_CMD_RST 0x3     ///< Comando para reset
+#define RX_CMD_SZ 7         ///< Comprimento das mensagens de comando
 
 /*Macros do Sistema de Sensoriamento*/
 #define GAIN_TEMP 0.1 ///< Aproximaï¿½ï¿½o do calculo: (1.024/1023)/0.01
@@ -48,53 +43,38 @@ bool controlchoice = true;
 uint8_t timecontrol;
 
 
-//Comunicaï¿½ï¿½o Serial
-union{                  ///< Uniï¿½o para temperatura, usada na transmissï¿½o
-    uint16_t t;         ///< Valor inteiro de 16 bits. Contï¿½m os 4 nibles
+//Comunicacao Serial
+union{                  ///< Uniao para transmissão
+    uint16_t v;         ///< Valor inteiro de 16 bits para transmissão
     struct{
-        uint8_t n0 : 4; ///< Nible n0 
-        uint8_t n1 : 4; ///< Nible n1  
-        uint8_t n2 : 4; ///< Nible n2 
-        uint8_t n3 : 4; ///< Nible n3
+        uint8_t vH;     ///< MSB do valor a ser transmitido 
+        uint8_t vL;     ///< LSB do valor a ser transmitido
     };
-}tTx;                   ///< Variï¿½vel com os valores guardados para temperatura
+}vTx;                   ///< Variavel com os valores usados na transmissão
 
-union{                  ///< Uniï¿½o para altura, usada na transmissï¿½o
-    uint16_t d;         ///< Valor inteiro de 16 bits. Contï¿½m os 4 nibles
+union{                  ///< Uniao para recepção de dados
+    uint16_t v;         ///< Valor inteiro de 16 bits recebido
     struct{
-        uint8_t n0 : 4; ///< Nible n0 
-        uint8_t n1 : 4; ///< Nible n1  
-        uint8_t n2 : 4; ///< Nible n2 
-        uint8_t n3 : 4; ///< Nible n3
+        uint8_t vH;     ///< MSB do valor recebido 
+        uint8_t vL;     ///< LSB do valor recebido
     };
-}dTx;                   ///< Variï¿½vel com os valores guardados para altura
+}vRx;                   ///< Variavel com os valores recebidos
 
-union{                  ///< Uniï¿½o para altura, usada no Recebimento
-    uint16_t d;         ///< Valor inteiro de 16 bits. Contï¿½m os 4 nibles
-    struct{
-        uint8_t n0 : 4; ///< Nible n0 
-        uint8_t n1 : 4; ///< Nible n1  
-        uint8_t n2 : 4; ///< Nible n2 
-        uint8_t n3 : 4; ///< Nible n3
-    };
-}dRx;                   ///< Variï¿½vel com os valores guardados para altura
-
-union{                      ///< Uniï¿½o para duty cycle, usada no Recebimento
-    uint16_t dc;            ///< Valor inteiro de 16 bits. Contï¿½m os 4 nibles
-    struct{
-        uint8_t n0 : 4;     ///< Nible n0 
-        uint8_t n1 : 4;     ///< Nible n1  
-        uint8_t n2 : 4;     ///< Nible n2 
-        uint8_t n3 : 4;     ///< Nible n3
-    };  
-}dcRx;                      ///< Variï¿½vel com os valores guardados de duty cycle
+bool Rx_ctrl = false;
+uint8_t func_mode = 0;      ///< Variavel usada para indicar o modo de funcionamento. 0=manual, 1=ventoinha, 2=valvula, 3=reset.
+uint16_t sp_height;         ///< Variavel usada para guardar o setpoint de altura.
+uint16_t dc;                ///< Variavel usada para guardar o valor do pwm.
+uint16_t sp_position;       ///< Setpoint para posição da valvula (motor de passo)
 
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
+uint8_t count_40ms = 0; 
 
+//Medicao de altura
+uint16_t height;            ///< Variavel usada para guardar a medicao de altura
 
 //Movimento do motor de passo
-uint8_t position;
+uint16_t position;
 uint8_t incPos = 1;
 uint8_t passo;
 bool fim_curso;
