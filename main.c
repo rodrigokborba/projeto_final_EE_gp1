@@ -135,7 +135,7 @@ void analisa_Rx (){
             break;
         case RX_CMD_RST:
             if(countRx==RX_CMD_SZ){
-                ;//instrucao de reset
+                RESET();//instrucao de reset
             }
             countRx = 0;
             break;
