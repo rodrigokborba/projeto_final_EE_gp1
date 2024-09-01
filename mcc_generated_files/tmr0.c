@@ -65,8 +65,8 @@ void TMR0_Initialize(void)
 {
     // Set TMR0 to the options selected in the User Interface
 	
-    // PSA assigned; PS 1:256; TMRSE Increment_hi_lo; mask the nWPUEN and INTEDG bits
-    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD7 & 0x3F)); 
+    // PSA assigned; PS 1:64; TMRSE Increment_hi_lo; mask the nWPUEN and INTEDG bits
+    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD5 & 0x3F)); 
 	
     // TMR0 0; 
     TMR0 = 0x00;
@@ -107,35 +107,20 @@ void TMR0_Reload(void)
 
 void TMR0_ISR(void)
 {
-    static volatile uint16_t CountCallBack = 0;
 
     // Clear the TMR0 interrupt flag
     INTCONbits.TMR0IF = 0;
 
     TMR0 = timer0ReloadVal;
 
-    // callback function - called every 2th pass
-    if (++CountCallBack >= TMR0_INTERRUPT_TICKER_FACTOR)
+    if(TMR0_InterruptHandler)
     {
-        // ticker function call
-        TMR0_CallBack();
-
-        // reset ticker counter
-        CountCallBack = 0;
+        TMR0_InterruptHandler();
     }
 
     // add your TMR0 interrupt custom code
 }
 
-void TMR0_CallBack(void)
-{
-    // Add your custom callback code here
-
-    if(TMR0_InterruptHandler)
-    {
-        TMR0_InterruptHandler();
-    }
-}
 
 void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
     TMR0_InterruptHandler = InterruptHandler;

@@ -61,12 +61,6 @@
 #endif
 
 /**
-  Section: Macro Declarations
-*/
-
-#define TMR0_INTERRUPT_TICKER_FACTOR    2
-
-/**
   Section: TMR0 APIs
 */
 
@@ -224,23 +218,6 @@ void TMR0_Reload(void);
 */
 void TMR0_ISR(void);
 
-/**
-  @Summary
-    CallBack function.
-
-  @Description
-    This routine is called by the Interrupt Manager.
-
-  @Preconditions
-    None
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-void TMR0_CallBack(void);
 
 /**
   @Summary

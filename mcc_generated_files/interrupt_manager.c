@@ -62,7 +62,11 @@ void __interrupt() INTERRUPT_InterruptManager (void)
     }
     else if(INTCONbits.PEIE == 1)
     {
-        if(PIE3bits.TMR6IE == 1 && PIR3bits.TMR6IF == 1)
+        if(PIE1bits.TMR1GIE == 1 && PIR1bits.TMR1GIF == 1)
+        {
+            TMR1_GATE_ISR();
+        } 
+        else if(PIE3bits.TMR6IE == 1 && PIR3bits.TMR6IF == 1)
         {
             TMR6_ISR();
         } 

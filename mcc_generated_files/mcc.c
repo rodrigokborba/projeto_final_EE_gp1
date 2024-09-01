@@ -62,6 +62,7 @@ void SYSTEM_Initialize(void)
     CMP1_Initialize();
     ADC_Initialize();
     EPWM1_Initialize();
+    TMR1_Initialize();
     EUSART_Initialize();
 }
 
