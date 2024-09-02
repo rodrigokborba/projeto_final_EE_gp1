@@ -71,7 +71,8 @@ uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
 uint8_t count_40ms = 0; 
 
 //Medicao de altura
-uint16_t height;            ///< Variavel usada para guardar a medicao de altura
+uint16_t height = 0;            ///< Variavel usada para guardar a medicao de altura
+float tempo_voo;                ///< Variavel usada para guardar o tempo de voo na medicao de altura.
 
 //Movimento do motor de passo
 uint16_t position;
@@ -108,20 +109,6 @@ void analisa_Rx ();
 void envia_Tx ();
 
 /**
- * Converte um valor bin�rio de quatro bits para ASCII.
- * @param vBin
- * @return Valor ASCII
- */
-uint8_t bin_ascii(uint8_t vBin);
-
-/**
- * Converte um valor ASCII para um valor bin�rio de quatro bits.
- * @param vAscii
- * @return Valor bin�rio de 4 bits
- */
-uint8_t ascii_bin(uint8_t vAscii);
-
-/**
  * Fun��o utilizada para receber mensagens de comunica��o. Acionada na interrup��o do EUSART.
  */
 void receive();
@@ -154,3 +141,8 @@ void definePassoMotor(uint8_t passo, bool sentido);
 void calculaTemp();
 #endif	/* MAIN_H */
 
+// --------------------------------------------- Distancia ---------------------------------------------------------------
+/**
+ * Funcao para medicao de distancia. Chamada na interrupcao do gate do timer1.
+ */
+void mede_height ();

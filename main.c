@@ -281,6 +281,12 @@ void calculaTemp(){
     float_temp = adc_temp * GAIN_TEMP;
 }
 
+void mede_height (){
+    tempo_voo = TMR1_ReadTimer() * 0.00025;
+    height = (tempo_voo * 340)/2;
+    balldist = height/2;
+}
+
 void main(void)
 {
     // initialize the device
@@ -288,6 +294,7 @@ void main(void)
     TMR0_SetInterruptHandler(end_Rx);
     EUSART_SetRxInterruptHandler(receive);
     TMR6_SetInterruptHandler(fluxControlChoice);
+    TMR1_SetGateInterruptHandler(mede_height);
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 

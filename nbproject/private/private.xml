@@ -5,16 +5,7 @@
         <group>
             <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/main.c</file>
             <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/main.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/epwm1.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/tmr6.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/tmr6.c</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/tmr0.c</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/tmr0.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/device_config.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/mcc.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/pin_manager.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/interrupt_manager.h</file>
-            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/interrupt_manager.c</file>
+            <file>file:/D:/Documents/UNB/2024.1/ELE_EMB/Projetos/projeto_final.X/projeto_final_EE_gp1/mcc_generated_files/tmr1.c</file>
         </group>
     </open-files>
 </project-private>
