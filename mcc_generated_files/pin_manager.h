@@ -131,6 +131,17 @@
 #define SM4_SetAnalogMode()      do { ANSELAbits.ANSA4 = 1; } while(0)
 #define SM4_SetDigitalMode()     do { ANSELAbits.ANSA4 = 0; } while(0)
 
+// get/set Trigger aliases
+#define Trigger_TRIS                 TRISAbits.TRISA6
+#define Trigger_LAT                  LATAbits.LATA6
+#define Trigger_PORT                 PORTAbits.RA6
+#define Trigger_SetHigh()            do { LATAbits.LATA6 = 1; } while(0)
+#define Trigger_SetLow()             do { LATAbits.LATA6 = 0; } while(0)
+#define Trigger_Toggle()             do { LATAbits.LATA6 = ~LATAbits.LATA6; } while(0)
+#define Trigger_GetValue()           PORTAbits.RA6
+#define Trigger_SetDigitalInput()    do { TRISAbits.TRISA6 = 1; } while(0)
+#define Trigger_SetDigitalOutput()   do { TRISAbits.TRISA6 = 0; } while(0)
+
 // get/set RB0 procedures
 #define RB0_SetHigh()            do { LATBbits.LATB0 = 1; } while(0)
 #define RB0_SetLow()             do { LATBbits.LATB0 = 0; } while(0)

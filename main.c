@@ -188,6 +188,19 @@ void receive(){
     }
 }
 
+void trigger_Rx (){
+    Trigger_SetHigh();
+    __delay_us(20);
+    Trigger_SetLow();
+    if(count_Tx >= 24){
+        envia_Tx ();
+        count_Tx = 0;
+    }
+    else{
+        count_Tx++;
+    }
+}
+
 void fluxControlChoice(){
     if(!controlchoice){
         fluxcontrol();
@@ -295,6 +308,7 @@ void main(void)
     EUSART_SetRxInterruptHandler(receive);
     TMR6_SetInterruptHandler(fluxControlChoice);
     TMR1_SetGateInterruptHandler(mede_height);
+    TMR2_SetInterruptHandler(trigger_Rx);
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 

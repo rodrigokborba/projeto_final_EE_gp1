@@ -69,6 +69,7 @@ uint16_t sp_position;       ///< Setpoint para posição da valvula (motor de pass
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
 uint8_t count_40ms = 0; 
+uint8_t count_Tx = 0;
 
 //Medicao de altura
 uint16_t height = 0;            ///< Variavel usada para guardar a medicao de altura
@@ -96,7 +97,7 @@ void pwmcontrol();
 void fluxpos();
 void controlchoose();
 
-//Comunicaï¿½ï¿½o Serial
+// -------------------------------------------- Comunicacao serial -------------------------------------------------------- 
 
 /**
  * Analisa a mensagem recebida pelo EUSART e realiza o comando.
@@ -104,14 +105,24 @@ void controlchoose();
 void analisa_Rx ();
 
 /**
- * Realiza o envio de altura e temperatura. Acionada na interrupï¿½ï¿½o do TMR0.
+ * Realiza o envio de altura e temperatura. Acionada na interrupcao do TMR0.
  */
 void envia_Tx ();
 
 /**
- * Funï¿½ï¿½o utilizada para receber mensagens de comunicaï¿½ï¿½o. Acionada na interrupï¿½ï¿½o do EUSART.
+ * Funcao utilizada para receber mensagens de comunicacao. Acionada na interrupcao do EUSART.
  */
 void receive();
+
+/**
+ * 
+ */
+void trigger_Rx ();
+
+/**
+ * 
+ */
+void end_Rx ();
 
 // -------------------------------------------- Motor de passos -------------------------------------------------------- 
 
