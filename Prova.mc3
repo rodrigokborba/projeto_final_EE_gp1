@@ -1140,7 +1140,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="EUSART" name="eusartInterrupts"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="EUSART" name="systemClockValue"/>
@@ -1148,7 +1148,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="EUSART" name="templateNameValue"/>
-         <value>eusart_interrupt</value>
+         <value>eusart_noninterrupt</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="EUSART" name="useStdio"/>
@@ -1364,7 +1364,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="RCI" settingAlias="enable"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="RCI" settingAlias="flag"/>
@@ -1416,7 +1416,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="TXI" settingAlias="enable"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="TXI" settingAlias="flag"/>
@@ -4758,11 +4758,11 @@
       </entry>
       <entry>
          <file>mcc_generated_files\eusart.c</file>
-         <hash>d8afb7becdf7391e0239badc690190e50f89051e9c595b1fbd717743671bbce8</hash>
+         <hash>e2ac2ada6223a5b4120919522c378d3005bd84defb25caea6cf5056ab3b05e17</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart.h</file>
-         <hash>1e5865a59bfc62be65c20b72f1c6b3f7b53b9981861be8c6af4f2fd0cefeb392</hash>
+         <hash>ab818d3ffe531bed49db1e18f737e4719bfe6e92960b1f1565e1023b94c4de75</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\fvr.c</file>
@@ -4774,7 +4774,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>064d93348c2b6133de2f4159e9274641942e4fb79b539837ff762aceb86cd380</hash>
+         <hash>169188c89bf1a0aff97cae5608fe7f61d7be1dac88b433070d58df255e4bef08</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.h</file>
@@ -4782,7 +4782,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.c</file>
-         <hash>0f6a02e2bd3f28cfed35203143259fda1cea073320a928a455b74ed7c9141416</hash>
+         <hash>df42315bfe9f098eeee0619c66556c45c695210239904b4ec99f21ae9546e7a4</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.h</file>

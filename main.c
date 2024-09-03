@@ -177,15 +177,15 @@ void end_Rx () {
     }
 }
 
-void receive(){
-    count_40ms = 0;
-    TMR0_Reload();
-    Rx_ctrl = true;
-    if(countRx<BUFFER_MAX-1){          // se o buffer nao esta cheio
-        bufferRx[countRx] = EUSART_Read();   // guarda valor
-        countRx++;
-    }
-}
+//void receive(){
+//    count_40ms = 0;
+//    TMR0_Reload();
+//    Rx_ctrl = true;
+//    if(countRx<BUFFER_MAX-1){          // se o buffer nao esta cheio
+//        bufferRx[countRx] = EUSART_Read();   // guarda valor
+//        countRx++;
+//    }
+//}
 
 void trigger_Rx (){
     Trigger_SetHigh();
@@ -332,6 +332,20 @@ void main(void)
             daUmPasso(sentido);
             TMR6_LoadPeriodRegister(0);
             TMR6_StartTimer();
+        }
+        if (EUSART_is_rx_ready){
+            count_40ms = 0;
+            TMR0_Reload();
+            Rx_ctrl = true;
+          
+            while(countRx<BUFFER_MAX-1){          // se o buffer nao esta cheio
+                while(!EUSART_is_rx_ready){
+                    __delay_us(1);
+                }
+                bufferRx[countRx] = EUSART_Read();   // guarda valor
+                countRx++;
+                
+            }
         }
     }
 }
