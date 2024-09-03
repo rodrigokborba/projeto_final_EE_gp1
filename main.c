@@ -72,8 +72,8 @@ void pwmcontrol(){
 
 void fluxpos(){
     flux = output - position;
-    if(flux>0) daUmPasso(true);
-    else if( flux <0) daUmPasso(false);
+    if(flux>0) sentido = true;
+    else if( flux <0) sentido = false;
     
 }
 
@@ -201,14 +201,9 @@ void trigger_Rx (){
     }
 }
 
-void fluxControlChoice(){
-    if(!controlchoice){
-        fluxcontrol();
-    }
-}
 
-void definePassoMotor(uint8_t passo, bool sentido) {
-    if (sentido) {  // Sentido horário (abrindo a porta)
+void definePassoMotor(uint8_t passo, uint8_t sentido) {
+    if (sentido == HORARIO) {  // Sentido horï¿½rio (abrindo a porta)
         switch(passo) {
             case 0:
                 SM1_SetHigh();
@@ -235,7 +230,8 @@ void definePassoMotor(uint8_t passo, bool sentido) {
                 SM4_SetHigh();
                 break;
         }
-    } else {  // Sentido anti-horário (fechando a porta)
+    }
+    else if(sentido == ANTIHORARIO){  // Sentido anti-horï¿½rio (fechando a porta)
         switch(passo) {
             case 0:
                 SM4_SetHigh();
@@ -262,27 +258,31 @@ void definePassoMotor(uint8_t passo, bool sentido) {
                 SM1_SetHigh();
                 break;
         }
+    }else{
+        break;
     }
+    
 }
 
-void daUmPasso(bool sentido) {
+void daUmPasso(uint8_t sentido) {
     // Atualiza o passo e garante que ele esteja no intervalo de 0 a 3
     passo++;
     passo = passo & 0b00000011;
-    // Verifica o fim de curso e atualiza a posição se necessário
+    // Verifica o fim de curso e atualiza a posiï¿½ï¿½o se necessï¿½rio
     if (CMP1_GetOutputStatus()) {
         fim_curso = true;
-        position = 0;  // Reset da posição no fim de curso
+        position = 0;  // Reset da posiï¿½ï¿½o no fim de curso
     } else {
         fim_curso = false;
     }
-    // Atualiza a posição com base no sentido e fim de curso
+    // Atualiza a posiï¿½ï¿½o com base no sentido e fim de curso
     if (fim_curso) {
-        // Incrementa ou decrementa a posição conforme o sentido
-        if(sentido){
-            position = position - incPos;
-        } else {
-            position = position + incPos;
+        // Incrementa ou decrementa a posiï¿½ï¿½o conforme o sentido
+        if(sentido == HORARIO){
+            position--;
+        } 
+        else if(sentido == ANTIHORARIO){
+            position++;
         }
         definePassoMotor(passo, sentido);
     } else {
@@ -296,7 +296,7 @@ void calculaTemp(){
 
 void mede_height (){
     tempo_voo = TMR1_ReadTimer() * 0.00025;
-    height = (tempo_voo * 340)/2;
+    height = (tempo_voo * 170); //Isso eh a velocidade do som dividido por 2 em m/s
     balldist = height/2;
 }
 
@@ -331,6 +331,9 @@ void main(void)
         if((timecontrol = TMR4_ReadTimer()) >= 209){//timer incrementa a cada 96us, 96us*209 = 20.096ms, tempo para escolher a malha de controle
             TMR4_StopTimer();
             controlchoose();
+        }
+        if(TMR6_ReadTimer() >= 200 & !controlchoice){
+            daUmPasso(sentido);
         }
     }
 }

@@ -27,7 +27,7 @@
  */
 #define HORARIO 1
 #define ANTIHORARIO 0
-
+#define PARADO 2
 
 /*Variï¿½veis de programa*/
 //Controle PID
@@ -41,18 +41,18 @@ uint16_t kdp = 01;
 uint16_t dinput,outputsum,output;
 bool controlchoice = true;
 uint8_t timecontrol;
-
+uint8_t sentido;
 
 //Comunicacao Serial
-union{                  ///< Uniao para transmissão
-    uint16_t v;         ///< Valor inteiro de 16 bits para transmissão
+union{                  ///< Uniao para transmissï¿½o
+    uint16_t v;         ///< Valor inteiro de 16 bits para transmissï¿½o
     struct{
         uint8_t vH;     ///< MSB do valor a ser transmitido 
         uint8_t vL;     ///< LSB do valor a ser transmitido
     };
-}vTx;                   ///< Variavel com os valores usados na transmissão
+}vTx;                   ///< Variavel com os valores usados na transmissï¿½o
 
-union{                  ///< Uniao para recepção de dados
+union{                  ///< Uniao para recepï¿½ï¿½o de dados
     uint16_t v;         ///< Valor inteiro de 16 bits recebido
     struct{
         uint8_t vH;     ///< MSB do valor recebido 
@@ -64,7 +64,7 @@ bool Rx_ctrl = false;
 uint8_t func_mode = 0;      ///< Variavel usada para indicar o modo de funcionamento. 0=manual, 1=ventoinha, 2=valvula, 3=reset.
 uint16_t sp_height;         ///< Variavel usada para guardar o setpoint de altura.
 uint16_t dc;                ///< Variavel usada para guardar o valor do pwm.
-uint16_t sp_position;       ///< Setpoint para posição da valvula (motor de passo)
+uint16_t sp_position;       ///< Setpoint para posiï¿½ï¿½o da valvula (motor de passo)
 
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro)
@@ -77,7 +77,6 @@ float tempo_voo;                ///< Variavel usada para guardar o tempo de voo 
 
 //Movimento do motor de passo
 uint16_t position;
-uint8_t incPos = 1;
 uint8_t passo;
 bool fim_curso;
 
@@ -131,23 +130,20 @@ void end_Rx ();
  * @param sentido variavel booleana que indica se o motor esta andando no sentido horario ou anti-horario
  * 
  */
-void daUmPasso(bool sentido);
-/**
- * Função que decide se a função fluxcontrol vai ser chamada a partir da variável controlchoice
- */
-void fluxControlChoice(); 
+void daUmPasso(uint8_t sentido);
+
 
 /**
  * 
  * @param passo
  * @param sentido
  */
-void definePassoMotor(uint8_t passo, bool sentido);
+void definePassoMotor(uint8_t passo, uint8_t sentido);
 
 // ------------------------------------------- Temperatura --------------------------------------------------------------
 
 /**
- Função de cálculo da temperatura do sensor LM35
+ Funï¿½ï¿½o de cï¿½lculo da temperatura do sensor LM35
  */
 void calculaTemp();
 #endif	/* MAIN_H */
