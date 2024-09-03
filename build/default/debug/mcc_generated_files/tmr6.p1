@@ -1,5 +1,4 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F2507 `(v ~T0 @X0 0 tf ]
 "6443 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 6443: extern volatile unsigned char PR6 __attribute__((address(0x41D)));
 [v _PR6 `Vuc ~T0 @X0 0 e@1053 ]
@@ -17,25 +16,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "681
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 681: extern volatile PIR3bits_t PIR3bits __attribute__((address(0x013)));
 [v _PIR3bits `VS41 ~T0 @X0 0 e@19 ]
-"1395
-[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 1395:     struct {
-[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S79 . . TMR4IE . TMR6IE CCP3IE CCP4IE ]
-"1394
-[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 1394: typedef union {
-[u S78 `S79 1 ]
-[n S78 . . ]
-"1404
-[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 1404: extern volatile PIE3bits_t PIE3bits __attribute__((address(0x093)));
-[v _PIE3bits `VS78 ~T0 @X0 0 e@147 ]
-[v F2500 `(v ~T0 @X0 0 tf ]
-"326 mcc_generated_files/tmr6.h
-[; ;mcc_generated_files/tmr6.h: 326:  void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-[v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F2500 ]
-"362
-[; ;mcc_generated_files/tmr6.h: 362: void TMR6_DefaultInterruptHandler(void);
-[v _TMR6_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
-"6463 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h
+"6463
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 6463: extern volatile unsigned char T6CON __attribute__((address(0x41E)));
 [v _T6CON `Vuc ~T0 @X0 0 e@1054 ]
 "6469
@@ -53,9 +34,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6484
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 6484: extern volatile T6CONbits_t T6CONbits __attribute__((address(0x41E)));
 [v _T6CONbits `VS329 ~T0 @X0 0 e@1054 ]
-[v F2519 `(v ~T0 @X0 0 tf ]
-[v F2521 `(v ~T0 @X0 0 tf ]
-[v F2523 `(v ~T0 @X0 0 tf ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -530,180 +508,152 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6748
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC12-16F1xxx_DFP/1.7.242/xc8\pic\include\proc\pic16f1827.h: 6748: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"58 mcc_generated_files/tmr6.c
-[; ;mcc_generated_files/tmr6.c: 58: void (*TMR6_InterruptHandler)(void);
-[v _TMR6_InterruptHandler `*F2507 ~T0 @X0 1 e ]
-"64
-[; ;mcc_generated_files/tmr6.c: 64: void TMR6_Initialize(void)
+"62 mcc_generated_files/tmr6.c
+[; ;mcc_generated_files/tmr6.c: 62: void TMR6_Initialize(void)
 [v _TMR6_Initialize `(v ~T0 @X0 1 ef ]
-"65
-[; ;mcc_generated_files/tmr6.c: 65: {
+"63
+[; ;mcc_generated_files/tmr6.c: 63: {
 {
 [e :U _TMR6_Initialize ]
 [f ]
-"69
-[; ;mcc_generated_files/tmr6.c: 69:     PR6 = 0xBB;
-[e = _PR6 -> -> 187 `i `uc ]
-"72
-[; ;mcc_generated_files/tmr6.c: 72:     TMR6 = 0x00;
+"67
+[; ;mcc_generated_files/tmr6.c: 67:     PR6 = 0xFF;
+[e = _PR6 -> -> 255 `i `uc ]
+"70
+[; ;mcc_generated_files/tmr6.c: 70:     TMR6 = 0x00;
 [e = _TMR6 -> -> 0 `i `uc ]
-"75
-[; ;mcc_generated_files/tmr6.c: 75:     PIR3bits.TMR6IF = 0;
+"73
+[; ;mcc_generated_files/tmr6.c: 73:     PIR3bits.TMR6IF = 0;
 [e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
-"78
-[; ;mcc_generated_files/tmr6.c: 78:     PIE3bits.TMR6IE = 1;
-[e = . . _PIE3bits 0 3 -> -> 1 `i `uc ]
-"81
-[; ;mcc_generated_files/tmr6.c: 81:     TMR6_SetInterruptHandler(TMR6_DefaultInterruptHandler);
-[e ( _TMR6_SetInterruptHandler (1 &U _TMR6_DefaultInterruptHandler ]
-"84
-[; ;mcc_generated_files/tmr6.c: 84:     T6CON = 0x0F;
-[e = _T6CON -> -> 15 `i `uc ]
-"85
-[; ;mcc_generated_files/tmr6.c: 85: }
+"76
+[; ;mcc_generated_files/tmr6.c: 76:     T6CON = 0x4F;
+[e = _T6CON -> -> 79 `i `uc ]
+"77
+[; ;mcc_generated_files/tmr6.c: 77: }
 [e :UE 354 ]
 }
-"87
-[; ;mcc_generated_files/tmr6.c: 87: void TMR6_StartTimer(void)
+"79
+[; ;mcc_generated_files/tmr6.c: 79: void TMR6_StartTimer(void)
 [v _TMR6_StartTimer `(v ~T0 @X0 1 ef ]
-"88
-[; ;mcc_generated_files/tmr6.c: 88: {
+"80
+[; ;mcc_generated_files/tmr6.c: 80: {
 {
 [e :U _TMR6_StartTimer ]
 [f ]
-"90
-[; ;mcc_generated_files/tmr6.c: 90:     T6CONbits.TMR6ON = 1;
+"82
+[; ;mcc_generated_files/tmr6.c: 82:     T6CONbits.TMR6ON = 1;
 [e = . . _T6CONbits 0 2 -> -> 1 `i `uc ]
-"91
-[; ;mcc_generated_files/tmr6.c: 91: }
+"83
+[; ;mcc_generated_files/tmr6.c: 83: }
 [e :UE 355 ]
 }
-"93
-[; ;mcc_generated_files/tmr6.c: 93: void TMR6_StopTimer(void)
+"85
+[; ;mcc_generated_files/tmr6.c: 85: void TMR6_StopTimer(void)
 [v _TMR6_StopTimer `(v ~T0 @X0 1 ef ]
-"94
-[; ;mcc_generated_files/tmr6.c: 94: {
+"86
+[; ;mcc_generated_files/tmr6.c: 86: {
 {
 [e :U _TMR6_StopTimer ]
 [f ]
-"96
-[; ;mcc_generated_files/tmr6.c: 96:     T6CONbits.TMR6ON = 0;
+"88
+[; ;mcc_generated_files/tmr6.c: 88:     T6CONbits.TMR6ON = 0;
 [e = . . _T6CONbits 0 2 -> -> 0 `i `uc ]
-"97
-[; ;mcc_generated_files/tmr6.c: 97: }
+"89
+[; ;mcc_generated_files/tmr6.c: 89: }
 [e :UE 356 ]
 }
-"99
-[; ;mcc_generated_files/tmr6.c: 99: uint8_t TMR6_ReadTimer(void)
+"91
+[; ;mcc_generated_files/tmr6.c: 91: uint8_t TMR6_ReadTimer(void)
 [v _TMR6_ReadTimer `(uc ~T0 @X0 1 ef ]
-"100
-[; ;mcc_generated_files/tmr6.c: 100: {
+"92
+[; ;mcc_generated_files/tmr6.c: 92: {
 {
 [e :U _TMR6_ReadTimer ]
 [f ]
-"101
-[; ;mcc_generated_files/tmr6.c: 101:     uint8_t readVal;
+"93
+[; ;mcc_generated_files/tmr6.c: 93:     uint8_t readVal;
 [v _readVal `uc ~T0 @X0 1 a ]
-"103
-[; ;mcc_generated_files/tmr6.c: 103:     readVal = TMR6;
+"95
+[; ;mcc_generated_files/tmr6.c: 95:     readVal = TMR6;
 [e = _readVal _TMR6 ]
-"105
-[; ;mcc_generated_files/tmr6.c: 105:     return readVal;
+"97
+[; ;mcc_generated_files/tmr6.c: 97:     return readVal;
 [e ) _readVal ]
 [e $UE 357  ]
-"106
-[; ;mcc_generated_files/tmr6.c: 106: }
+"98
+[; ;mcc_generated_files/tmr6.c: 98: }
 [e :UE 357 ]
 }
-"108
-[; ;mcc_generated_files/tmr6.c: 108: void TMR6_WriteTimer(uint8_t timerVal)
+"100
+[; ;mcc_generated_files/tmr6.c: 100: void TMR6_WriteTimer(uint8_t timerVal)
 [v _TMR6_WriteTimer `(v ~T0 @X0 1 ef1`uc ]
-"109
-[; ;mcc_generated_files/tmr6.c: 109: {
+"101
+[; ;mcc_generated_files/tmr6.c: 101: {
 {
 [e :U _TMR6_WriteTimer ]
-"108
-[; ;mcc_generated_files/tmr6.c: 108: void TMR6_WriteTimer(uint8_t timerVal)
+"100
+[; ;mcc_generated_files/tmr6.c: 100: void TMR6_WriteTimer(uint8_t timerVal)
 [v _timerVal `uc ~T0 @X0 1 r1 ]
-"109
-[; ;mcc_generated_files/tmr6.c: 109: {
+"101
+[; ;mcc_generated_files/tmr6.c: 101: {
 [f ]
-"111
-[; ;mcc_generated_files/tmr6.c: 111:     TMR6 = timerVal;
+"103
+[; ;mcc_generated_files/tmr6.c: 103:     TMR6 = timerVal;
 [e = _TMR6 _timerVal ]
-"112
-[; ;mcc_generated_files/tmr6.c: 112: }
+"104
+[; ;mcc_generated_files/tmr6.c: 104: }
 [e :UE 358 ]
 }
-"114
-[; ;mcc_generated_files/tmr6.c: 114: void TMR6_LoadPeriodRegister(uint8_t periodVal)
+"106
+[; ;mcc_generated_files/tmr6.c: 106: void TMR6_LoadPeriodRegister(uint8_t periodVal)
 [v _TMR6_LoadPeriodRegister `(v ~T0 @X0 1 ef1`uc ]
-"115
-[; ;mcc_generated_files/tmr6.c: 115: {
+"107
+[; ;mcc_generated_files/tmr6.c: 107: {
 {
 [e :U _TMR6_LoadPeriodRegister ]
-"114
-[; ;mcc_generated_files/tmr6.c: 114: void TMR6_LoadPeriodRegister(uint8_t periodVal)
+"106
+[; ;mcc_generated_files/tmr6.c: 106: void TMR6_LoadPeriodRegister(uint8_t periodVal)
 [v _periodVal `uc ~T0 @X0 1 r1 ]
-"115
-[; ;mcc_generated_files/tmr6.c: 115: {
+"107
+[; ;mcc_generated_files/tmr6.c: 107: {
 [f ]
-"116
-[; ;mcc_generated_files/tmr6.c: 116:    PR6 = periodVal;
+"108
+[; ;mcc_generated_files/tmr6.c: 108:    PR6 = periodVal;
 [e = _PR6 _periodVal ]
-"117
-[; ;mcc_generated_files/tmr6.c: 117: }
+"109
+[; ;mcc_generated_files/tmr6.c: 109: }
 [e :UE 359 ]
 }
-"119
-[; ;mcc_generated_files/tmr6.c: 119: void TMR6_ISR(void)
-[v _TMR6_ISR `(v ~T0 @X0 1 ef ]
-"120
-[; ;mcc_generated_files/tmr6.c: 120: {
+"111
+[; ;mcc_generated_files/tmr6.c: 111: _Bool TMR6_HasOverflowOccured(void)
+[v _TMR6_HasOverflowOccured `(a ~T0 @X0 1 ef ]
+"112
+[; ;mcc_generated_files/tmr6.c: 112: {
 {
-[e :U _TMR6_ISR ]
+[e :U _TMR6_HasOverflowOccured ]
 [f ]
-"123
-[; ;mcc_generated_files/tmr6.c: 123:     PIR3bits.TMR6IF = 0;
-[e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
-"125
-[; ;mcc_generated_files/tmr6.c: 125:     if(TMR6_InterruptHandler)
-[e $ ! != _TMR6_InterruptHandler -> -> 0 `i `*F2519 361  ]
-"126
-[; ;mcc_generated_files/tmr6.c: 126:     {
+"114
+[; ;mcc_generated_files/tmr6.c: 114:     _Bool status = PIR3bits.TMR6IF;
+[v _status `a ~T0 @X0 1 a ]
+[e = _status -> . . _PIR3bits 0 3 `a ]
+"115
+[; ;mcc_generated_files/tmr6.c: 115:     if(status)
+[e $ ! != -> _status `i -> 0 `i 361  ]
+"116
+[; ;mcc_generated_files/tmr6.c: 116:     {
 {
-"127
-[; ;mcc_generated_files/tmr6.c: 127:         TMR6_InterruptHandler();
-[e ( *U _TMR6_InterruptHandler ..  ]
-"128
-[; ;mcc_generated_files/tmr6.c: 128:     }
+"118
+[; ;mcc_generated_files/tmr6.c: 118:         PIR3bits.TMR6IF = 0;
+[e = . . _PIR3bits 0 3 -> -> 0 `i `uc ]
+"119
+[; ;mcc_generated_files/tmr6.c: 119:     }
 }
 [e :U 361 ]
-"129
-[; ;mcc_generated_files/tmr6.c: 129: }
+"120
+[; ;mcc_generated_files/tmr6.c: 120:     return status;
+[e ) _status ]
+[e $UE 360  ]
+"121
+[; ;mcc_generated_files/tmr6.c: 121: }
 [e :UE 360 ]
-}
-"132
-[; ;mcc_generated_files/tmr6.c: 132: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR6_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F2521 ]
-{
-[e :U _TMR6_SetInterruptHandler ]
-[v _InterruptHandler `*F2523 ~T0 @X0 1 r1 ]
-[f ]
-"133
-[; ;mcc_generated_files/tmr6.c: 133:     TMR6_InterruptHandler = InterruptHandler;
-[e = _TMR6_InterruptHandler _InterruptHandler ]
-"134
-[; ;mcc_generated_files/tmr6.c: 134: }
-[e :UE 362 ]
-}
-"136
-[; ;mcc_generated_files/tmr6.c: 136: void TMR6_DefaultInterruptHandler(void){
-[v _TMR6_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
-{
-[e :U _TMR6_DefaultInterruptHandler ]
-[f ]
-"139
-[; ;mcc_generated_files/tmr6.c: 139: }
-[e :UE 363 ]
 }

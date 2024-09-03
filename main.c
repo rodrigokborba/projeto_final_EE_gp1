@@ -72,18 +72,17 @@ void pwmcontrol(){
 
 void fluxpos(){
     flux = output - position;
-    if(flux>0) sentido = true;
-    else if( flux <0) sentido = false;
-    
+    if(flux>0) sentido = ANTIHORARIO;
+    else if( flux <0) sentido = HORARIO;
+    else sentido = PARADO;
 }
 
 void controlchoose(){
     if (controlchoice == true){ //escolhendo qual malha de controle com uma variavel bool
         pwmcontrol ();
+    } else {
+        fluxcontrol ();
     }
-//        else {
-//        fluxcontrol ();
-//    }
     TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
 }
@@ -258,10 +257,7 @@ void definePassoMotor(uint8_t passo, uint8_t sentido) {
                 SM1_SetHigh();
                 break;
         }
-    }else{
-        break;
-    }
-    
+    }    
 }
 
 void daUmPasso(uint8_t sentido) {
@@ -306,7 +302,6 @@ void main(void)
     SYSTEM_Initialize();
     TMR0_SetInterruptHandler(end_Rx);
     EUSART_SetRxInterruptHandler(receive);
-    TMR6_SetInterruptHandler(fluxControlChoice);
     TMR1_SetGateInterruptHandler(mede_height);
     TMR2_SetInterruptHandler(trigger_Rx);
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
@@ -332,8 +327,11 @@ void main(void)
             TMR4_StopTimer();
             controlchoose();
         }
-        if(TMR6_ReadTimer() >= 200 & !controlchoice){
+        if(TMR6_ReadTimer() >= 0x25 && !controlchoice){
+            TMR6_StopTimer();
             daUmPasso(sentido);
+            TMR6_LoadPeriodRegister(0);
+            TMR6_StartTimer();
         }
     }
 }

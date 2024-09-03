@@ -376,7 +376,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="ADC" registerAlias="ADI" settingAlias="order"/>
-         <value>5</value>
+         <value>7</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="ADC" registerAlias="ADRESH" settingAlias="ADRESH"/>
@@ -532,7 +532,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CMP1" registerAlias="CI" settingAlias="order"/>
-         <value>8</value>
+         <value>10</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CMP1" registerAlias="CMCON0" settingAlias="CHYS"/>
@@ -1068,7 +1068,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="ECCP1" registerAlias="CCPI" settingAlias="order"/>
-         <value>2</value>
+         <value>4</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="ECCP1" registerAlias="CCPRH" settingAlias="CCPRH"/>
@@ -1372,7 +1372,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="RCI" settingAlias="order"/>
-         <value>7</value>
+         <value>3</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="RCSTA" settingAlias="ADDEN"/>
@@ -1424,7 +1424,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="TXI" settingAlias="order"/>
-         <value>6</value>
+         <value>8</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="EUSART" registerAlias="TXREG" settingAlias="TXREG"/>
@@ -1796,7 +1796,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="SelectedInterruptIndexHigh"/>
-         <value>0</value>
+         <value>11</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="preemptiveHigh"/>
@@ -3196,7 +3196,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="IOCI" settingAlias="order"/>
-         <value>8</value>
+         <value>9</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="LATA" settingAlias="LATA0"/>
@@ -3776,7 +3776,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR0" registerAlias="TMRI" settingAlias="order"/>
-         <value>3</value>
+         <value>5</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR1" name="ExternalFrequency"/>
@@ -4248,7 +4248,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR2" registerAlias="TMRI" settingAlias="order"/>
-         <value>4</value>
+         <value>6</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR4" name="CallbackFuncRate"/>
@@ -4428,7 +4428,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR4" registerAlias="TMRI" settingAlias="order"/>
-         <value>1</value>
+         <value>2</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="CallbackFuncRate"/>
@@ -4440,7 +4440,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="TimerPeriodkey"/>
-         <value>166.22340425531917</value>
+         <value>24.414062499999996</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="clockFreq"/>
@@ -4452,7 +4452,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="prMatchValue"/>
-         <value>187</value>
+         <value>255</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="tickerFactor"/>
@@ -4460,19 +4460,19 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="timerPeriod"/>
-         <value>0.006</value>
+         <value>0.04096</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="timerPeriodActual"/>
-         <value>0.006016</value>
+         <value>0.04096</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="timerPeriodMax"/>
-         <value>0.008192</value>
+         <value>0.04096</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="timerPeriodMin"/>
-         <value>0.000032</value>
+         <value>0.00016</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="timerstart"/>
@@ -4568,11 +4568,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR6" registerAlias="PR"/>
-         <value>187</value>
+         <value>255</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR6" registerAlias="TCON"/>
-         <value>15</value>
+         <value>79</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR6" registerAlias="TMR"/>
@@ -4580,7 +4580,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="PR" settingAlias="PR"/>
-         <value>187</value>
+         <value>255</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TCON" settingAlias="TCKPS"/>
@@ -4592,7 +4592,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TCON" settingAlias="TOUTPS"/>
-         <value>1:2</value>
+         <value>1:10</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMR" settingAlias="TMR"/>
@@ -4600,7 +4600,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMRI" settingAlias="enable"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMRI" settingAlias="flag"/>
@@ -4608,7 +4608,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMRI" settingAlias="order"/>
-         <value>0</value>
+         <value>11</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="WDT" name="wdtPeriod"/>
@@ -4774,7 +4774,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>f071fb037e9e450080b0ff634f9c5e301a1bb0f0c836b31a183b630e21ba3139</hash>
+         <hash>064d93348c2b6133de2f4159e9274641942e4fb79b539837ff762aceb86cd380</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.h</file>
@@ -4830,11 +4830,11 @@
       </entry>
       <entry>
          <file>mcc_generated_files\tmr6.c</file>
-         <hash>e4c5d255c60e771501fbe0f01e32086ca837b6eca17b85f0d6b91fb735c02046</hash>
+         <hash>4ed3809e1f6c472fd4fb87174dce6752ac17a1df08998b9a25d41fa10f07a208</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr6.h</file>
-         <hash>82f0817edaf8f987e2722f515c613115cd84377d20b6fdc4a5c7367c75be2b0e</hash>
+         <hash>4cf88cbf26f8e8030dc39c68cf8c60bc2148320a8f1e2f1a1929241a74c369c4</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

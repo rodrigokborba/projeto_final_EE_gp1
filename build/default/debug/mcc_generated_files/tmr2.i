@@ -4360,10 +4360,27 @@ uint8_t TMR2_ReadTimer(void);
 void TMR2_WriteTimer(uint8_t timerVal);
 # 290 "mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 325 "mcc_generated_files/tmr2.h"
-_Bool TMR2_HasOverflowOccured(void);
+# 308 "mcc_generated_files/tmr2.h"
+void TMR2_ISR(void);
+# 326 "mcc_generated_files/tmr2.h"
+ void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+# 344 "mcc_generated_files/tmr2.h"
+extern void (*TMR2_InterruptHandler)(void);
+# 362 "mcc_generated_files/tmr2.h"
+void TMR2_DefaultInterruptHandler(void);
 # 52 "mcc_generated_files/tmr2.c" 2
-# 62 "mcc_generated_files/tmr2.c"
+
+
+
+
+
+
+void (*TMR2_InterruptHandler)(void);
+
+
+
+
+
 void TMR2_Initialize(void)
 {
 
@@ -4378,7 +4395,13 @@ void TMR2_Initialize(void)
     PIR1bits.TMR2IF = 0;
 
 
-    T2CON = 0x04;
+    PIE1bits.TMR2IE = 1;
+
+
+    TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
+
+
+    T2CON = 0x7D;
 }
 
 void TMR2_StartTimer(void)
@@ -4413,14 +4436,24 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
    PR2 = periodVal;
 }
 
-_Bool TMR2_HasOverflowOccured(void)
+void TMR2_ISR(void)
 {
 
-    _Bool status = PIR1bits.TMR2IF;
-    if(status)
-    {
 
-        PIR1bits.TMR2IF = 0;
+    PIR1bits.TMR2IF = 0;
+
+    if(TMR2_InterruptHandler)
+    {
+        TMR2_InterruptHandler();
     }
-    return status;
+}
+
+
+void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
+    TMR2_InterruptHandler = InterruptHandler;
+}
+
+void TMR2_DefaultInterruptHandler(void){
+
+
 }

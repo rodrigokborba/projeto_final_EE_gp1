@@ -4360,33 +4360,16 @@ uint8_t TMR6_ReadTimer(void);
 void TMR6_WriteTimer(uint8_t timerVal);
 # 290 "mcc_generated_files/tmr6.h"
 void TMR6_LoadPeriodRegister(uint8_t periodVal);
-# 308 "mcc_generated_files/tmr6.h"
-void TMR6_ISR(void);
-# 326 "mcc_generated_files/tmr6.h"
- void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-# 344 "mcc_generated_files/tmr6.h"
-extern void (*TMR6_InterruptHandler)(void);
-# 362 "mcc_generated_files/tmr6.h"
-void TMR6_DefaultInterruptHandler(void);
+# 325 "mcc_generated_files/tmr6.h"
+_Bool TMR6_HasOverflowOccured(void);
 # 52 "mcc_generated_files/tmr6.c" 2
-
-
-
-
-
-
-void (*TMR6_InterruptHandler)(void);
-
-
-
-
-
+# 62 "mcc_generated_files/tmr6.c"
 void TMR6_Initialize(void)
 {
 
 
 
-    PR6 = 0xBB;
+    PR6 = 0xFF;
 
 
     TMR6 = 0x00;
@@ -4395,13 +4378,7 @@ void TMR6_Initialize(void)
     PIR3bits.TMR6IF = 0;
 
 
-    PIE3bits.TMR6IE = 1;
-
-
-    TMR6_SetInterruptHandler(TMR6_DefaultInterruptHandler);
-
-
-    T6CON = 0x0F;
+    T6CON = 0x4F;
 }
 
 void TMR6_StartTimer(void)
@@ -4436,24 +4413,14 @@ void TMR6_LoadPeriodRegister(uint8_t periodVal)
    PR6 = periodVal;
 }
 
-void TMR6_ISR(void)
+_Bool TMR6_HasOverflowOccured(void)
 {
 
-
-    PIR3bits.TMR6IF = 0;
-
-    if(TMR6_InterruptHandler)
+    _Bool status = PIR3bits.TMR6IF;
+    if(status)
     {
-        TMR6_InterruptHandler();
+
+        PIR3bits.TMR6IF = 0;
     }
-}
-
-
-void TMR6_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR6_InterruptHandler = InterruptHandler;
-}
-
-void TMR6_DefaultInterruptHandler(void){
-
-
+    return status;
 }

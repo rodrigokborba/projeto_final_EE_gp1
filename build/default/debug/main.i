@@ -4350,9 +4350,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 207 "./mcc_generated_files/pin_manager.h"
+# 218 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 219 "./mcc_generated_files/pin_manager.h"
+# 230 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -4538,14 +4538,8 @@ uint8_t TMR6_ReadTimer(void);
 void TMR6_WriteTimer(uint8_t timerVal);
 # 290 "./mcc_generated_files/tmr6.h"
 void TMR6_LoadPeriodRegister(uint8_t periodVal);
-# 308 "./mcc_generated_files/tmr6.h"
-void TMR6_ISR(void);
-# 326 "./mcc_generated_files/tmr6.h"
- void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-# 344 "./mcc_generated_files/tmr6.h"
-extern void (*TMR6_InterruptHandler)(void);
-# 362 "./mcc_generated_files/tmr6.h"
-void TMR6_DefaultInterruptHandler(void);
+# 325 "./mcc_generated_files/tmr6.h"
+_Bool TMR6_HasOverflowOccured(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr4.h" 1
@@ -4603,8 +4597,14 @@ uint8_t TMR2_ReadTimer(void);
 void TMR2_WriteTimer(uint8_t timerVal);
 # 290 "./mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 325 "./mcc_generated_files/tmr2.h"
-_Bool TMR2_HasOverflowOccured(void);
+# 308 "./mcc_generated_files/tmr2.h"
+void TMR2_ISR(void);
+# 326 "./mcc_generated_files/tmr2.h"
+ void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+# 344 "./mcc_generated_files/tmr2.h"
+extern void (*TMR2_InterruptHandler)(void);
+# 362 "./mcc_generated_files/tmr2.h"
+void TMR2_DefaultInterruptHandler(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/cmp1.h" 1
@@ -4766,7 +4766,7 @@ uint16_t kdp = 01;
 uint16_t dinput,outputsum,output;
 _Bool controlchoice = 1;
 uint8_t timecontrol;
-
+uint8_t sentido;
 
 
 union{
@@ -4794,6 +4794,7 @@ uint16_t sp_position;
 uint8_t bufferRx[8];
 uint8_t countRx = 0;
 uint8_t count_40ms = 0;
+uint8_t count_Tx = 0;
 
 
 uint16_t height = 0;
@@ -4801,7 +4802,6 @@ float tempo_voo;
 
 
 uint16_t position;
-uint8_t incPos = 1;
 uint8_t passo;
 _Bool fim_curso;
 
@@ -4837,19 +4837,26 @@ void envia_Tx ();
 
 
 void receive();
-# 123 "./main.h"
-void daUmPasso(_Bool sentido);
-
-
-
-void fluxControlChoice();
 
 
 
 
+void trigger_Rx ();
 
 
-void definePassoMotor(uint8_t passo, _Bool sentido);
+
+
+void end_Rx ();
+# 133 "./main.h"
+void daUmPasso(uint8_t sentido);
+
+
+
+
+
+
+
+void definePassoMotor(uint8_t passo, uint8_t sentido);
 
 
 
@@ -4895,18 +4902,17 @@ void pwmcontrol(){
 
 void fluxpos(){
     flux = output - position;
-    if(flux>0) daUmPasso(1);
-    else if( flux <0) daUmPasso(0);
-
+    if(flux>0) sentido = 0;
+    else if( flux <0) sentido = 1;
+    else sentido = 2;
 }
 
 void controlchoose(){
     if (controlchoice == 1){
         pwmcontrol ();
+    } else {
+        fluxcontrol ();
     }
-
-
-
     TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
 }
@@ -5011,14 +5017,22 @@ void receive(){
     }
 }
 
-void fluxControlChoice(){
-    if(!controlchoice){
-        fluxcontrol();
+void trigger_Rx (){
+    do { LATAbits.LATA6 = 1; } while(0);
+    _delay((unsigned long)((20)*(16000000/4000000.0)));
+    do { LATAbits.LATA6 = 0; } while(0);
+    if(count_Tx >= 24){
+        envia_Tx ();
+        count_Tx = 0;
+    }
+    else{
+        count_Tx++;
     }
 }
 
-void definePassoMotor(uint8_t passo, _Bool sentido) {
-    if (sentido) {
+
+void definePassoMotor(uint8_t passo, uint8_t sentido) {
+    if (sentido == 1) {
         switch(passo) {
             case 0:
                 do { LATAbits.LATA1 = 1; } while(0);
@@ -5045,7 +5059,8 @@ void definePassoMotor(uint8_t passo, _Bool sentido) {
                 do { LATAbits.LATA4 = 1; } while(0);
                 break;
         }
-    } else {
+    }
+    else if(sentido == 0){
         switch(passo) {
             case 0:
                 do { LATAbits.LATA4 = 1; } while(0);
@@ -5075,7 +5090,7 @@ void definePassoMotor(uint8_t passo, _Bool sentido) {
     }
 }
 
-void daUmPasso(_Bool sentido) {
+void daUmPasso(uint8_t sentido) {
 
     passo++;
     passo = passo & 0b00000011;
@@ -5089,10 +5104,11 @@ void daUmPasso(_Bool sentido) {
 
     if (fim_curso) {
 
-        if(sentido){
-            position = position - incPos;
-        } else {
-            position = position + incPos;
+        if(sentido == 1){
+            position--;
+        }
+        else if(sentido == 0){
+            position++;
         }
         definePassoMotor(passo, sentido);
     } else {
@@ -5106,7 +5122,7 @@ void calculaTemp(){
 
 void mede_height (){
     tempo_voo = TMR1_ReadTimer() * 0.00025;
-    height = (tempo_voo * 340)/2;
+    height = (tempo_voo * 170);
     balldist = height/2;
 }
 
@@ -5116,8 +5132,8 @@ void main(void)
     SYSTEM_Initialize();
     TMR0_SetInterruptHandler(end_Rx);
     EUSART_SetRxInterruptHandler(receive);
-    TMR6_SetInterruptHandler(fluxControlChoice);
     TMR1_SetGateInterruptHandler(mede_height);
+    TMR2_SetInterruptHandler(trigger_Rx);
 
 
 
@@ -5140,6 +5156,12 @@ void main(void)
         if((timecontrol = TMR4_ReadTimer()) >= 209){
             TMR4_StopTimer();
             controlchoose();
+        }
+        if(TMR6_ReadTimer() >= 0x25 && !controlchoice){
+            TMR6_StopTimer();
+            daUmPasso(sentido);
+            TMR6_LoadPeriodRegister(0);
+            TMR6_StartTimer();
         }
     }
 }

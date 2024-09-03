@@ -291,76 +291,38 @@ void TMR6_LoadPeriodRegister(uint8_t periodVal);
 
 /**
   @Summary
-    Timer Interrupt Service Routine
+    Boolean routine to poll or to check for the match flag on the fly.
 
   @Description
-    Timer Interrupt Service Routine is called by the Interrupt Manager.
+    This function is called to check for the timer match flag.
+    This function is used in timer polling method.
 
   @Preconditions
-    Initialize  the TMR6 module with interrupt before calling this isr.
+    Initialize  the TMR6 module before calling this routine.
 
   @Param
     None
 
   @Returns
-    None
+    true - timer match has occurred.
+    false - timer match has not occurred.
+
+  @Example
+    <code>
+    while(1)
+    {
+        // check the match flag
+        if(TMR6_HasOverflowOccured())
+        {
+            // Do something else...
+
+            // Reload the TMR6 value
+            TMR6_Reload();
+        }
+    }
+    </code>
 */
-void TMR6_ISR(void);
-
-/**
-  @Summary
-    Set Timer Interrupt Handler
-
-  @Description
-    This sets the function to be called during the ISR
-
-  @Preconditions
-    Initialize  the TMR6 module with interrupt before calling this.
-
-  @Param
-    Address of function to be set
-
-  @Returns
-    None
-*/
- void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
-  @Summary
-    Timer Interrupt Handler
-
-  @Description
-    This is a function pointer to the function that will be called during the ISR
-
-  @Preconditions
-    Initialize  the TMR6 module with interrupt before calling this isr.
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-extern void (*TMR6_InterruptHandler)(void);
-
-/**
-  @Summary
-    Default Timer Interrupt Handler
-
-  @Description
-    This is the default Interrupt Handler function
-
-  @Preconditions
-    Initialize  the TMR6 module with interrupt before calling this isr.
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-void TMR6_DefaultInterruptHandler(void);
-
+bool TMR6_HasOverflowOccured(void);
 
  #ifdef __cplusplus  // Provide C++ Compatibility
 

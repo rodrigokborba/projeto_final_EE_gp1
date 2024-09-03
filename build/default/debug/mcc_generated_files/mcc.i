@@ -4350,9 +4350,9 @@ extern __bank0 __bit __timeout;
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 207 "mcc_generated_files/pin_manager.h"
+# 218 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 219 "mcc_generated_files/pin_manager.h"
+# 230 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -4538,14 +4538,8 @@ uint8_t TMR6_ReadTimer(void);
 void TMR6_WriteTimer(uint8_t timerVal);
 # 290 "mcc_generated_files/tmr6.h"
 void TMR6_LoadPeriodRegister(uint8_t periodVal);
-# 308 "mcc_generated_files/tmr6.h"
-void TMR6_ISR(void);
-# 326 "mcc_generated_files/tmr6.h"
- void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-# 344 "mcc_generated_files/tmr6.h"
-extern void (*TMR6_InterruptHandler)(void);
-# 362 "mcc_generated_files/tmr6.h"
-void TMR6_DefaultInterruptHandler(void);
+# 325 "mcc_generated_files/tmr6.h"
+_Bool TMR6_HasOverflowOccured(void);
 # 56 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/tmr4.h" 1
@@ -4603,8 +4597,14 @@ uint8_t TMR2_ReadTimer(void);
 void TMR2_WriteTimer(uint8_t timerVal);
 # 290 "mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 325 "mcc_generated_files/tmr2.h"
-_Bool TMR2_HasOverflowOccured(void);
+# 308 "mcc_generated_files/tmr2.h"
+void TMR2_ISR(void);
+# 326 "mcc_generated_files/tmr2.h"
+ void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+# 344 "mcc_generated_files/tmr2.h"
+extern void (*TMR2_InterruptHandler)(void);
+# 362 "mcc_generated_files/tmr2.h"
+void TMR2_DefaultInterruptHandler(void);
 # 59 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/cmp1.h" 1
@@ -4762,8 +4762,8 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     WDT_Initialize();
-    DAC_Initialize();
     FVR_Initialize();
+    DAC_Initialize();
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();
