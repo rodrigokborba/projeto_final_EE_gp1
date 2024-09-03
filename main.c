@@ -49,7 +49,7 @@
  */
 
 void fluxcontrol(){
-    error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
+    error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
     if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%
         outputsum += ((kif*timecontrol*error)/1000); //Kintegrativa com erro e o tempo do timer   
         if (outputsum > 45000) outputsum = 45000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
@@ -60,7 +60,7 @@ void fluxcontrol(){
 }
 
 void pwmcontrol(){
-    error = ballset-balldist; //Calculo do erro baseado na dist setado com a dist real
+    error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real
     if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%, roda o codigo
         outputsum += ((kip*timecontrol*error)/1000);//Kintegrativa com erro e o tempo do timer 
         if (outputsum > 10230) outputsum = 10230; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimai) fixa em 1023
