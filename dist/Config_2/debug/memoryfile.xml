@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/Config_2/debug\projeto_final_EE_gp1.debug.hex">
+    <memory name="program">
+      <units>words</units>
+      <length>4096</length>
+      <used>3261</used>
+      <free>835</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>384</length>
+      <used>206</used>
+      <free>178</free>
+    </memory>
+  </executable>
+</project>
