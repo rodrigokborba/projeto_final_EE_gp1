@@ -4597,14 +4597,8 @@ uint8_t TMR2_ReadTimer(void);
 void TMR2_WriteTimer(uint8_t timerVal);
 # 290 "./mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 308 "./mcc_generated_files/tmr2.h"
-void TMR2_ISR(void);
-# 326 "./mcc_generated_files/tmr2.h"
- void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 344 "./mcc_generated_files/tmr2.h"
-extern void (*TMR2_InterruptHandler)(void);
-# 362 "./mcc_generated_files/tmr2.h"
-void TMR2_DefaultInterruptHandler(void);
+# 325 "./mcc_generated_files/tmr2.h"
+_Bool TMR2_HasOverflowOccured(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/cmp1.h" 1
@@ -4623,14 +4617,8 @@ uint8_t TMR0_ReadTimer(void);
 void TMR0_WriteTimer(uint8_t timerVal);
 # 204 "./mcc_generated_files/tmr0.h"
 void TMR0_Reload(void);
-# 219 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
+# 242 "./mcc_generated_files/tmr0.h"
+_Bool TMR0_HasOverflowOccured(void);
 # 61 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/fvr.h" 1
@@ -4703,48 +4691,26 @@ typedef union {
     };
     uint8_t status;
 }eusart_status_t;
-
-
-
-
-extern volatile uint8_t eusartTxBufferRemaining;
-extern volatile uint8_t eusartRxCount;
-
-
-
-
-extern void (*EUSART_TxDefaultInterruptHandler)(void);
-extern void (*EUSART_RxDefaultInterruptHandler)(void);
-# 117 "./mcc_generated_files/eusart.h"
+# 110 "./mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
-# 165 "./mcc_generated_files/eusart.h"
+# 158 "./mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_ready(void);
-# 213 "./mcc_generated_files/eusart.h"
+# 206 "./mcc_generated_files/eusart.h"
 _Bool EUSART_is_rx_ready(void);
-# 260 "./mcc_generated_files/eusart.h"
+# 253 "./mcc_generated_files/eusart.h"
 _Bool EUSART_is_tx_done(void);
-# 308 "./mcc_generated_files/eusart.h"
+# 301 "./mcc_generated_files/eusart.h"
 eusart_status_t EUSART_get_last_status(void);
-# 328 "./mcc_generated_files/eusart.h"
+# 321 "./mcc_generated_files/eusart.h"
 uint8_t EUSART_Read(void);
-# 348 "./mcc_generated_files/eusart.h"
+# 341 "./mcc_generated_files/eusart.h"
 void EUSART_Write(uint8_t txData);
-# 369 "./mcc_generated_files/eusart.h"
-void EUSART_Transmit_ISR(void);
-# 390 "./mcc_generated_files/eusart.h"
-void EUSART_Receive_ISR(void);
-# 411 "./mcc_generated_files/eusart.h"
-void EUSART_RxDataHandler(void);
-# 429 "./mcc_generated_files/eusart.h"
+# 361 "./mcc_generated_files/eusart.h"
 void EUSART_SetFramingErrorHandler(void (* interruptHandler)(void));
-# 447 "./mcc_generated_files/eusart.h"
+# 379 "./mcc_generated_files/eusart.h"
 void EUSART_SetOverrunErrorHandler(void (* interruptHandler)(void));
-# 465 "./mcc_generated_files/eusart.h"
+# 397 "./mcc_generated_files/eusart.h"
 void EUSART_SetErrorHandler(void (* interruptHandler)(void));
-# 485 "./mcc_generated_files/eusart.h"
-void EUSART_SetTxInterruptHandler(void (* interruptHandler)(void));
-# 505 "./mcc_generated_files/eusart.h"
-void EUSART_SetRxInterruptHandler(void (* interruptHandler)(void));
 # 66 "./mcc_generated_files/mcc.h" 2
 # 81 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -4755,55 +4721,89 @@ void WDT_Initialize(void);
 # 44 "main.c" 2
 
 # 1 "./main.h" 1
-# 34 "./main.h"
-int16_t error;
-int16_t balldist,ballset,flux;
-uint16_t kpf = 055;
-uint16_t kif = 105;
-uint16_t kpp = 12;
-uint16_t kip = 19;
-uint16_t kdp = 01;
-uint16_t dinput,outputsum,output;
-_Bool controlchoice = 1;
-uint8_t timecontrol;
+# 28 "./main.h"
+int24_t error,errorp;
+int24_t balldist,ballset,flux;
+int24_t kpf = 200;
+int24_t kif = 70;
+int24_t kpp = 310;
+int24_t kip = 150;
+int24_t kdp = 5;
+int24_t dinput,outputsum;
+uint16_t output;
+uint8_t controlchoice = 0;
+int24_t timecontrol = 4;
 uint8_t sentido;
+int24_t outpre;
 
 
-union{
-    uint16_t v;
-    struct{
-        uint8_t vH;
-        uint8_t vL;
-    };
-}vTx;
 
-union{
-    uint16_t v;
-    struct{
-        uint8_t vH;
-        uint8_t vL;
-    };
-}vRx;
-
-_Bool Rx_ctrl = 0;
-uint8_t func_mode = 0;
-uint16_t sp_height;
-uint16_t dc;
-uint16_t sp_position;
-
-uint8_t bufferRx[8];
-uint8_t countRx = 0;
-uint8_t count_40ms = 0;
-uint8_t count_Tx = 0;
-
+__eeprom const float lookupTable[51] = {
+    0.041431,
+    0.041507,
+    0.041583,
+    0.041658,
+    0.041734,
+    0.041809,
+    0.041884,
+    0.041959,
+    0.042034,
+    0.042108,
+    0.042183,
+    0.042257,
+    0.042332,
+    0.042406,
+    0.042480,
+    0.042554,
+    0.042627,
+    0.042701,
+    0.042775,
+    0.042848,
+    0.042921,
+    0.042994,
+    0.043067,
+    0.043140,
+    0.043213,
+    0.043286,
+    0.043358,
+    0.043431,
+    0.043503,
+    0.043575,
+    0.043647,
+    0.043719,
+    0.043791,
+    0.043863,
+    0.043934,
+    0.044006,
+    0.044077,
+    0.044148,
+    0.044219,
+    0.044290,
+    0.044361,
+    0.044432,
+    0.044503,
+    0.044573,
+    0.044644,
+    0.044714,
+    0.044784,
+    0.044854,
+    0.044924,
+    0.044994,
+    0.045064
+};
 
 uint16_t height = 0;
-float tempo_voo;
+uint16_t avg_height = 0;
+uint16_t tempo_voo = 0;
+float avg_tempo_voo = 0;
 
 
-uint16_t position;
+
+uint16_t position = 0;
+uint16_t sp_position = 0;
 uint8_t passo;
 _Bool fim_curso;
+_Bool passo_ctrl = 0;
 
 struct {
     uint8_t sos : 2;
@@ -4811,16 +4811,32 @@ struct {
 
 
 uint16_t adc_temp;
-float float_temp;
+float float_temp=22;
+# 137 "./main.h"
+union{
+    uint16_t v;
+    struct{
+        uint8_t vL;
+        uint8_t vH;
+    };
+}vTx;
 
+union{
+    uint16_t v;
+    struct{
+        uint8_t vL;
+        uint8_t vH;
+    };
+}vRx;
 
-
-
-void fluxcontrol();
-void pwmcontrol();
-void fluxpos();
-void controlchoose();
-
+uint16_t sp_height = 0;
+uint8_t func_mode = 0;
+uint16_t dc = 0;
+uint8_t bufferRx[8];
+uint8_t countRx = 0;
+uint8_t count_Tx = 0;
+_Bool nao_salva = 0;
+_Bool first_read = 1;
 
 
 
@@ -4832,23 +4848,8 @@ void analisa_Rx ();
 
 
 void envia_Tx ();
-
-
-
-
-void receive();
-
-
-
-
-void trigger_Rx ();
-
-
-
-
-void end_Rx ();
-# 133 "./main.h"
-void daUmPasso(uint8_t sentido);
+# 182 "./main.h"
+ void daUmPasso(uint8_t sentido);
 
 
 
@@ -4856,20 +4857,8 @@ void daUmPasso(uint8_t sentido);
 
 
 
-void definePassoMotor(uint8_t passo, uint8_t sentido);
-
-
-
-
-
-
-void calculaTemp();
-
-
-
-
-
-
+void definePassoMotor(uint8_t passom, uint8_t sentido);
+# 203 "./main.h"
 void mede_height ();
 # 45 "main.c" 2
 
@@ -4879,53 +4868,76 @@ void mede_height ();
 
 
 void fluxcontrol(){
-    error = (ballset-balldist)*10;
+    error = (ballset-balldist)*100;
     if(error > 150 || error < 150){
-        outputsum += ((kif*timecontrol*error)/1000);
-        if (outputsum > 45000) outputsum = 45000;
-        output = ((kpf*error + outputsum)/100);
-        if (output > 450) output = 450;
-        fluxpos();
+        outputsum += ((kif*timecontrol*error)/100);
+        if (outputsum > 4500) outputsum = 4500;
+        else if(outputsum <-1000) outputsum = -1000;
+        outpre = ((kpf*error + outputsum)/100)+outpre;
+        if (outpre > 380) output = 380;
+        else if(outpre <0 ) output = 0;
+        else output = (uint16_t)outpre;
+        errorp = error;
+
     }
 }
 
 void pwmcontrol(){
-    error = ballset-balldist;
+    error = (ballset-balldist)*10;
     if(error > 150 || error < 150){
-        outputsum += ((kip*timecontrol*error)/1000);
-        if (outputsum > 10230) outputsum = 10230;
-        output = ((kpp*error + outputsum)/10);
-        if(output > 1023) output = 1023;
+        outputsum += ((kip*timecontrol*error));
+        if (outputsum > 1000) outputsum = 1000;
+        else if (outputsum< -1000) outputsum = -1000;
+        outpre = (kpp*error + outputsum + (kdp*(error-errorp)+outpre*10)/10);
+        if(outpre > 1023) output = 1023;
+        else if(outpre <0) output= 0;
+        else output = (uint16_t)outpre;
         EPWM1_LoadDutyValue(output);
+        errorp = error;
+
     }
 }
 
 void fluxpos(){
-    flux = output - position;
-    if(flux>0) sentido = 0;
-    else if( flux <0) sentido = 1;
-    else sentido = 2;
+    if(controlchoice==2){
+        flux = output - position;
+        if(flux>position) daUmPasso(0);
+        else if(flux<position) daUmPasso(1);
+    }
+    else{
+        if(sp_position>position) daUmPasso(0);
+        else if(sp_position<position) daUmPasso(1);
+    }
+}
+
+void setaPorta(){
+    while(!CMP1_GetOutputStatus()){
+        daUmPasso(1);
+        _delay((unsigned long)((6)*(16000000/4000.0)));
+    }
+    fim_curso = 1;
+    position = 0;
 }
 
 void controlchoose(){
     if (controlchoice == 1){
         pwmcontrol ();
-    } else {
+    } else if(controlchoice == 2){
         fluxcontrol ();
     }
-    TMR4_LoadPeriodRegister(0);
     TMR4_StartTimer();
 }
 
 void analisa_Rx (){
-    Rx_ctrl = 0;
     switch(bufferRx[0]){
-        case 0x0:
+        case 0x00:
             if(countRx==7){
-                func_mode = bufferRx[0];
+                controlchoice = bufferRx[0];
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
+                if(sp_position > 380 ) sp_position = 380;
+                if(sp_position < 0) sp_position = 0;
                 vRx.vH = bufferRx[5];
                 vRx.vL = bufferRx[6];
                 dc = vRx.v;
@@ -4933,10 +4945,9 @@ void analisa_Rx (){
             }
             countRx = 0;
             break;
-        case 0x1:
+        case 0x01:
             if(countRx==7){
-                func_mode = bufferRx[0];
-                controlchoice = 1;
+                controlchoice = bufferRx[0];
                 vRx.vH = bufferRx[1];
                 vRx.vL = bufferRx[2];
                 sp_height = vRx.v;
@@ -4944,13 +4955,15 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
+                outputsum = 0;
+                errorp=0;
+                error =0;
             }
             countRx = 0;
             break;
-        case 0x2:
+        case 0x02:
             if(countRx==7){
-                func_mode = bufferRx[0];
-                controlchoice = 0;
+                controlchoice = bufferRx[0];
                 vRx.vH = bufferRx[1];
                 vRx.vL = bufferRx[2];
                 sp_height = vRx.v;
@@ -4959,10 +4972,13 @@ void analisa_Rx (){
                 vRx.vL = bufferRx[6];
                 dc = vRx.v;
                 EPWM1_LoadDutyValue(dc);
+                outputsum = 0;
+                errorp=0;
+                error =0;
             }
             countRx = 0;
             break;
-        case 0x3:
+        case 0x03:
             if(countRx==7){
                 __asm("reset");
             }
@@ -4974,11 +4990,20 @@ void analisa_Rx (){
 }
 
 void envia_Tx (){
-    EUSART_Write(func_mode);
+    EUSART_Write(controlchoice);
     vTx.v = sp_height;
     EUSART_Write(vTx.vH);
     EUSART_Write(vTx.vL);
     vTx.v = height;
+    EUSART_Write(vTx.vH);
+    EUSART_Write(vTx.vL);
+    vTx.v = avg_tempo_voo;
+    EUSART_Write(vTx.vH);
+    EUSART_Write(vTx.vL);
+    vTx.v = float_temp*10;
+    EUSART_Write(vTx.vH);
+    EUSART_Write(vTx.vL);
+    vTx.v = sp_position;
     EUSART_Write(vTx.vH);
     EUSART_Write(vTx.vL);
     vTx.v = position;
@@ -4987,53 +5012,13 @@ void envia_Tx (){
     vTx.v = dc;
     EUSART_Write(vTx.vH);
     EUSART_Write(vTx.vL);
-
-
-
-    vTx.v = float_temp*10;
-    EUSART_Write(vTx.vH);
-    EUSART_Write(vTx.vL);
-}
-
-void end_Rx () {
-    if(count_40ms >= 10){
-        count_40ms = 0;
-        if(Rx_ctrl == 1){
-            analisa_Rx();
-        }
-    }
-    else{
-        count_40ms++;
-    }
-}
-
-void receive(){
-    count_40ms = 0;
-    TMR0_Reload();
-    Rx_ctrl = 1;
-    if(countRx<8 -1){
-        bufferRx[countRx] = EUSART_Read();
-        countRx++;
-    }
-}
-
-void trigger_Rx (){
-    do { LATAbits.LATA6 = 1; } while(0);
-    _delay((unsigned long)((20)*(16000000/4000000.0)));
-    do { LATAbits.LATA6 = 0; } while(0);
-    if(count_Tx >= 24){
-        envia_Tx ();
-        count_Tx = 0;
-    }
-    else{
-        count_Tx++;
-    }
 }
 
 
-void definePassoMotor(uint8_t passo, uint8_t sentido) {
+
+void definePassoMotor(uint8_t passom, uint8_t sentido) {
     if (sentido == 1) {
-        switch(passo) {
+        switch(passom) {
             case 0:
                 do { LATAbits.LATA1 = 1; } while(0);
                 do { LATAbits.LATA2 = 1; } while(0);
@@ -5061,7 +5046,7 @@ void definePassoMotor(uint8_t passo, uint8_t sentido) {
         }
     }
     else if(sentido == 0){
-        switch(passo) {
+        switch(passom) {
             case 0:
                 do { LATAbits.LATA4 = 1; } while(0);
                 do { LATAbits.LATA3 = 1; } while(0);
@@ -5088,19 +5073,12 @@ void definePassoMotor(uint8_t passo, uint8_t sentido) {
                 break;
         }
     }
+
+    passo++;
+    passo = passo & 0x03;
 }
 
 void daUmPasso(uint8_t sentido) {
-
-    passo++;
-    passo = passo & 0b00000011;
-
-    if (CMP1_GetOutputStatus()) {
-        fim_curso = 1;
-        position = 0;
-    } else {
-        fim_curso = 0;
-    }
 
     if (fim_curso) {
 
@@ -5116,24 +5094,29 @@ void daUmPasso(uint8_t sentido) {
     }
 }
 
-void calculaTemp(){
-    float_temp = adc_temp * 0.1;
-}
+
+
+
 
 void mede_height (){
-    tempo_voo = TMR1_ReadTimer() * 0.00025;
-    height = (tempo_voo * 170);
-    balldist = height/2;
+    tempo_voo = TMR1_ReadTimer();
+    TMR1_Reload();
+    if (first_read == 1){
+        avg_tempo_voo = tempo_voo;
+        first_read = 0;
+    }
+    else{
+        avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;
+    }
+    height = (uint16_t)(avg_tempo_voo*lookupTable[(int)(float_temp)]);
+    balldist = height;
 }
 
 void main(void)
 {
 
     SYSTEM_Initialize();
-    TMR0_SetInterruptHandler(end_Rx);
-    EUSART_SetRxInterruptHandler(receive);
     TMR1_SetGateInterruptHandler(mede_height);
-    TMR2_SetInterruptHandler(trigger_Rx);
 
 
 
@@ -5148,20 +5131,67 @@ void main(void)
 
 
 
+    setaPorta();
 
     while (1)
     {
 
-        adc_temp = ADC_GetConversion(channel_AN8);
-        if((timecontrol = TMR4_ReadTimer()) >= 209){
+
+        if(PIR3bits.TMR4IF==1){
+            PIR3bits.TMR4IF=0;
             TMR4_StopTimer();
             controlchoose();
         }
-        if(TMR6_ReadTimer() >= 0x25 && !controlchoice){
-            TMR6_StopTimer();
-            daUmPasso(sentido);
-            TMR6_LoadPeriodRegister(0);
-            TMR6_StartTimer();
+
+
+
+
+
+
+        if (EUSART_is_rx_ready()){
+            TMR6_LoadPeriodRegister(0xF9);
+            while(countRx<8 -1){
+                nao_salva = 0;
+                TMR6_WriteTimer(0);
+                PIR3bits.TMR6IF = 0;
+                while(!EUSART_is_rx_ready()){
+                    if(PIR3bits.TMR6IF){
+                        nao_salva = 1;
+                        break;
+                    }
+                }
+                if(nao_salva == 1){
+                    break;
+                }
+                bufferRx[countRx] = EUSART_Read();
+                countRx++;
+            }
+            analisa_Rx();
+            TMR6_LoadPeriodRegister(0x4A);
+            TMR6_WriteTimer(0);
+            PIR3bits.TMR6IF = 0;
         }
+        if(INTCONbits.TMR0IF == 1){
+            INTCONbits.TMR0IF = 0;
+            fluxpos();
+            passo_ctrl = 0;
+            count_Tx ++;
+            if (count_Tx == 6){
+                envia_Tx ();
+                count_Tx = 0;
+            }
+        }
+        if(PIR3bits.TMR6IF == 1){
+            PIR3bits.TMR6IF = 0;
+            TMR6_WriteTimer(0);
+            do { LATAbits.LATA6 = 1; } while(0);
+            _delay((unsigned long)((15)*(16000000/4000000.0)));
+            do { LATAbits.LATA6 = 0; } while(0);
+        }
+        if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == 0){
+            passo_ctrl = 1;
+            fluxpos();
+        }
+
     }
 }

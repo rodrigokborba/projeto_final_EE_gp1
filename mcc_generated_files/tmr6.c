@@ -63,8 +63,8 @@ void TMR6_Initialize(void)
 {
     // Set TMR6 to the options selected in the User Interface
 
-    // PR6 255; 
-    PR6 = 0xFF;
+    // PR6 74; 
+    PR6 = 0x4A;
 
     // TMR6 0; 
     TMR6 = 0x00;
