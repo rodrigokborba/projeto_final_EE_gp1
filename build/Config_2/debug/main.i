@@ -4721,7 +4721,7 @@ void WDT_Initialize(void);
 # 44 "main.c" 2
 
 # 1 "./main.h" 1
-# 28 "./main.h"
+# 17 "./main.h"
 int24_t error,errorp;
 int24_t balldist,ballset,flux;
 int24_t kpf = 200;
@@ -4735,6 +4735,90 @@ uint8_t controlchoice = 0;
 int24_t timecontrol = 4;
 uint8_t sentido;
 int24_t outpre;
+
+
+void fluxcontrol();
+void pwmcontrol();
+void fluxpos();
+void controlchoose();
+# 47 "./main.h"
+union{
+    uint16_t v;
+    struct{
+        uint8_t vL;
+        uint8_t vH;
+    };
+}vTx;
+
+union{
+    uint16_t v;
+    struct{
+        uint8_t vL;
+        uint8_t vH;
+    };
+}vRx;
+
+uint16_t sp_height = 0;
+uint8_t func_mode = 0;
+uint16_t dc = 0;
+uint8_t bufferRx[8];
+uint8_t countRx = 0;
+uint8_t count_Tx = 0;
+_Bool nao_salva = 0;
+_Bool first_read = 1;
+
+
+
+
+
+void analisa_Rx ();
+
+
+
+
+void envia_Tx ();
+# 93 "./main.h"
+uint16_t position = 0;
+uint16_t sp_position = 0;
+uint8_t passo;
+_Bool fim_curso;
+_Bool passo_ctrl = 0;
+
+
+
+
+
+
+
+ void daUmPasso(uint8_t sentido);
+
+
+
+
+
+void definePassoMotor(uint8_t passom, uint8_t sentido);
+
+
+
+
+
+uint16_t adc_temp;
+
+
+
+
+
+uint16_t height = 0;
+uint16_t avg_height = 0;
+uint16_t tempo_voo = 0;
+float avg_tempo_voo = 0;
+
+
+
+
+
+
+void mede_height ();
 
 
 
@@ -4791,81 +4875,12 @@ __eeprom const float lookupTable[51] = {
     0.044994,
     0.045064
 };
-
-uint16_t height = 0;
-uint16_t avg_height = 0;
-uint16_t tempo_voo = 0;
-float avg_tempo_voo = 0;
-
-
-
-uint16_t position = 0;
-uint16_t sp_position = 0;
-uint8_t passo;
-_Bool fim_curso;
-_Bool passo_ctrl = 0;
-
-struct {
-    uint8_t sos : 2;
-}pas;
-
-
-uint16_t adc_temp;
-# 136 "./main.h"
-union{
-    uint16_t v;
-    struct{
-        uint8_t vL;
-        uint8_t vH;
-    };
-}vTx;
-
-union{
-    uint16_t v;
-    struct{
-        uint8_t vL;
-        uint8_t vH;
-    };
-}vRx;
-
-uint16_t sp_height = 0;
-uint8_t func_mode = 0;
-uint16_t dc = 0;
-uint8_t bufferRx[8];
-uint8_t countRx = 0;
-uint8_t count_Tx = 0;
-_Bool nao_salva = 0;
-_Bool first_read = 1;
-
-
-
-
-
-void analisa_Rx ();
-
-
-
-
-void envia_Tx ();
-# 181 "./main.h"
- void daUmPasso(uint8_t sentido);
-
-
-
-
-
-
-
-void definePassoMotor(uint8_t passom, uint8_t sentido);
-# 202 "./main.h"
-void mede_height ();
 # 45 "main.c" 2
 
 
 
 
 
-float se = 194.3;
 
 void fluxcontrol(){
     error = (ballset-balldist)*100;
@@ -5094,10 +5109,6 @@ void daUmPasso(uint8_t sentido) {
     }
 }
 
-
-
-
-
 void mede_height (){
     tempo_voo = TMR1_ReadTimer();
     TMR1_Reload();
@@ -5188,7 +5199,6 @@ void main(void)
             do { LATAbits.LATA6 = 1; } while(0);
             _delay((unsigned long)((15)*(16000000/4000000.0)));
             do { LATAbits.LATA6 = 0; } while(0);
-            se = 912.34;
         }
         if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == 0){
             passo_ctrl = 1;
