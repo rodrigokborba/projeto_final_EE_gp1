@@ -127,7 +127,7 @@ bool passo_ctrl = false;        ///< Variavel utilizada no while para fazer com 
 void definePassoMotor(uint8_t passom, uint8_t sentido);
 
 /**
- * Funcao chamada no setup do código para encontrar o fim de curso e zerar a posicao. Para movimentar o motor de passo, é utilizado o delay em software.
+ * Funcao chamada no setup do codigo para encontrar o fim de curso e zerar a posicao. Para movimentar o motor de passo, eh utilizado o delay em software.
  */
 void setaPorta();
 // ------------------------------------------- Temperatura --------------------------------------------------------------
