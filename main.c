@@ -50,14 +50,19 @@
 
 void fluxcontrol(){
     error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
-    if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%
+    if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%
         outputsum += ((kif*timecontrol*error)/100); //Kintegrativa com erro e o tempo do timer   
-        if (outputsum > 4500) outputsum = 4500; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
+        if (outputsum > 3000) outputsum = 3000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
         else if(outputsum <-1000) outputsum = -1000;
-        outpre = ((kpf*error + outputsum)/100)+outpre; // definindo output com kpf e voltando a escala
-        if (outpre > 380) output = 380; //saturando o output
-        else if(outpre <0 ) output = 0;
-        else output = (uint16_t)outpre;
+        outpre = (((kpf*error /*+outputsum*/ +kdf*(error-errorp)))+outpre); // definindo output com kpf e voltando a escala
+        if (outpre > 0) output = 0; //saturando o output
+        else if(outpre <-38000 ) output = 380;
+        else output = (uint16_t)-outpre/100;
+        if (outpre>800){
+            outpre = 800;
+        } else if (outpre < -45000){
+            outpre = -45000;
+        }
         errorp = error;
         
     }
@@ -65,14 +70,23 @@ void fluxcontrol(){
 
 void pwmcontrol(){
     error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real
-    if(error > 150 || error < 150){ // Caso o erro seja maior do que 5%, roda o codigo
+    if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%, roda o codigo
         outputsum += ((kip*timecontrol*error));//Kintegrativa com erro e o tempo do timer 
-        if (outputsum > 1000) outputsum = 1000; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimai) fixa em 1023
-        else if (outputsum< -1000) outputsum = -1000;
-        outpre = (kpp*error + outputsum + (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padr�o
-        if(outpre > 1023) output = 1023; //saturando o output
-        else if(outpre <0) output= 0;
-        else output = (uint16_t)outpre;
+        if (outputsum > 30000) outputsum = 30000; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimai) fixa em 1023
+        else if (outputsum< -10000) outputsum = -10000;
+        outpre = (kpp*error + outputsum - (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padr�o
+        if(outpre > 10230){ //saturando o output
+            output = 1023;
+        }
+        else if(outpre <0) {
+            output= 0;
+        } else output = (uint16_t)outpre/10;
+        if (outpre>1023){
+            outpre = 1023;
+        } else if (outpre < -800){
+            outpre = -800;
+        }
+        
         EPWM1_LoadDutyValue(output); //mandando o valor ap�s o controle
         errorp = error;
         
@@ -81,9 +95,8 @@ void pwmcontrol(){
 
 void fluxpos(){
     if(controlchoice==2){ 
-        flux = output - position;
-        if(flux>position) daUmPasso(ANTIHORARIO);
-        else if(flux<position) daUmPasso(HORARIO);
+        if(output>position) daUmPasso(ANTIHORARIO);
+        else if(output<position) daUmPasso(HORARIO);
     }
     else{
         if(sp_position>position) daUmPasso(ANTIHORARIO);
@@ -117,7 +130,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];               //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];               //LSB do setpoint de posicao da valvula salvo na uniao
                 sp_position = vRx.v;                //Transfere-se valor recebido para variavel do setpoint da valvula
-                if(sp_position > 380 ) sp_position = 380;
+                if(sp_position > 220 ) sp_position = 220;
                 if(sp_position < 0) sp_position = 0;
                 vRx.vH = bufferRx[5];               //MSB do setpoint do dutycycle salvo na uniao
                 vRx.vL = bufferRx[6];               //LSB do setpoint do dutycycle salvo na uniao
@@ -132,7 +145,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[1];               //MSB do setpoint de altura salvo na uniao
                 vRx.vL = bufferRx[2];               //LSB do setpoint de altura salvo na uniao
                 sp_height = vRx.v;                  //Transfere-se valor recebido para variavel do setpoint de altura
-                ballset = vRx.v / 2;                //Define-se ballset para on controle
+                ballset = vRx.v ;                  //Define-se ballset para on controle
                 vRx.vH = bufferRx[3];               //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];               //LSB do setpoint de posicao da valvula salvo na uniao
                 sp_position = vRx.v;                //Transfere-se valor recebido para variavel do setpoint da valvula
@@ -323,12 +336,6 @@ void main(void)
             TMR4_StopTimer();
             controlchoose();
         }
-//        if(TMR6_ReadTimer() >= 0x25 && !controlchoice){
-//            TMR6_StopTimer();
-//            daUmPasso(sentido);
-//            TMR6_LoadPeriodRegister(0);
-//            TMR6_StartTimer();
-//        }
         if (EUSART_is_rx_ready()){          //Se houver um byte para ser lido
             TMR6_LoadPeriodRegister(0xF9);      //define o periodo do timer6 como 40ms
             while(countRx<BUFFER_MAX-1){        //Enquanto o buffer nao estiver cheio

@@ -27,11 +27,12 @@
 //Controle PID
 int24_t error,errorp;
 int24_t balldist,ballset,flux;
-int24_t kpf = 200;
-int24_t kif = 70;
-int24_t kpp = 310;
-int24_t kip = 150;
-int24_t kdp = 5;
+int24_t kpf = 21;
+int24_t kif = 2;
+int24_t kdf = 109;
+int24_t kpp = 5;
+int24_t kip = 10;
+int24_t kdp = 150;
 int24_t dinput,outputsum;
 uint16_t output;
 uint8_t controlchoice = 0;
