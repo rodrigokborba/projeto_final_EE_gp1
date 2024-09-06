@@ -109,7 +109,7 @@ void envia_Tx ();
 uint16_t position = 0;          ///< Variavel que guarda a posicao da valvula
 uint16_t sp_position = 0;       ///< Setpoint para posicao da valvula (motor de passo)
 uint8_t passo;                  ///< Variavel utilizada para o incremento do passo do motor
-bool fim_curso;                 ///< Variavel booleana que indica se a porta chegou ao fim de curso (completamente aberta), ou n�o
+bool fim_curso;                 ///< Variavel booleana que indica se a porta chegou ao fim de curso (completamente aberta), ou n�o
 bool passo_ctrl = false;        ///< Variavel utilizada no while para fazer com que a funcao fluxpos (a qual chama a funcao daUmPasso) seja chamada a cada 8ms 
 
 // Funcoes-------------------------------------------
@@ -126,6 +126,10 @@ bool passo_ctrl = false;        ///< Variavel utilizada no while para fazer com 
  */
 void definePassoMotor(uint8_t passom, uint8_t sentido);
 
+/**
+ * Funcao chamada no setup do código para encontrar o fim de curso e zerar a posicao. Para movimentar o motor de passo, é utilizado o delay em software.
+ */
+void setaPorta();
 // ------------------------------------------- Temperatura --------------------------------------------------------------
 
 // Variaveis -----------------------
