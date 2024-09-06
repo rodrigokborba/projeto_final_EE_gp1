@@ -114,7 +114,7 @@ void setaPorta(){
 }
 
 void controlchoose(){
-    if (controlchoice == 1){ //escolhendo qual malha de controle com uma variavel bool
+    if (controlchoice == 1){                        //escolhendo qual malha de controle com uma variavel bool
         pwmcontrol ();
     } else if(controlchoice == 2){
         fluxcontrol ();
@@ -124,8 +124,8 @@ void controlchoose(){
 
 void analisa_Rx (){
     switch(bufferRx[0]){
-        case RX_CMD_MNL:                    //caso para comando em funcionamento manual
-            if(countRx==RX_CMD_SZ){             //se possui o tamanho correto
+        case RX_CMD_MNL:                            //caso para comando em funcionamento manual
+            if(countRx==RX_CMD_SZ){                 //se possui o tamanho correto
                 controlchoice = bufferRx[0];        //atualiza modo de funcionamento
                 vRx.vH = bufferRx[3];               //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];               //LSB do setpoint de posicao da valvula salvo na uniao
@@ -137,10 +137,10 @@ void analisa_Rx (){
                 dc = vRx.v;                         //Transfere-se valor recebido para variavel do dutycycle
                 EPWM1_LoadDutyValue(dc);            //atualiza-se PWM com novo dutycycle recebido
             }
-            countRx = 0;                        //Zera contador para o proximo recebimento
-            break;                              //Sai do switch
-        case RX_CMD_VENT:                   //caso para comando em funcionamento ventoinha
-            if(countRx==RX_CMD_SZ){             //se possuir tamanho esperado
+            countRx = 0;                            //Zera contador para o proximo recebimento
+            break;                                  //Sai do switch
+        case RX_CMD_VENT:                           //caso para comando em funcionamento ventoinha
+            if(countRx==RX_CMD_SZ){                 //se possuir tamanho esperado
                 controlchoice = bufferRx[0];        //atualiza modo de funcionamento
                 vRx.vH = bufferRx[1];               //MSB do setpoint de altura salvo na uniao
                 vRx.vL = bufferRx[2];               //LSB do setpoint de altura salvo na uniao
@@ -153,10 +153,10 @@ void analisa_Rx (){
                 errorp=0;
                 error =0;
             }
-            countRx = 0;                        //Zera contador para o proximo recebimento
-            break;                              //Sai do switch            
-        case RX_CMD_VAL:                    //caso para comando em funcionamento valvula
-            if(countRx==RX_CMD_SZ){             //se possuir tamanh esperado
+            countRx = 0;                            //Zera contador para o proximo recebimento
+            break;                                  //Sai do switch            
+        case RX_CMD_VAL:                            //caso para comando em funcionamento valvula
+            if(countRx==RX_CMD_SZ){                 //se possuir tamanh esperado
                 controlchoice = bufferRx[0];        //atualiza modo de funcionamento
                 vRx.vH = bufferRx[1];               //MSB do setpoint de altura salvo na uniao
                 vRx.vL = bufferRx[2];               //LSB do setpoint de altura salvo na uniao
@@ -170,20 +170,20 @@ void analisa_Rx (){
                 errorp=0;
                 error =0;
             }
-            countRx = 0;                        //Zera contador para o proximo recebimento
-            break;                              //Sai do switch
-        case RX_CMD_RST:                    //caso para comando de reset
-            if(countRx==RX_CMD_SZ){             //se possuir tamanho esperado
+            countRx = 0;                            //Zera contador para o proximo recebimento
+            break;                                  //Sai do switch
+        case RX_CMD_RST:                            //caso para comando de reset
+            if(countRx==RX_CMD_SZ){                 //se possuir tamanho esperado
                 RESET();                            //instrucao de reset
             }
-            countRx = 0;                        //Zera contador para o proximo recebimento
-            break;                              //Sai do switch
+            countRx = 0;                            //Zera contador para o proximo recebimento
+            break;                                  //Sai do switch
         default:
             countRx = 0;
     } 
 }
 
-void envia_Tx (){                       //funcao para transmissao de dados
+void envia_Tx (){                            //funcao para transmissao de dados
     EUSART_Write(controlchoice);            //Envia modo de funcionamento atual
     vTx.v = sp_height;                      //Passa setpoint de altura para uniao de envio
     EUSART_Write(vTx.vH);                   //Envia MSB do setpoint de altura
@@ -211,7 +211,7 @@ void envia_Tx (){                       //funcao para transmissao de dados
 
 
 void definePassoMotor(uint8_t passom, uint8_t sentido) {
-    if (sentido == HORARIO) {  // Sentido horï¿½rio (abrindo a porta)
+    if (sentido == HORARIO) {       // Funcionamento das bobinas para o sentido horario (abertura)
         switch(passom) {
             case 0:
                 SM1_SetHigh();
@@ -239,7 +239,7 @@ void definePassoMotor(uint8_t passom, uint8_t sentido) {
                 break;
         }
     }
-    else if(sentido == ANTIHORARIO){  // Sentido anti-horï¿½rio (fechando a porta)
+    else if(sentido == ANTIHORARIO){  // Funcionamento das bobinas para o sentido anti-horario (fechamento)
         switch(passom) {
             case 0:
                 SM4_SetHigh();
@@ -273,34 +273,28 @@ void definePassoMotor(uint8_t passom, uint8_t sentido) {
 }
 
 void daUmPasso(uint8_t sentido) {
-    // Atualiza a posiï¿½ï¿½o com base no sentido e fim de curso
-    if (fim_curso) {
-        // Incrementa ou decrementa a posiï¿½ï¿½o conforme o sentido
-        if(sentido == HORARIO){
+    if (fim_curso) {                        // Testa se o fim de curso da porta foi atingido durante a execucao
+        if(sentido == HORARIO){             // Para o sentido horario (abertura da porta), decrementa a posicao da porta
             position--;
         } 
-        else if(sentido == ANTIHORARIO){
+        else if(sentido == ANTIHORARIO){    // Para o sentido anti-horario (fechamento da porta), incrementa a posicao da porta
             position++;
         }
-        definePassoMotor(passo, sentido);
+        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, após o fim de curso ser confirmado
     } else {
-        definePassoMotor(passo, HORARIO);
+        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua até a posicao da porta ser zerada
     }
 }
 
-//void calculaTemp(){
-//    float_temp = adc_temp * GAIN_TEMP;
-//}
-
-void mede_height (){                                        //Mede altura e define media movel de altura e de tempo de voo
-    tempo_voo = TMR1_ReadTimer();                               //Le-se valor capturado no timer1
-    TMR1_Reload();
-    if (first_read == true){
+void mede_height (){                    // Mede altura e define media movel de altura e de tempo de voo
+    tempo_voo = TMR1_ReadTimer();       // Le-se valor capturado no timer1
+    TMR1_Reload();                      // Recarrega o TMR1  
+    if (first_read == true){             
         avg_tempo_voo = tempo_voo;
         first_read = false;
     }
     else{
-        avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;             //Media movel dos quatro ultimos valores de tempo de voo (media anterior + nova media/4)
+        avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;          //Media movel dos quatro ultimos valores de tempo de voo (media anterior + nova media/4)
     }
     height = (uint16_t)(avg_tempo_voo*lookupTable[(int)(adc_temp/10)]);     //Altura = tempo de voo*velocidade do som para temperatura*0,00025/2
     balldist = height;
@@ -329,10 +323,8 @@ void main(void)
 
     while (1)
     {
-        // Add your application code
-//        adc_temp = ADC_GetConversion(channel_AN8);
-        if(PIR3bits.TMR4IF==1){//timer incrementa a cada 96us, 96us*209 = 20.096ms, tempo para escolher a malha de controle
-            PIR3bits.TMR4IF=0;
+        if(PIR3bits.TMR4IF==1){                     //timer incrementa a cada 96us, 96us*209 = 20.096ms, tempo para escolher a malha de controle
+            PIR3bits.TMR4IF=0;  
             TMR4_StopTimer();
             controlchoose();
         }
@@ -343,39 +335,39 @@ void main(void)
                 TMR6_WriteTimer(0);                 //Zera o timer6
                 PIR3bits.TMR6IF = 0;                //Zera flag de comparacao (40ms)
                 while(!EUSART_is_rx_ready()){       //Enquanto nao houver valor pronto no RCREG
-                    if(PIR3bits.TMR6IF){                //Checa a flag de comparacao do timer6. Essa flag indica que ocorreu um timeout
-                        nao_salva = true;                   //Se ocorreu um timeout, ativa a flag de controle para nao salvar valores a mais
-                        break;                              //Sai do while de espera do EUSART
+                    if(PIR3bits.TMR6IF){            //Checa a flag de comparacao do timer6. Essa flag indica que ocorreu um timeout
+                        nao_salva = true;           //Se ocorreu um timeout, ativa a flag de controle para nao salvar valores a mais
+                        break;                      //Sai do while de espera do EUSART
                     }
                 }
                 if(nao_salva == true){              //Se nao_salva estiver ativa
-                    break;                              //sai do while para salvar recebimentos
+                    break;                          //sai do while para salvar recebimentos
                 }
                 bufferRx[countRx] = EUSART_Read();  // guarda valor caso nao tenha ocorrido timeout, ou caso nao tenha enchido o buffer
                 countRx++;                          //incrementa ponteiro do buffer
             }
-            analisa_Rx();                       //Quando termina de guardar os valores recebidos, analisa-se o recebimento
-            TMR6_LoadPeriodRegister(0x4A);      //Volta o periodo do timer6 para ser utilizado pelo trigger (12ms)
-            TMR6_WriteTimer(0);                 //Zera o timer6
-            PIR3bits.TMR6IF = 0;                //Zera a flag do timer6
+            analisa_Rx();                           //Quando termina de guardar os valores recebidos, analisa-se o recebimento
+            TMR6_LoadPeriodRegister(0x4A);          //Volta o periodo do timer6 para ser utilizado pelo trigger (12ms)
+            TMR6_WriteTimer(0);                     //Zera o timer6
+            PIR3bits.TMR6IF = 0;                    //Zera a flag do timer6
         }
-        if(INTCONbits.TMR0IF == 1){         //Se ocorreu overflow no timer0
-            INTCONbits.TMR0IF = 0;              //Zera flag do timer0
+        if(INTCONbits.TMR0IF == 1){                 //Se ocorreu overflow no timer0
+            INTCONbits.TMR0IF = 0;                  //Zera flag do timer0
             fluxpos();
             passo_ctrl = false;
-            count_Tx ++;                        //Incrementa contador
-            if (count_Tx == 6){                 //Se contador for igual a 6 (16,384ms*6=98,304ms)
+            count_Tx ++;                            //Incrementa contador
+            if (count_Tx == 6){                     //Se contador for igual a 6 (16,384ms*6=98,304ms)
                 envia_Tx ();                        //Chama funcao de envio dos dados
                 count_Tx = 0;                       //Zera contador
             }
         }
-        if(PIR3bits.TMR6IF == 1){           //Se a comparacao do timer6 aconteceu (12ms)
-            PIR3bits.TMR6IF = 0;                //Limpa flag do timer6
-            TMR6_WriteTimer(0);                 //Zera timer6
+        if(PIR3bits.TMR6IF == 1){                   //Se a comparacao do timer6 aconteceu (12ms)
+            PIR3bits.TMR6IF = 0;                    //Limpa flag do timer6
+            TMR6_WriteTimer(0);                     //Zera timer6
             adc_temp = ADC_GetConversion(channel_AN8); 
-            Trigger_SetHigh();                  //Ativa trigger
-            __delay_us(15);                     //Espera 15us
-            Trigger_SetLow();                   //Desativa trigger
+            Trigger_SetHigh();                      //Ativa trigger
+            __delay_us(15);                         //Espera 15us
+                Trigger_SetLow();                   //Desativa trigger
         }
         if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == false){
             passo_ctrl = true;
