@@ -104,13 +104,14 @@ void fluxpos(){
     }
 }
 
-void setaPorta(){
-    while(!CMP1_GetOutputStatus()){
-        daUmPasso(HORARIO);
+void setaPorta(){                       //funcao para calibrar a posicao da valvula
+    while(!CMP1_GetOutputStatus()){         //Equanto não tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
+        daUmPasso(HORARIO);                     //Da passos no sentido horario a cada 6ms
         __delay_ms(6);
     }
-    fim_curso = true;
-    position = 0;
+    //Quando chegar na posicao 0
+    fim_curso = true;                       //Ativa flag que indica que a calibracao da valvula foi concluida
+    position = 0;                           //Zera a posicao
 }
 
 void controlchoose(){
@@ -125,61 +126,61 @@ void controlchoose(){
 void analisa_Rx (){
     switch(bufferRx[0]){
         case RX_CMD_MNL:                            //caso para comando em funcionamento manual
-            if(countRx==RX_CMD_SZ){                 //se possui o tamanho correto
-                controlchoice = bufferRx[0];        //atualiza modo de funcionamento
-                vRx.vH = bufferRx[3];               //MSB do setpoint de posicao da valvula salvo na uniao
-                vRx.vL = bufferRx[4];               //LSB do setpoint de posicao da valvula salvo na uniao
-                sp_position = vRx.v;                //Transfere-se valor recebido para variavel do setpoint da valvula
-                if(sp_position > 220 ) sp_position = 220;
-                if(sp_position < 0) sp_position = 0;
-                vRx.vH = bufferRx[5];               //MSB do setpoint do dutycycle salvo na uniao
-                vRx.vL = bufferRx[6];               //LSB do setpoint do dutycycle salvo na uniao
-                dc = vRx.v;                         //Transfere-se valor recebido para variavel do dutycycle
-                EPWM1_LoadDutyValue(dc);            //atualiza-se PWM com novo dutycycle recebido
+            if(countRx==RX_CMD_SZ){                     //se possui o tamanho correto
+                controlchoice = bufferRx[0];                //atualiza modo de funcionamento
+                vRx.vH = bufferRx[3];                       //MSB do setpoint de posicao da valvula salvo na uniao
+                vRx.vL = bufferRx[4];                       //LSB do setpoint de posicao da valvula salvo na uniao
+                sp_position = vRx.v;                        //Transfere-se valor recebido para variavel do setpoint da valvula
+                if(sp_position > 220 ) sp_position = 220;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
+                if(sp_position < 0) sp_position = 0;        //Faz o limite da posicao para que ela nunca seja negativa
+                vRx.vH = bufferRx[5];                       //MSB do setpoint do dutycycle salvo na uniao de recebimento
+                vRx.vL = bufferRx[6];                       //LSB do setpoint do dutycycle salvo na uniao de recebimento
+                dc = vRx.v;                                 //Transfere-se valor recebido para variavel do dutycycle
+                EPWM1_LoadDutyValue(dc);                    //atualiza-se PWM com novo dutycycle recebido
             }
-            countRx = 0;                            //Zera contador para o proximo recebimento
-            break;                                  //Sai do switch
+            countRx = 0;                                //Zera contador para o proximo recebimento
+            break;                                      //Sai do switch
         case RX_CMD_VENT:                           //caso para comando em funcionamento ventoinha
-            if(countRx==RX_CMD_SZ){                 //se possuir tamanho esperado
-                controlchoice = bufferRx[0];        //atualiza modo de funcionamento
-                vRx.vH = bufferRx[1];               //MSB do setpoint de altura salvo na uniao
-                vRx.vL = bufferRx[2];               //LSB do setpoint de altura salvo na uniao
-                sp_height = vRx.v;                  //Transfere-se valor recebido para variavel do setpoint de altura
-                ballset = vRx.v ;                  //Define-se ballset para on controle
-                vRx.vH = bufferRx[3];               //MSB do setpoint de posicao da valvula salvo na uniao
-                vRx.vL = bufferRx[4];               //LSB do setpoint de posicao da valvula salvo na uniao
-                sp_position = vRx.v;                //Transfere-se valor recebido para variavel do setpoint da valvula
-                outputsum = 0;
-                errorp=0;
-                error =0;
+            if(countRx==RX_CMD_SZ){                     //se possuir tamanho esperado
+                controlchoice = bufferRx[0];                //atualiza modo de funcionamento
+                vRx.vH = bufferRx[1];                       //MSB do setpoint de altura salvo na uniao
+                vRx.vL = bufferRx[2];                       //LSB do setpoint de altura salvo na uniao
+                sp_height = vRx.v;                          //Transfere-se valor recebido para variavel do setpoint de altura (mm)
+                ballset = vRx.v ;                           //Define-se ballset para on controle
+                vRx.vH = bufferRx[3];                       //MSB do setpoint de posicao da valvula salvo na uniao
+                vRx.vL = bufferRx[4];                       //LSB do setpoint de posicao da valvula salvo na uniao
+                sp_position = vRx.v;                        //Transfere-se valor recebido para variavel do setpoint da valvula
+                outputsum = 0;                              //Reinicia a soma das saidas do controle anterior
+                errorp=0;                                   //Reinicia erro do controle anterior
+                error =0;                                   //Reinicia erro do controle anterior
             }
-            countRx = 0;                            //Zera contador para o proximo recebimento
-            break;                                  //Sai do switch            
+            countRx = 0;                                //Zera contador para o proximo recebimento
+            break;                                      //Sai do switch            
         case RX_CMD_VAL:                            //caso para comando em funcionamento valvula
-            if(countRx==RX_CMD_SZ){                 //se possuir tamanh esperado
-                controlchoice = bufferRx[0];        //atualiza modo de funcionamento
-                vRx.vH = bufferRx[1];               //MSB do setpoint de altura salvo na uniao
-                vRx.vL = bufferRx[2];               //LSB do setpoint de altura salvo na uniao
-                sp_height = vRx.v;                  //Transfere-se valor recebido para variavel do setpoint de altura
-                ballset = vRx.v / 2;                //Define-se ballset para on controle
-                vRx.vH = bufferRx[5];               //MSB do setpoint do dutycycle salvo na uniao
-                vRx.vL = bufferRx[6];               //LSB do setpoint do dutycycle salvo na uniao
-                dc = vRx.v;                         //Transfere-se valor recebido para variavel do dutycycle
-                EPWM1_LoadDutyValue(dc);            //atualiza-se PWM com novo dutycycle recebido
-                outputsum = 0;
-                errorp=0;
-                error =0;
+            if(countRx==RX_CMD_SZ){                     //se possuir tamanho esperado
+                controlchoice = bufferRx[0];                //atualiza modo de funcionamento
+                vRx.vH = bufferRx[1];                       //MSB do setpoint de altura salvo na uniao
+                vRx.vL = bufferRx[2];                       //LSB do setpoint de altura salvo na uniao
+                sp_height = vRx.v;                          //Transfere-se valor recebido para variavel do setpoint de altura (mm)
+                ballset = vRx.v / 2;                        //Define-se ballset para on controle
+                vRx.vH = bufferRx[5];                       //MSB do setpoint do dutycycle salvo na uniao
+                vRx.vL = bufferRx[6];                       //LSB do setpoint do dutycycle salvo na uniao
+                dc = vRx.v;                                 //Transfere-se valor recebido para variavel do dutycycle
+                EPWM1_LoadDutyValue(dc);                    //atualiza-se PWM com novo dutycycle recebido
+                outputsum = 0;                              //Reinicia a soma das saidas do controle anterior
+                errorp=0;                                   //Reinicia erro do controle anterior
+                error =0;                                   //Reinicia erro do controle anterior
             }
-            countRx = 0;                            //Zera contador para o proximo recebimento
-            break;                                  //Sai do switch
+            countRx = 0;                                //Zera contador para o proximo recebimento
+            break;                                      //Sai do switch
         case RX_CMD_RST:                            //caso para comando de reset
-            if(countRx==RX_CMD_SZ){                 //se possuir tamanho esperado
-                RESET();                            //instrucao de reset
+            if(countRx==RX_CMD_SZ){                     //se possuir tamanho esperado
+                RESET();                                    //instrucao de reset
             }
-            countRx = 0;                            //Zera contador para o proximo recebimento
-            break;                                  //Sai do switch
+            countRx = 0;                                //Zera contador para o proximo recebimento
+            break;                                      //Sai do switch
         default:
-            countRx = 0;
+            countRx = 0;                            //Caso o comando seja incorreto, reinicia o ponteiro do buffer
     } 
 }
 
@@ -286,25 +287,25 @@ void daUmPasso(uint8_t sentido) {
     }
 }
 
-void mede_height (){                    // Mede altura e define media movel de altura e de tempo de voo
+void mede_height (){                    // Mede altura e define media movel do tempo de voo
     tempo_voo = TMR1_ReadTimer();       // Le-se valor capturado no timer1
-    TMR1_Reload();                      // Recarrega o TMR1  
-    if (first_read == true){             
-        avg_tempo_voo = tempo_voo;
-        first_read = false;
+    TMR1_Reload();                      // Recarrega o TMR1 para próxima medição
+    if (first_read == true){            //Se for a primeira leitura   
+        avg_tempo_voo = tempo_voo;          //Media de altura é a primeira medicao
+        first_read = false;                 //Indica que a próxima medicao nao sera a primeira
     }
-    else{
-        avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;          //Media movel dos quatro ultimos valores de tempo de voo (media anterior + nova media/4)
+    else{                               //Se não for a primeira leitura 
+        avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;         //Media movel dos dois ultimos valores de tempo de voo (media anterior + novo valor)/2
     }
     height = (uint16_t)(avg_tempo_voo*lookupTable[(int)(adc_temp/10)]);     //Altura = tempo de voo*velocidade do som para temperatura*0,00025/2
-    balldist = height;
+    balldist = height;                                                      //Atualiza variavel de controle para altura atual
 }
 
 void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    TMR1_SetGateInterruptHandler(mede_height);
+    TMR1_SetGateInterruptHandler(mede_height);                  //Define que a interrupcao do gate do timer1 vai ser atendida pela funcao que mede altura (mede_height)
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -330,8 +331,8 @@ void main(void)
         }
         if (EUSART_is_rx_ready()){          //Se houver um byte para ser lido
             TMR6_LoadPeriodRegister(0xF9);      //define o periodo do timer6 como 40ms
+            nao_salva = false;                  //Tira a flag que indica o timeout
             while(countRx<BUFFER_MAX-1){        //Enquanto o buffer nao estiver cheio
-                nao_salva = false;                  //Tira a flag que indica o timeout
                 TMR6_WriteTimer(0);                 //Zera o timer6
                 PIR3bits.TMR6IF = 0;                //Zera flag de comparacao (40ms)
                 while(!EUSART_is_rx_ready()){       //Enquanto nao houver valor pronto no RCREG
@@ -353,8 +354,8 @@ void main(void)
         }
         if(INTCONbits.TMR0IF == 1){                 //Se ocorreu overflow no timer0
             INTCONbits.TMR0IF = 0;                  //Zera flag do timer0
-            fluxpos();
-            passo_ctrl = false;
+            fluxpos();                              //Chama fluxpos para dar um passo do motor
+            passo_ctrl = false;                     //Desativa a flag para indicar que poder dar outro passo depois de 8ms
             count_Tx ++;                            //Incrementa contador
             if (count_Tx == 6){                     //Se contador for igual a 6 (16,384ms*6=98,304ms)
                 envia_Tx ();                        //Chama funcao de envio dos dados
@@ -369,9 +370,9 @@ void main(void)
             __delay_us(15);                         //Espera 15us
                 Trigger_SetLow();                   //Desativa trigger
         }
-        if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == false){
-            passo_ctrl = true;
-            fluxpos();
+        if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == false){    //Se o tempo for maior que 8ms e ainda nao tiver ocorrido o passo
+            passo_ctrl = true;                                      //Indica que o passo foi realizado no intervalo de 8ms
+            fluxpos();                                              //Chama fluxpos para dar um passo
         }
         
     }

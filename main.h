@@ -77,18 +77,17 @@ union{                      ///< Uniao para recepcao de dados
     };
 }vRx;                       ///< Variavel com os valores recebidos
 
-uint16_t sp_height = 0;             ///< Variavel usada para guardar o setpoint de altura.
+uint16_t sp_height = 0;             ///< Variavel usada para guardar o setpoint de altura em milmetros. 
 uint8_t func_mode = 0;              ///< Variavel usada para indicar o modo de funcionamento. 0=manual, 1=ventoinha, 2=valvula.
 uint16_t dc = 0;                    ///< Variavel usada para guardar o valor do pwm.
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx.
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro).
 uint8_t count_Tx = 0;               ///< Contador usado para alcancar 100ms atraves dos 16ms do timer1.
 bool nao_salva = false;             ///< Variavel booleana usada para indcar os 40ms do fim da recepcao e impedir que dados a mais sejam salvos.
-bool first_read = true;
 
 //Funcoes---------------------------------
 /**
- * Analisa a mensagem recebida pelo EUSART e realiza o comando.
+ * Analisa a mensagem recebida pelo EUSART e realiza o comando. Aconada 40ms depois do ultimo byte recebido
  */
 void analisa_Rx ();
 
@@ -141,15 +140,15 @@ uint16_t adc_temp; ///< Variavel que recebe a conversao do ADC. Ela nao faz o us
 
 // Variaveis ----------------------
 
-uint16_t height = 0;            ///< Variavel usada para guardar a medicao de altura
-uint16_t avg_height = 0;        ///< Variavel usada para guardar a media movel de quatro medicoes de altura
-uint16_t tempo_voo = 0;         ///< Variavel usada para guardar o tempo de voo medido
-float avg_tempo_voo = 0;        ///< Variavel usada para guardar a media movel de quatro medicoes do tempo de voo 
+uint16_t height = 0;            ///< Variavel usada para guardar a medicao de altura em milimetros
+uint16_t tempo_voo = 0;         ///< Variavel usada para guardar o tempo de voo medido em unidades do timer1
+float avg_tempo_voo = 0;        ///< Variavel usada para guardar a media movel de duas medicoes do tempo de voo em unidades do timer1
+bool first_read = true;         ///< Variavel booleana que indica se a primeira medcao de altura para a media movel 
 
 // Funcoes ------------------------
 
 /**
- * Funcao para medicao de altura, assim como para definicao da media movel de altura e tempo de voo. Chamada na interrupcao do gate do timer1.
+ * Funcao para medicao de altura, assim como para definicao da media movel do tempo de voo. Chamada na interrupcao do gate do timer1.
  */
 void mede_height ();
 
