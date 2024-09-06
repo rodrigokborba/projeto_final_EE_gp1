@@ -94,13 +94,13 @@ void pwmcontrol(){
 }
 
 void fluxpos(){
-    if(controlchoice==2){ 
-        if(output>position) daUmPasso(ANTIHORARIO);
-        else if(output<position) daUmPasso(HORARIO);
+    if(controlchoice==2){                               //Se o funcionamento atual eh o valvula (02) 
+        if(output>position) daUmPasso(ANTIHORARIO);         //Da um passo anti-horario se a saida do controle for maior que a posicao atual da valvula
+        else if(output<position) daUmPasso(HORARIO);        //Da um passo horario se a saida do controle for maior que a posicao atual da valvula
     }
-    else{
-        if(sp_position>position) daUmPasso(ANTIHORARIO);
-        else if(sp_position<position) daUmPasso(HORARIO);
+    else{                                               //Se o funcionamento atual eh manual (00) ou ventoinha (03)
+        if(sp_position>position) daUmPasso(ANTIHORARIO);    //Da um passo anti-horario se a posicao desejada for maior que a posicao atual da valvula
+        else if(sp_position<position) daUmPasso(HORARIO);   //Da um passo horario se a posicao desejada for maior que a posicao atual da valvula
     }
 }
 
@@ -115,11 +115,11 @@ void setaPorta(){                       //funcao para calibrar a posicao da valv
 }
 
 void controlchoose(){
-    if (controlchoice == 1){                        //escolhendo qual malha de controle com uma variavel bool
-        pwmcontrol ();
+    if (controlchoice == 1){                        //escolhendo qual malha de controle sera utilizada de acordo com a variavel que indica o modo de funcionamento atual
+        pwmcontrol ();          
     } else if(controlchoice == 2){
         fluxcontrol ();
-    }
+    }                                               //Caso o modo de funcionamento atual seja o manual (00), essa funcao nao chama nenhuma das malhas de controle
     TMR4_StartTimer();
 }
 
@@ -287,7 +287,7 @@ void daUmPasso(uint8_t sentido) {
     }
 }
 
-void mede_height (){                    // Mede altura e define media movel do tempo de voo
+void mede_height (){                // Mede altura e define media movel do tempo de voo
     tempo_voo = TMR1_ReadTimer();       // Le-se valor capturado no timer1
     TMR1_Reload();                      // Recarrega o TMR1 para próxima medição
     if (first_read == true){            //Se for a primeira leitura   
@@ -324,10 +324,10 @@ void main(void)
 
     while (1)
     {
-        if(PIR3bits.TMR4IF==1){                     //timer incrementa a cada 96us, 96us*209 = 20.096ms, tempo para escolher a malha de controle
-            PIR3bits.TMR4IF=0;  
-            TMR4_StopTimer();
-            controlchoose();
+        if(PIR3bits.TMR4IF==1){                     //Se a flag do timer4 esta ativa, ou seja, se passaram 4 ms
+            PIR3bits.TMR4IF=0;                          //Desativa a flag
+            TMR4_StopTimer();                           //Para o Timer4
+            controlchoose();                            //Chama a funcao para definir o controle
         }
         if (EUSART_is_rx_ready()){          //Se houver um byte para ser lido
             TMR6_LoadPeriodRegister(0xF9);      //define o periodo do timer6 como 40ms
@@ -352,7 +352,7 @@ void main(void)
             TMR6_WriteTimer(0);                     //Zera o timer6
             PIR3bits.TMR6IF = 0;                    //Zera a flag do timer6
         }
-        if(INTCONbits.TMR0IF == 1){                 //Se ocorreu overflow no timer0
+        if(INTCONbits.TMR0IF == 1){                 //Se ocorreu overflow no timer0 (16,385ms)
             INTCONbits.TMR0IF = 0;                  //Zera flag do timer0
             fluxpos();                              //Chama fluxpos para dar um passo do motor
             passo_ctrl = false;                     //Desativa a flag para indicar que poder dar outro passo depois de 8ms
