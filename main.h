@@ -82,12 +82,12 @@ uint8_t func_mode = 0;              ///< Variavel usada para indicar o modo de f
 uint16_t dc = 0;                    ///< Variavel usada para guardar o valor do pwm.
 uint8_t bufferRx[BUFFER_MAX];       ///< Buffer de Rx.
 uint8_t countRx = 0;                ///< Contador de bytes recebidos (ponteiro).
-uint8_t count_Tx = 0;               ///< Contador usado para alcancar 100ms atraves dos 16ms do timer1.
-bool nao_salva = false;             ///< Variavel booleana usada para indcar os 40ms do fim da recepcao e impedir que dados a mais sejam salvos.
+uint8_t count_Tx = 0;               ///< Contador usado para alcancar 100ms atraves dos 16ms do timer1 (16*6=98).
+bool nao_salva = false;             ///< Variavel booleana usada para indcar os 40ms do fim da recepcao, impedir que dados a mais sejam salvos e chamar a funcao que analisa os dados recebidos.
 
 //Funcoes---------------------------------
 /**
- * Analisa a mensagem recebida pelo EUSART e realiza o comando. Aconada 40ms depois do ultimo byte recebido
+ * Analisa a mensagem recebida pelo EUSART e realiza o comando. Aconada 40ms depois do ultimo byte recebido.
  */
 void analisa_Rx ();
 
@@ -109,7 +109,7 @@ void envia_Tx ();
 uint16_t position = 0;          ///< Variavel que guarda a posicao da valvula
 uint16_t sp_position = 0;       ///< Setpoint para posicao da valvula (motor de passo)
 uint8_t passo;                  ///< Variavel utilizada para o incremento do passo do motor
-bool fim_curso;                 ///< Variavel booleana que indica se a porta chegou ao fim de curso (completamente aberta), ou n�o
+bool fim_curso;                 ///< Variavel booleana que indica se a porta chegou ao fim de curso (completamente aberta), ou nao
 bool passo_ctrl = false;        ///< Variavel utilizada no while para fazer com que a funcao fluxpos (a qual chama a funcao daUmPasso) seja chamada a cada 8ms 
 
 // Funcoes-------------------------------------------

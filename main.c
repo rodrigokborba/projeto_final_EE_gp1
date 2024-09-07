@@ -72,9 +72,9 @@ void pwmcontrol(){
     error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real
     if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%, roda o codigo
         outputsum += ((kip*timecontrol*error));//Kintegrativa com erro e o tempo do timer 
-        if (outputsum > 30000) outputsum = 30000; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimai) fixa em 1023
+        if (outputsum > 30000) outputsum = 30000; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimal) fixa em 1023
         else if (outputsum< -10000) outputsum = -10000;
-        outpre = (kpp*error + outputsum - (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padr�o
+        outpre = (kpp*error + outputsum - (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padrao
         if(outpre > 10230){ //saturando o output
             output = 1023;
         }
@@ -87,14 +87,14 @@ void pwmcontrol(){
             outpre = -800;
         }
         
-        EPWM1_LoadDutyValue(output); //mandando o valor ap�s o controle
+        EPWM1_LoadDutyValue(output); //mandando o valor apos o controle
         errorp = error;
         
     }
 }
 
 void fluxpos(){
-    if(controlchoice==2){                               //Se o funcionamento atual eh o valvula (02) 
+    if(controlchoice==2){                               //Se o funcionamento atual eh valvula (02) 
         if(output>position) daUmPasso(ANTIHORARIO);         //Da um passo anti-horario se a saida do controle for maior que a posicao atual da valvula
         else if(output<position) daUmPasso(HORARIO);        //Da um passo horario se a saida do controle for maior que a posicao atual da valvula
     }
