@@ -32,22 +32,22 @@ int24_t outpre;                     ///<output pre calculado no controle, o qual
 // Funcoes -----------------------------
 
 /**
- * 
+ * Algoritmo para controle por valvula. Saida utilizada para definir a posicao desejada do motor de passos.
  */
 void fluxcontrol();
 
 /**
- * 
+ * Algoritmo para controle por ventoinha. Saida utilizada para definir o duty cycle do PWM.
  */
 void pwmcontrol();
 
 /**
- * 
+ * Funcao utilizada para dar passos no motor da valvula com o objetivo de igualar a posicao atual com a posicao desejada.
  */
 void fluxpos();
 
 /**
- * 
+ * Funcao utilizada para chamar um dos algoritmos de controle, dependendo do funcionamento atual. No funcionamento manual (00), a funcao não chama nenhum dos algoritmos e tudo eh definido manualmente.
  */
 void controlchoose();
 

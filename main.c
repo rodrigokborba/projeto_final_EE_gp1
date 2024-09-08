@@ -107,7 +107,7 @@ void fluxpos(){
 }
 
 void setaPorta(){                       //funcao para calibrar a posicao da valvula
-    while(!CMP1_GetOutputStatus()){         //Equanto n�o tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
+    while(!CMP1_GetOutputStatus()){         //Equanto nao tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
         daUmPasso(HORARIO);                     //Da passos no sentido horario a cada 6ms
         __delay_ms(6);
     }
@@ -283,20 +283,20 @@ void daUmPasso(uint8_t sentido) {
         else if(sentido == ANTIHORARIO){    // Para o sentido anti-horario (fechamento da porta), incrementa a posicao da porta
             position++;
         }
-        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, ap�s o fim de curso ser confirmado
+        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, apos o fim de curso ser confirmado
     } else {
-        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua at� a posicao da porta ser zerada
+        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua ate a posicao da porta ser zerada
     }
 }
 
 void mede_height (){                // Mede altura e define media movel do tempo de voo
     tempo_voo = TMR1_ReadTimer();       // Le-se valor capturado no timer1
-    TMR1_Reload();                      // Recarrega o TMR1 para pr�xima medi��o
+    TMR1_Reload();                      // Recarrega o TMR1 para proxima medicao
     if (first_read == true){            //Se for a primeira leitura   
-        avg_tempo_voo = tempo_voo;          //Media de altura � a primeira medicao
-        first_read = false;                 //Indica que a pr�xima medicao nao sera a primeira
+        avg_tempo_voo = tempo_voo;          //Media de tempo de voo eh a primeira medicao
+        first_read = false;                 //Indica que a proxima medicao nao sera a primeira
     }
-    else{                               //Se n�o for a primeira leitura 
+    else{                               //Se nao for a primeira leitura 
         avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;         //Media movel dos dois ultimos valores de tempo de voo (media anterior + novo valor)/2
     }
     height = (uint16_t)(avg_tempo_voo*lookupTable[(int)(adc_temp/10)]);     //Altura = tempo de voo*velocidade do som para temperatura*0,00025/2
