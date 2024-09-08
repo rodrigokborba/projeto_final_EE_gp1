@@ -51,34 +51,36 @@
 void fluxcontrol(){
     error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
     if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%
+    /*
         outputsum += ((kif*timecontrol*error)/100); //Kintegrativa com erro e o tempo do timer   
         if (outputsum > 3000) outputsum = 3000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
         else if(outputsum <-1000) outputsum = -1000;
+        */
         outpre = (((kpf*error /*+outputsum*/ +kdf*(error-errorp)))+outpre); // definindo output com kpf e voltando a escala
         if (outpre > 0) output = 0; //saturando o output
-        else if(outpre <-38000 ) output = 380;
-        else output = (uint16_t)-outpre/100;
+        else if(outpre <-38000 ) output = 380;  //saturando output
+        else output = (uint16_t)-outpre/100; //invertendo o outpre e colocando em ponto fix, inversÃ£o por conta do mov da porta
         if (outpre>800){
-            outpre = 800;
+            outpre = 800; //saturando novamente
         } else if (outpre < -45000){
             outpre = -45000;
         }
-        errorp = error;
+        errorp = error; //error atual vira o erro passado
         
     }
 }
 
 void pwmcontrol(){
-    error = (ballset-balldist)*10; //Calculo do erro baseado na dist setado com a dist real
-    if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%, roda o codigo
-        outputsum += ((kip*timecontrol*error));//Kintegrativa com erro e o tempo do timer 
-        if (outputsum > 30000) outputsum = 30000; //caso a soma seja maior que 1023(*10 por causa de 1 casa decimal) fixa em 1023
+    error = (ballset-balldist)*10;          //Calculo do erro baseado na dist setado com a dist real
+    if(error > 125 || error < 125){         // Caso o erro seja maior do que 5%, roda o codigo
+        outputsum += ((kip*timecontrol*error));     //Kintegrativa com erro e o tempo do timer 
+        if (outputsum > 30000) outputsum = 30000;       //saturando o outputsum
         else if (outputsum< -10000) outputsum = -10000;
         outpre = (kpp*error + outputsum - (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padrao
-        if(outpre > 10230){ //saturando o output
+        if(outpre > 10230){     //saturando o output
             output = 1023;
         }
-        else if(outpre <0) {
+        else if(outpre <0) { //saturando o output novamente
             output= 0;
         } else output = (uint16_t)outpre/10;
         if (outpre>1023){
@@ -88,7 +90,7 @@ void pwmcontrol(){
         }
         
         EPWM1_LoadDutyValue(output); //mandando o valor apos o controle
-        errorp = error;
+        errorp = error;     //error atual vira o error passado
         
     }
 }
@@ -105,7 +107,7 @@ void fluxpos(){
 }
 
 void setaPorta(){                       //funcao para calibrar a posicao da valvula
-    while(!CMP1_GetOutputStatus()){         //Equanto não tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
+    while(!CMP1_GetOutputStatus()){         //Equanto nï¿½o tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
         daUmPasso(HORARIO);                     //Da passos no sentido horario a cada 6ms
         __delay_ms(6);
     }
@@ -281,20 +283,20 @@ void daUmPasso(uint8_t sentido) {
         else if(sentido == ANTIHORARIO){    // Para o sentido anti-horario (fechamento da porta), incrementa a posicao da porta
             position++;
         }
-        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, após o fim de curso ser confirmado
+        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, apï¿½s o fim de curso ser confirmado
     } else {
-        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua até a posicao da porta ser zerada
+        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua atï¿½ a posicao da porta ser zerada
     }
 }
 
 void mede_height (){                // Mede altura e define media movel do tempo de voo
     tempo_voo = TMR1_ReadTimer();       // Le-se valor capturado no timer1
-    TMR1_Reload();                      // Recarrega o TMR1 para próxima medição
+    TMR1_Reload();                      // Recarrega o TMR1 para prï¿½xima mediï¿½ï¿½o
     if (first_read == true){            //Se for a primeira leitura   
-        avg_tempo_voo = tempo_voo;          //Media de altura é a primeira medicao
-        first_read = false;                 //Indica que a próxima medicao nao sera a primeira
+        avg_tempo_voo = tempo_voo;          //Media de altura ï¿½ a primeira medicao
+        first_read = false;                 //Indica que a prï¿½xima medicao nao sera a primeira
     }
-    else{                               //Se não for a primeira leitura 
+    else{                               //Se nï¿½o for a primeira leitura 
         avg_tempo_voo = ((uint16_t)avg_tempo_voo + (tempo_voo))>>1;         //Media movel dos dois ultimos valores de tempo de voo (media anterior + novo valor)/2
     }
     height = (uint16_t)(avg_tempo_voo*lookupTable[(int)(adc_temp/10)]);     //Altura = tempo de voo*velocidade do som para temperatura*0,00025/2

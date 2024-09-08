@@ -14,20 +14,20 @@
 
 // Variaveis ----------------------------
 
-int24_t error,errorp;               ///<
-int24_t balldist,ballset,flux;      ///<
-int24_t kpf = 21;                   ///<  
-int24_t kif = 2;                    ///<
-int24_t kdf = 109;                  ///<
-int24_t kpp = 5;                    ///<
-int24_t kip = 10;                   ///<
-int24_t kdp = 150;                  ///<
-int24_t dinput,outputsum;           ///<
-uint16_t output;                    ///<
-uint8_t controlchoice = 0;          ///<
-int24_t timecontrol = 4;            ///<
-uint8_t sentido;                    ///<
-int24_t outpre;                     ///<
+int24_t error,errorp;               ///<error atual e error passado
+int24_t balldist,ballset,flux;      ///<distancia da bola pelo sensor, distancia da bola setada, fluxo recebido
+int24_t kpf = 21;                   ///<ganho proporcional do fluxo
+int24_t kif = 2;                    ///<ganho integrativo do fluxo
+int24_t kdf = 109;                  ///<ganho derivativo do fluxo
+int24_t kpp = 5;                    ///<ganho proporcional do pwm do motor
+int24_t kip = 10;                   ///<ganho integrativo do pwm do motor
+int24_t kdp = 150;                  ///<ganho derivativo do pwm do motor
+int24_t /*dinput*/,outputsum;       ///<output pos ganho integrativo
+uint16_t output;                    ///<saida do controle
+uint8_t controlchoice = 0;          ///<escolha do tipo de controle
+int24_t timecontrol = 4;            ///<recepcao do tempo do timer
+uint8_t sentido;                    ///<definindo sentido do motor de passo
+int24_t outpre;                     ///<output pre calculado no controle, o qual nao esta em ponto fixo
 
 // Funcoes -----------------------------
 
