@@ -50,7 +50,7 @@
 
 void fluxcontrol(){
     error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
-    if(error > 125 || error < 125){ // Caso o erro seja maior do que 5%
+    if(error > 150 || error < -150){ // Caso o erro seja maior do que 5%
     /*
         outputsum += ((kif*timecontrol*error)/100); //Kintegrativa com erro e o tempo do timer   
         if (outputsum > 3000) outputsum = 3000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
@@ -58,7 +58,7 @@ void fluxcontrol(){
         */
         outpre = (((kpf*error /*+outputsum*/ +kdf*(error-errorp)))+outpre); // definindo output com kpf e voltando a escala
         if (outpre > 0) output = 0; //saturando o output
-        else if(outpre <-38000 ) output = 380;  //saturando output
+        else if(outpre <-40000 ) output = 400;  //saturando output
         else output = (uint16_t)-outpre/100; //invertendo o outpre e colocando em ponto fix, inversão por conta do mov da porta
         if (outpre>800){
             outpre = 800; //saturando novamente
@@ -71,20 +71,22 @@ void fluxcontrol(){
 }
 
 void pwmcontrol(){
-    error = (ballset-balldist)*10;          //Calculo do erro baseado na dist setado com a dist real
-    if(error > 125 || error < 125){         // Caso o erro seja maior do que 5%, roda o codigo
-        outputsum += ((kip*timecontrol*error));     //Kintegrativa com erro e o tempo do timer 
-        if (outputsum > 30000) outputsum = 30000;       //saturando o outputsum
-        else if (outputsum< -10000) outputsum = -10000;
-        outpre = (kpp*error + outputsum - (kdp*(error-errorp)+outpre*10)/10); //voltando a escala padrao
-        if(outpre > 10230){     //saturando o output
+    error = (ballset-balldist);          //Calculo do erro baseado na dist setado com a dist real
+    if(error > 15 || error < -15){         // Caso o erro seja maior do que 5%, roda o codigo
+        outputsum += ((kip*timecontrol*error)/10);     //Kintegrativa com erro e o tempo do timer 
+        if (outputsum > 100) outputsum = 100;       //saturando o outputsum
+        else if (outputsum< -10) outputsum = -10;
+        outpre = (kpp*error + outputsum + (kdp*(error-errorp))+outpre); //voltando a escala padrao
+        if(outpre > 2230){     //saturando o output
             output = 1023;
         }
         else if(outpre <0) { //saturando o output novamente
-            output= 0;
-        } else output = (uint16_t)outpre/10;
-        if (outpre>1023){
-            outpre = 1023;
+            output= 0+800;
+        } else {
+            output = ((uint16_t)outpre/10) + 800;
+        }
+        if (outpre>2230){
+            outpre = 2230;
         } else if (outpre < -800){
             outpre = -800;
         }
@@ -133,7 +135,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];                       //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];                       //LSB do setpoint de posicao da valvula salvo na uniao
                 sp_position = vRx.v;                        //Transfere-se valor recebido para variavel do setpoint da valvula
-                if(sp_position > 220 ) sp_position = 220;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
+                if(sp_position > 400 ) sp_position = 400;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
                 if(sp_position < 0) sp_position = 0;        //Faz o limite da posicao para que ela nunca seja negativa
                 vRx.vH = bufferRx[5];                       //MSB do setpoint do dutycycle salvo na uniao de recebimento
                 vRx.vL = bufferRx[6];                       //LSB do setpoint do dutycycle salvo na uniao de recebimento
@@ -164,7 +166,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[1];                       //MSB do setpoint de altura salvo na uniao
                 vRx.vL = bufferRx[2];                       //LSB do setpoint de altura salvo na uniao
                 sp_height = vRx.v;                          //Transfere-se valor recebido para variavel do setpoint de altura (mm)
-                ballset = vRx.v / 2;                        //Define-se ballset para on controle
+                ballset = vRx.v;                        //Define-se ballset para on controle
                 vRx.vH = bufferRx[5];                       //MSB do setpoint do dutycycle salvo na uniao
                 vRx.vL = bufferRx[6];                       //LSB do setpoint do dutycycle salvo na uniao
                 dc = vRx.v;                                 //Transfere-se valor recebido para variavel do dutycycle
@@ -323,6 +325,7 @@ void main(void)
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
     setaPorta();
+    LED_LAT=CMOUTbits.MC1OUT;
 
     while (1)
     {
@@ -376,6 +379,7 @@ void main(void)
             passo_ctrl = true;                                      //Indica que o passo foi realizado no intervalo de 8ms
             fluxpos();                                              //Chama fluxpos para dar um passo
         }
+        LED_LAT=CMOUTbits.MC1OUT;
         
     }
 }

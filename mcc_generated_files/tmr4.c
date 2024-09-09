@@ -63,8 +63,8 @@ void TMR4_Initialize(void)
 {
     // Set TMR4 to the options selected in the User Interface
 
-    // PR4 255; 
-    PR4 = 0xFF;
+    // PR4 249; 
+    PR4 = 0xF9;
 
     // TMR4 0; 
     TMR4 = 0x00;
@@ -72,8 +72,8 @@ void TMR4_Initialize(void)
     // Clearing IF flag.
     PIR3bits.TMR4IF = 0;
 
-    // T4CKPS 1:64; T4OUTPS 1:1; TMR4ON on; 
-    T4CON = 0x07;
+    // T4CKPS 1:64; T4OUTPS 1:10; TMR4ON on; 
+    T4CON = 0x4F;
 }
 
 void TMR4_StartTimer(void)

@@ -4350,9 +4350,9 @@ extern __bank0 __bit __timeout;
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 218 "mcc_generated_files/pin_manager.h"
+# 229 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 230 "mcc_generated_files/pin_manager.h"
+# 241 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -4728,8 +4728,8 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     WDT_Initialize();
-    DAC_Initialize();
     FVR_Initialize();
+    DAC_Initialize();
     TMR4_Initialize();
     TMR2_Initialize();
     TMR0_Initialize();

@@ -142,6 +142,17 @@
 #define Trigger_SetDigitalInput()    do { TRISAbits.TRISA6 = 1; } while(0)
 #define Trigger_SetDigitalOutput()   do { TRISAbits.TRISA6 = 0; } while(0)
 
+// get/set LED aliases
+#define LED_TRIS                 TRISAbits.TRISA7
+#define LED_LAT                  LATAbits.LATA7
+#define LED_PORT                 PORTAbits.RA7
+#define LED_SetHigh()            do { LATAbits.LATA7 = 1; } while(0)
+#define LED_SetLow()             do { LATAbits.LATA7 = 0; } while(0)
+#define LED_Toggle()             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0)
+#define LED_GetValue()           PORTAbits.RA7
+#define LED_SetDigitalInput()    do { TRISAbits.TRISA7 = 1; } while(0)
+#define LED_SetDigitalOutput()   do { TRISAbits.TRISA7 = 0; } while(0)
+
 // get/set RB0 procedures
 #define RB0_SetHigh()            do { LATBbits.LATB0 = 1; } while(0)
 #define RB0_SetLow()             do { LATBbits.LATB0 = 0; } while(0)

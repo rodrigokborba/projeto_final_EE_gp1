@@ -19,10 +19,10 @@ int24_t balldist,ballset,flux;      ///<distancia da bola pelo sensor, distancia
 int24_t kpf = 21;                   ///<ganho proporcional do fluxo
 int24_t kif = 2;                    ///<ganho integrativo do fluxo
 int24_t kdf = 109;                  ///<ganho derivativo do fluxo
-int24_t kpp = 5;                    ///<ganho proporcional do pwm do motor
-int24_t kip = 10;                   ///<ganho integrativo do pwm do motor
-int24_t kdp = 150;                  ///<ganho derivativo do pwm do motor
-int24_t /*dinput*/,outputsum;       ///<output pos ganho integrativo
+int24_t kpp = 32;                    ///<ganho proporcional do pwm do motor
+int24_t kip = 17;                   ///<ganho integrativo do pwm do motor
+int24_t kdp = 15;                  ///<ganho derivativo do pwm do motor
+int24_t outputsum;
 uint16_t output;                    ///<saida do controle
 uint8_t controlchoice = 0;          ///<escolha do tipo de controle
 int24_t timecontrol = 4;            ///<recepcao do tempo do timer

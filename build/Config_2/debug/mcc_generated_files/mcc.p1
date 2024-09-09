@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"218 mcc_generated_files/pin_manager.h
-[; ;mcc_generated_files/pin_manager.h: 218: void PIN_MANAGER_Initialize (void);
+"229 mcc_generated_files/pin_manager.h
+[; ;mcc_generated_files/pin_manager.h: 229: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "94 mcc_generated_files/mcc.h
 [; ;mcc_generated_files/mcc.h: 94: void OSCILLATOR_Initialize(void);
@@ -8,12 +8,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "106
 [; ;mcc_generated_files/mcc.h: 106: void WDT_Initialize(void);
 [v _WDT_Initialize `(v ~T0 @X0 0 ef ]
-"93 mcc_generated_files/dac.h
-[; ;mcc_generated_files/dac.h: 93: void DAC_Initialize(void);
-[v _DAC_Initialize `(v ~T0 @X0 0 ef ]
 "93 mcc_generated_files/fvr.h
 [; ;mcc_generated_files/fvr.h: 93:  void FVR_Initialize(void);
 [v _FVR_Initialize `(v ~T0 @X0 0 ef ]
+"93 mcc_generated_files/dac.h
+[; ;mcc_generated_files/dac.h: 93: void DAC_Initialize(void);
+[v _DAC_Initialize `(v ~T0 @X0 0 ef ]
 "103 mcc_generated_files/tmr4.h
 [; ;mcc_generated_files/tmr4.h: 103: void TMR4_Initialize(void);
 [v _TMR4_Initialize `(v ~T0 @X0 0 ef ]
@@ -545,11 +545,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 55:     WDT_Initialize();
 [e ( _WDT_Initialize ..  ]
 "56
-[; ;mcc_generated_files/mcc.c: 56:     DAC_Initialize();
-[e ( _DAC_Initialize ..  ]
-"57
-[; ;mcc_generated_files/mcc.c: 57:     FVR_Initialize();
+[; ;mcc_generated_files/mcc.c: 56:     FVR_Initialize();
 [e ( _FVR_Initialize ..  ]
+"57
+[; ;mcc_generated_files/mcc.c: 57:     DAC_Initialize();
+[e ( _DAC_Initialize ..  ]
 "58
 [; ;mcc_generated_files/mcc.c: 58:     TMR4_Initialize();
 [e ( _TMR4_Initialize ..  ]

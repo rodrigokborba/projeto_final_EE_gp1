@@ -4350,9 +4350,9 @@ extern __bank0 __bit __timeout;
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 218 "./mcc_generated_files/pin_manager.h"
+# 229 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 230 "./mcc_generated_files/pin_manager.h"
+# 241 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -4724,12 +4724,13 @@ void WDT_Initialize(void);
 # 17 "./main.h"
 int24_t error,errorp;
 int24_t balldist,ballset,flux;
-int24_t kpf = 200;
-int24_t kif = 70;
-int24_t kpp = 310;
-int24_t kip = 150;
-int24_t kdp = 5;
-int24_t dinput,outputsum;
+int24_t kpf = 21;
+int24_t kif = 2;
+int24_t kdf = 109;
+int24_t kpp = 32;
+int24_t kip = 17;
+int24_t kdp = 15;
+int24_t outputsum;
 uint16_t output;
 uint8_t controlchoice = 0;
 int24_t timecontrol = 4;
@@ -4737,11 +4738,27 @@ uint8_t sentido;
 int24_t outpre;
 
 
+
+
+
+
 void fluxcontrol();
+
+
+
+
 void pwmcontrol();
+
+
+
+
 void fluxpos();
+
+
+
+
 void controlchoose();
-# 47 "./main.h"
+# 64 "./main.h"
 union{
     uint16_t v;
     struct{
@@ -4765,7 +4782,6 @@ uint8_t bufferRx[8];
 uint8_t countRx = 0;
 uint8_t count_Tx = 0;
 _Bool nao_salva = 0;
-_Bool first_read = 1;
 
 
 
@@ -4777,7 +4793,7 @@ void analisa_Rx ();
 
 
 void envia_Tx ();
-# 93 "./main.h"
+# 109 "./main.h"
 uint16_t position = 0;
 uint16_t sp_position = 0;
 uint8_t passo;
@@ -4801,6 +4817,10 @@ void definePassoMotor(uint8_t passom, uint8_t sentido);
 
 
 
+void setaPorta();
+
+
+
 
 uint16_t adc_temp;
 
@@ -4809,9 +4829,9 @@ uint16_t adc_temp;
 
 
 uint16_t height = 0;
-uint16_t avg_height = 0;
 uint16_t tempo_voo = 0;
 float avg_tempo_voo = 0;
+_Bool first_read = 1;
 
 
 
@@ -4884,29 +4904,48 @@ __eeprom const float lookupTable[51] = {
 
 void fluxcontrol(){
     error = (ballset-balldist)*100;
-    if(error > 150 || error < 150){
-        outputsum += ((kif*timecontrol*error)/100);
-        if (outputsum > 4500) outputsum = 4500;
-        else if(outputsum <-1000) outputsum = -1000;
-        outpre = ((kpf*error + outputsum)/100)+outpre;
-        if (outpre > 380) output = 380;
-        else if(outpre <0 ) output = 0;
-        else output = (uint16_t)outpre;
+    if(error > 150 || error < -150){
+
+
+
+
+
+        outpre = (((kpf*error +kdf*(error-errorp)))+outpre);
+        if (outpre > 0) output = 0;
+        else if(outpre <-40000 ) output = 400;
+        else output = (uint16_t)-outpre/100;
+        if (outpre>800){
+            outpre = 800;
+        } else if (outpre < -45000){
+            outpre = -45000;
+        }
         errorp = error;
 
     }
 }
 
 void pwmcontrol(){
-    error = (ballset-balldist)*10;
-    if(error > 150 || error < 150){
-        outputsum += ((kip*timecontrol*error));
-        if (outputsum > 1000) outputsum = 1000;
-        else if (outputsum< -1000) outputsum = -1000;
-        outpre = (kpp*error + outputsum + (kdp*(error-errorp)+outpre*10)/10);
-        if(outpre > 1023) output = 1023;
-        else if(outpre <0) output= 0;
-        else output = (uint16_t)outpre;
+    error = (ballset-balldist);
+    if(error > 15 || error < -15){
+        outputsum += ((kip*timecontrol*error)/10);
+        if (outputsum > 100) outputsum = 100;
+        else if (outputsum< -10) outputsum = -10;
+        outpre = (kpp*error + outputsum + (kdp*(error-errorp))+outpre);
+        if(outpre > 2230){
+            output = 1023;
+        }
+        else if(outpre <=0) {
+            output= 0+800;
+        } else {
+            output = ((uint16_t)outpre/10) + 800;
+            if (output>1023 || output == 0 || output < 0)output = 1023;
+        }
+        if (outpre>2230){
+            outpre = 2230;
+        } else if (outpre < -800){
+            outpre = -800;
+        }
+
         EPWM1_LoadDutyValue(output);
         errorp = error;
 
@@ -4915,9 +4954,8 @@ void pwmcontrol(){
 
 void fluxpos(){
     if(controlchoice==2){
-        flux = output - position;
-        if(flux>position) daUmPasso(0);
-        else if(flux<position) daUmPasso(1);
+        if(output>position) daUmPasso(0);
+        else if(output<position) daUmPasso(1);
     }
     else{
         if(sp_position>position) daUmPasso(0);
@@ -4930,6 +4968,7 @@ void setaPorta(){
         daUmPasso(1);
         _delay((unsigned long)((6)*(16000000/4000.0)));
     }
+
     fim_curso = 1;
     position = 0;
 }
@@ -4951,7 +4990,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
-                if(sp_position > 380 ) sp_position = 380;
+                if(sp_position > 400 ) sp_position = 400;
                 if(sp_position < 0) sp_position = 0;
                 vRx.vH = bufferRx[5];
                 vRx.vL = bufferRx[6];
@@ -4966,7 +5005,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[1];
                 vRx.vL = bufferRx[2];
                 sp_height = vRx.v;
-                ballset = vRx.v / 2;
+                ballset = vRx.v ;
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
@@ -4982,7 +5021,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[1];
                 vRx.vL = bufferRx[2];
                 sp_height = vRx.v;
-                ballset = vRx.v / 2;
+                ballset = vRx.v;
                 vRx.vH = bufferRx[5];
                 vRx.vL = bufferRx[6];
                 dc = vRx.v;
@@ -5094,9 +5133,7 @@ void definePassoMotor(uint8_t passom, uint8_t sentido) {
 }
 
 void daUmPasso(uint8_t sentido) {
-
     if (fim_curso) {
-
         if(sentido == 1){
             position--;
         }
@@ -5143,26 +5180,19 @@ void main(void)
 
 
     setaPorta();
+    LATAbits.LATA7=CMOUTbits.MC1OUT;
 
     while (1)
     {
-
-
         if(PIR3bits.TMR4IF==1){
             PIR3bits.TMR4IF=0;
             TMR4_StopTimer();
             controlchoose();
         }
-
-
-
-
-
-
         if (EUSART_is_rx_ready()){
             TMR6_LoadPeriodRegister(0xF9);
+            nao_salva = 0;
             while(countRx<8 -1){
-                nao_salva = 0;
                 TMR6_WriteTimer(0);
                 PIR3bits.TMR6IF = 0;
                 while(!EUSART_is_rx_ready()){
@@ -5198,12 +5228,13 @@ void main(void)
             adc_temp = ADC_GetConversion(channel_AN8);
             do { LATAbits.LATA6 = 1; } while(0);
             _delay((unsigned long)((15)*(16000000/4000000.0)));
-            do { LATAbits.LATA6 = 0; } while(0);
+                do { LATAbits.LATA6 = 0; } while(0);
         }
         if(TMR0_ReadTimer() >= 0x7F && passo_ctrl == 0){
             passo_ctrl = 1;
             fluxpos();
         }
+        LATAbits.LATA7=CMOUTbits.MC1OUT;
 
     }
 }

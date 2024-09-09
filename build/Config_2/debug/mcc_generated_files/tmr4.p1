@@ -517,8 +517,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _TMR4_Initialize ]
 [f ]
 "67
-[; ;mcc_generated_files/tmr4.c: 67:     PR4 = 0xFF;
-[e = _PR4 -> -> 255 `i `uc ]
+[; ;mcc_generated_files/tmr4.c: 67:     PR4 = 0xF9;
+[e = _PR4 -> -> 249 `i `uc ]
 "70
 [; ;mcc_generated_files/tmr4.c: 70:     TMR4 = 0x00;
 [e = _TMR4 -> -> 0 `i `uc ]
@@ -526,8 +526,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/tmr4.c: 73:     PIR3bits.TMR4IF = 0;
 [e = . . _PIR3bits 0 1 -> -> 0 `i `uc ]
 "76
-[; ;mcc_generated_files/tmr4.c: 76:     T4CON = 0x07;
-[e = _T4CON -> -> 7 `i `uc ]
+[; ;mcc_generated_files/tmr4.c: 76:     T4CON = 0x4F;
+[e = _T4CON -> -> 79 `i `uc ]
 "77
 [; ;mcc_generated_files/tmr4.c: 77: }
 [e :UE 354 ]

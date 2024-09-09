@@ -4369,7 +4369,7 @@ void TMR4_Initialize(void)
 
 
 
-    PR4 = 0xFF;
+    PR4 = 0xF9;
 
 
     TMR4 = 0x00;
@@ -4378,7 +4378,7 @@ void TMR4_Initialize(void)
     PIR3bits.TMR4IF = 0;
 
 
-    T4CON = 0x07;
+    T4CON = 0x4F;
 }
 
 void TMR4_StartTimer(void)
