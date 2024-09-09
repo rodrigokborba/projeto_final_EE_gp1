@@ -4902,6 +4902,116 @@ __eeprom const float lookupTable[51] = {
 
 
 
+
+
+void setaPorta(){
+    while(!CMP1_GetOutputStatus()){
+        daUmPasso(1);
+        _delay((unsigned long)((6)*(16000000/4000.0)));
+    }
+
+    fim_curso = 1;
+    position = 0;
+}
+
+void daUmPasso(uint8_t sentido) {
+    if (fim_curso) {
+        if(sentido == 1){
+            position--;
+        }
+        else if(sentido == 0){
+            position++;
+        }
+        definePassoMotor(passo, sentido);
+    } else {
+        definePassoMotor(passo, 1);
+    }
+}
+
+void definePassoMotor(uint8_t passom, uint8_t sentido) {
+    if (sentido == 1) {
+        switch(passom) {
+            case 0:
+                do { LATAbits.LATA1 = 1; } while(0);
+                do { LATAbits.LATA2 = 1; } while(0);
+                do { LATAbits.LATA3 = 0; } while(0);
+                do { LATAbits.LATA4 = 0; } while(0);
+                break;
+            case 1:
+                do { LATAbits.LATA1 = 0; } while(0);
+                do { LATAbits.LATA2 = 1; } while(0);
+                do { LATAbits.LATA3 = 1; } while(0);
+                do { LATAbits.LATA4 = 0; } while(0);
+                break;
+            case 2:
+                do { LATAbits.LATA1 = 0; } while(0);
+                do { LATAbits.LATA2 = 0; } while(0);
+                do { LATAbits.LATA3 = 1; } while(0);
+                do { LATAbits.LATA4 = 1; } while(0);
+                break;
+            case 3:
+                do { LATAbits.LATA1 = 1; } while(0);
+                do { LATAbits.LATA2 = 0; } while(0);
+                do { LATAbits.LATA3 = 0; } while(0);
+                do { LATAbits.LATA4 = 1; } while(0);
+                break;
+        }
+    }
+    else if(sentido == 0){
+        switch(passom) {
+            case 0:
+                do { LATAbits.LATA4 = 1; } while(0);
+                do { LATAbits.LATA3 = 1; } while(0);
+                do { LATAbits.LATA2 = 0; } while(0);
+                do { LATAbits.LATA1 = 0; } while(0);
+                break;
+            case 1:
+                do { LATAbits.LATA4 = 0; } while(0);
+                do { LATAbits.LATA3 = 1; } while(0);
+                do { LATAbits.LATA2 = 1; } while(0);
+                do { LATAbits.LATA1 = 0; } while(0);
+                break;
+            case 2:
+                do { LATAbits.LATA4 = 0; } while(0);
+                do { LATAbits.LATA3 = 0; } while(0);
+                do { LATAbits.LATA2 = 1; } while(0);
+                do { LATAbits.LATA1 = 1; } while(0);
+                break;
+            case 3:
+                do { LATAbits.LATA4 = 1; } while(0);
+                do { LATAbits.LATA3 = 0; } while(0);
+                do { LATAbits.LATA2 = 0; } while(0);
+                do { LATAbits.LATA1 = 1; } while(0);
+                break;
+        }
+    }
+
+    passo++;
+    passo = passo & 0x03;
+}
+
+
+
+void fluxpos(){
+    if(controlchoice==2){
+        if(output>position) daUmPasso(0);
+        else if(output<position) daUmPasso(1);
+    }
+    else{
+        if(sp_position>position) daUmPasso(0);
+        else if(sp_position<position) daUmPasso(1);
+    }
+}
+
+void controlchoose(){
+    if (controlchoice == 1){
+        pwmcontrol ();
+    } else if(controlchoice == 2){
+        fluxcontrol ();
+    }
+    TMR4_StartTimer();
+}
+
 void fluxcontrol(){
     error = (ballset-balldist)*100;
     if(error > 150 || error < -150){
@@ -4934,11 +5044,10 @@ void pwmcontrol(){
         if(outpre > 2230){
             output = 1023;
         }
-        else if(outpre <=0) {
+        else if(outpre <0) {
             output= 0+800;
         } else {
             output = ((uint16_t)outpre/10) + 800;
-            if (output>1023 || output == 0 || output < 0)output = 1023;
         }
         if (outpre>2230){
             outpre = 2230;
@@ -4952,35 +5061,7 @@ void pwmcontrol(){
     }
 }
 
-void fluxpos(){
-    if(controlchoice==2){
-        if(output>position) daUmPasso(0);
-        else if(output<position) daUmPasso(1);
-    }
-    else{
-        if(sp_position>position) daUmPasso(0);
-        else if(sp_position<position) daUmPasso(1);
-    }
-}
 
-void setaPorta(){
-    while(!CMP1_GetOutputStatus()){
-        daUmPasso(1);
-        _delay((unsigned long)((6)*(16000000/4000.0)));
-    }
-
-    fim_curso = 1;
-    position = 0;
-}
-
-void controlchoose(){
-    if (controlchoice == 1){
-        pwmcontrol ();
-    } else if(controlchoice == 2){
-        fluxcontrol ();
-    }
-    TMR4_StartTimer();
-}
 
 void analisa_Rx (){
     switch(bufferRx[0]){
@@ -5066,84 +5147,6 @@ void envia_Tx (){
     vTx.v = dc;
     EUSART_Write(vTx.vH);
     EUSART_Write(vTx.vL);
-}
-
-
-
-void definePassoMotor(uint8_t passom, uint8_t sentido) {
-    if (sentido == 1) {
-        switch(passom) {
-            case 0:
-                do { LATAbits.LATA1 = 1; } while(0);
-                do { LATAbits.LATA2 = 1; } while(0);
-                do { LATAbits.LATA3 = 0; } while(0);
-                do { LATAbits.LATA4 = 0; } while(0);
-                break;
-            case 1:
-                do { LATAbits.LATA1 = 0; } while(0);
-                do { LATAbits.LATA2 = 1; } while(0);
-                do { LATAbits.LATA3 = 1; } while(0);
-                do { LATAbits.LATA4 = 0; } while(0);
-                break;
-            case 2:
-                do { LATAbits.LATA1 = 0; } while(0);
-                do { LATAbits.LATA2 = 0; } while(0);
-                do { LATAbits.LATA3 = 1; } while(0);
-                do { LATAbits.LATA4 = 1; } while(0);
-                break;
-            case 3:
-                do { LATAbits.LATA1 = 1; } while(0);
-                do { LATAbits.LATA2 = 0; } while(0);
-                do { LATAbits.LATA3 = 0; } while(0);
-                do { LATAbits.LATA4 = 1; } while(0);
-                break;
-        }
-    }
-    else if(sentido == 0){
-        switch(passom) {
-            case 0:
-                do { LATAbits.LATA4 = 1; } while(0);
-                do { LATAbits.LATA3 = 1; } while(0);
-                do { LATAbits.LATA2 = 0; } while(0);
-                do { LATAbits.LATA1 = 0; } while(0);
-                break;
-            case 1:
-                do { LATAbits.LATA4 = 0; } while(0);
-                do { LATAbits.LATA3 = 1; } while(0);
-                do { LATAbits.LATA2 = 1; } while(0);
-                do { LATAbits.LATA1 = 0; } while(0);
-                break;
-            case 2:
-                do { LATAbits.LATA4 = 0; } while(0);
-                do { LATAbits.LATA3 = 0; } while(0);
-                do { LATAbits.LATA2 = 1; } while(0);
-                do { LATAbits.LATA1 = 1; } while(0);
-                break;
-            case 3:
-                do { LATAbits.LATA4 = 1; } while(0);
-                do { LATAbits.LATA3 = 0; } while(0);
-                do { LATAbits.LATA2 = 0; } while(0);
-                do { LATAbits.LATA1 = 1; } while(0);
-                break;
-        }
-    }
-
-    passo++;
-    passo = passo & 0x03;
-}
-
-void daUmPasso(uint8_t sentido) {
-    if (fim_curso) {
-        if(sentido == 1){
-            position--;
-        }
-        else if(sentido == 0){
-            position++;
-        }
-        definePassoMotor(passo, sentido);
-    } else {
-        definePassoMotor(passo, 1);
-    }
 }
 
 void mede_height (){

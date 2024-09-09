@@ -48,6 +48,116 @@
                          Main application
  */
 
+// -------------------------------- MOTOR --------------------------------------
+
+void setaPorta(){                       //funcao para calibrar a posicao da valvula
+    while(!CMP1_GetOutputStatus()){         //Equanto nao tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
+        daUmPasso(HORARIO);                     //Da passos no sentido horario a cada 6ms
+        __delay_ms(6);
+    }
+    //Quando chegar na posicao 0
+    fim_curso = true;                       //Ativa flag que indica que a calibracao da valvula foi concluida
+    position = 0;                           //Zera a posicao
+}
+
+void daUmPasso(uint8_t sentido) {
+    if (fim_curso) {                        // Testa se o fim de curso da porta foi atingido durante a execucao
+        if(sentido == HORARIO){             // Para o sentido horario (abertura da porta), decrementa a posicao da porta
+            position--;
+        } 
+        else if(sentido == ANTIHORARIO){    // Para o sentido anti-horario (fechamento da porta), incrementa a posicao da porta
+            position++;
+        }
+        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, apos o fim de curso ser confirmado
+    } else {
+        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua ate a posicao da porta ser zerada
+    }
+}
+
+void definePassoMotor(uint8_t passom, uint8_t sentido) {
+    if (sentido == HORARIO) {       // Funcionamento das bobinas para o sentido horario (abertura)
+        switch(passom) {
+            case 0:
+                SM1_SetHigh();
+                SM2_SetHigh();
+                SM3_SetLow();
+                SM4_SetLow();
+                break;
+            case 1:
+                SM1_SetLow();
+                SM2_SetHigh();
+                SM3_SetHigh();
+                SM4_SetLow();
+                break;
+            case 2:
+                SM1_SetLow();
+                SM2_SetLow();
+                SM3_SetHigh();
+                SM4_SetHigh();
+                break;
+            case 3:
+                SM1_SetHigh();
+                SM2_SetLow();
+                SM3_SetLow();
+                SM4_SetHigh();
+                break;
+        }
+    }
+    else if(sentido == ANTIHORARIO){  // Funcionamento das bobinas para o sentido anti-horario (fechamento)
+        switch(passom) {
+            case 0:
+                SM4_SetHigh();
+                SM3_SetHigh();
+                SM2_SetLow();
+                SM1_SetLow();
+                break;
+            case 1:
+                SM4_SetLow();
+                SM3_SetHigh();
+                SM2_SetHigh();
+                SM1_SetLow();
+                break;
+            case 2:
+                SM4_SetLow();
+                SM3_SetLow();
+                SM2_SetHigh();
+                SM1_SetHigh();
+                break;
+            case 3:
+                SM4_SetHigh();
+                SM3_SetLow();
+                SM2_SetLow();
+                SM1_SetHigh();
+                break;
+        }
+    } 
+    // Atualiza o passo e garante que ele esteja no intervalo de 0 a 3
+    passo++;
+    passo = passo & 0x03;
+}
+
+// ------------------------------ CONTROLE -------------------------------------
+
+void fluxpos(){
+    if(controlchoice==2){                               //Se o funcionamento atual eh valvula (02) 
+        if(output>position) daUmPasso(ANTIHORARIO);         //Da um passo anti-horario se a saida do controle for maior que a posicao atual da valvula
+        else if(output<position) daUmPasso(HORARIO);        //Da um passo horario se a saida do controle for maior que a posicao atual da valvula
+    }
+    else{                                               //Se o funcionamento atual eh manual (00) ou ventoinha (03)
+        if(sp_position>position) daUmPasso(ANTIHORARIO);    //Da um passo anti-horario se a posicao desejada for maior que a posicao atual da valvula
+        else if(sp_position<position) daUmPasso(HORARIO);   //Da um passo horario se a posicao desejada for maior que a posicao atual da valvula
+    }
+}
+
+void controlchoose(){
+    if (controlchoice == 1){                        //escolhendo qual malha de controle sera utilizada de acordo com a variavel que indica o modo de funcionamento atual
+        pwmcontrol ();          
+    } else if(controlchoice == 2){
+        fluxcontrol ();
+    }                                               //Caso o modo de funcionamento atual seja o manual (00), essa funcao nao chama nenhuma das malhas de controle
+    TMR4_StartTimer();
+}
+
 void fluxcontrol(){
     error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
     if(error > 150 || error < -150){ // Caso o erro seja maior do que 5%
@@ -97,35 +207,7 @@ void pwmcontrol(){
     }
 }
 
-void fluxpos(){
-    if(controlchoice==2){                               //Se o funcionamento atual eh valvula (02) 
-        if(output>position) daUmPasso(ANTIHORARIO);         //Da um passo anti-horario se a saida do controle for maior que a posicao atual da valvula
-        else if(output<position) daUmPasso(HORARIO);        //Da um passo horario se a saida do controle for maior que a posicao atual da valvula
-    }
-    else{                                               //Se o funcionamento atual eh manual (00) ou ventoinha (03)
-        if(sp_position>position) daUmPasso(ANTIHORARIO);    //Da um passo anti-horario se a posicao desejada for maior que a posicao atual da valvula
-        else if(sp_position<position) daUmPasso(HORARIO);   //Da um passo horario se a posicao desejada for maior que a posicao atual da valvula
-    }
-}
-
-void setaPorta(){                       //funcao para calibrar a posicao da valvula
-    while(!CMP1_GetOutputStatus()){         //Equanto nao tem sinal do sensor infra vermelho, ou seja, equanto nao estiver na posicao 0
-        daUmPasso(HORARIO);                     //Da passos no sentido horario a cada 6ms
-        __delay_ms(6);
-    }
-    //Quando chegar na posicao 0
-    fim_curso = true;                       //Ativa flag que indica que a calibracao da valvula foi concluida
-    position = 0;                           //Zera a posicao
-}
-
-void controlchoose(){
-    if (controlchoice == 1){                        //escolhendo qual malha de controle sera utilizada de acordo com a variavel que indica o modo de funcionamento atual
-        pwmcontrol ();          
-    } else if(controlchoice == 2){
-        fluxcontrol ();
-    }                                               //Caso o modo de funcionamento atual seja o manual (00), essa funcao nao chama nenhuma das malhas de controle
-    TMR4_StartTimer();
-}
+//------------------------------------ COMUNICACAO -----------------------------
 
 void analisa_Rx (){
     switch(bufferRx[0]){
@@ -211,84 +293,6 @@ void envia_Tx (){                            //funcao para transmissao de dados
     vTx.v = dc;                             //Passa o valor do dutycycle do PWM para uniao de envio
     EUSART_Write(vTx.vH);                   //Envia MSB do dutycycle do PWM
     EUSART_Write(vTx.vL);                   //Envia LSB do dutycycle do PWM
-}
-
-
-
-void definePassoMotor(uint8_t passom, uint8_t sentido) {
-    if (sentido == HORARIO) {       // Funcionamento das bobinas para o sentido horario (abertura)
-        switch(passom) {
-            case 0:
-                SM1_SetHigh();
-                SM2_SetHigh();
-                SM3_SetLow();
-                SM4_SetLow();
-                break;
-            case 1:
-                SM1_SetLow();
-                SM2_SetHigh();
-                SM3_SetHigh();
-                SM4_SetLow();
-                break;
-            case 2:
-                SM1_SetLow();
-                SM2_SetLow();
-                SM3_SetHigh();
-                SM4_SetHigh();
-                break;
-            case 3:
-                SM1_SetHigh();
-                SM2_SetLow();
-                SM3_SetLow();
-                SM4_SetHigh();
-                break;
-        }
-    }
-    else if(sentido == ANTIHORARIO){  // Funcionamento das bobinas para o sentido anti-horario (fechamento)
-        switch(passom) {
-            case 0:
-                SM4_SetHigh();
-                SM3_SetHigh();
-                SM2_SetLow();
-                SM1_SetLow();
-                break;
-            case 1:
-                SM4_SetLow();
-                SM3_SetHigh();
-                SM2_SetHigh();
-                SM1_SetLow();
-                break;
-            case 2:
-                SM4_SetLow();
-                SM3_SetLow();
-                SM2_SetHigh();
-                SM1_SetHigh();
-                break;
-            case 3:
-                SM4_SetHigh();
-                SM3_SetLow();
-                SM2_SetLow();
-                SM1_SetHigh();
-                break;
-        }
-    } 
-    // Atualiza o passo e garante que ele esteja no intervalo de 0 a 3
-    passo++;
-    passo = passo & 0x03;
-}
-
-void daUmPasso(uint8_t sentido) {
-    if (fim_curso) {                        // Testa se o fim de curso da porta foi atingido durante a execucao
-        if(sentido == HORARIO){             // Para o sentido horario (abertura da porta), decrementa a posicao da porta
-            position--;
-        } 
-        else if(sentido == ANTIHORARIO){    // Para o sentido anti-horario (fechamento da porta), incrementa a posicao da porta
-            position++;
-        }
-        definePassoMotor(passo, sentido);   // Chama a funcao que define o passo do motor, de acordo com o sentido definido, apos o fim de curso ser confirmado
-    } else {
-        definePassoMotor(passo, HORARIO);   // Se o fim de curso nunca foi antingido, a abertura da porta continua ate a posicao da porta ser zerada
-    }
 }
 
 void mede_height (){                // Mede altura e define media movel do tempo de voo
