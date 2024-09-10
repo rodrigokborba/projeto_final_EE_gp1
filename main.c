@@ -146,6 +146,12 @@ void fluxpos(){
     else{                                               //Se o funcionamento atual eh manual (00) ou ventoinha (03)
         if(sp_position>position) daUmPasso(ANTIHORARIO);    //Da um passo anti-horario se a posicao desejada for maior que a posicao atual da valvula
         else if(sp_position<position) daUmPasso(HORARIO);   //Da um passo horario se a posicao desejada for maior que a posicao atual da valvula
+        else {                                              //Desliga as bobinas se a posicao atual for a desejada
+            SM4_SetLow();
+            SM3_SetLow();
+            SM2_SetLow();
+            SM1_SetLow();
+        }
     }
 }
 
@@ -161,12 +167,7 @@ void controlchoose(){
 void fluxcontrol(){
     error = (ballset-balldist)*100; //Calculo do erro baseado na dist setado com a dist real, *10 pra duas casas decimais
     if(error > 150 || error < -150){ // Caso o erro seja maior do que 5%
-    /*
-        outputsum += ((kif*timecontrol*error)/100); //Kintegrativa com erro e o tempo do timer   
-        if (outputsum > 3000) outputsum = 3000; //caso a soma seja maior que 450(*100 por causa de 2 casas decimais), fixa em 450
-        else if(outputsum <-1000) outputsum = -1000;
-        */
-        outpre = (((kpf*error /*+outputsum*/ +kdf*(error-errorp)))+outpre); // definindo output com kpf e voltando a escala
+        outpre = (((kpf*error +kdf*(error-errorp)))+outpre); // definindo output com kpf e voltando a escala
         if (outpre > 0) output = 0; //saturando o output
         else if(outpre <-40000 ) output = 400;  //saturando output
         else output = (uint16_t)-outpre/100; //invertendo o outpre e colocando em ponto fix, inversão por conta do mov da porta
@@ -217,7 +218,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];                       //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];                       //LSB do setpoint de posicao da valvula salvo na uniao
                 sp_position = vRx.v;                        //Transfere-se valor recebido para variavel do setpoint da valvula
-                if(sp_position > 400 ) sp_position = 400;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
+                if(sp_position > 420 ) sp_position = 420;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
                 if(sp_position < 0) sp_position = 0;        //Faz o limite da posicao para que ela nunca seja negativa
                 vRx.vH = bufferRx[5];                       //MSB do setpoint do dutycycle salvo na uniao de recebimento
                 vRx.vL = bufferRx[6];                       //LSB do setpoint do dutycycle salvo na uniao de recebimento
@@ -236,6 +237,8 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];                       //MSB do setpoint de posicao da valvula salvo na uniao
                 vRx.vL = bufferRx[4];                       //LSB do setpoint de posicao da valvula salvo na uniao
                 sp_position = vRx.v;                        //Transfere-se valor recebido para variavel do setpoint da valvula
+                if(sp_position > 420 ) sp_position = 420;   //Faz o limite da posicao para que o motor nao de mais passos do que o permitdo
+                if(sp_position < 0) sp_position = 0;        //Faz o limite da posicao para que ela nunca seja negativa
                 outputsum = 0;                              //Reinicia a soma das saidas do controle anterior
                 errorp=0;                                   //Reinicia erro do controle anterior
                 error =0;                                   //Reinicia erro do controle anterior
@@ -314,20 +317,14 @@ void main(void)
     // initialize the device
     SYSTEM_Initialize();
     TMR1_SetGateInterruptHandler(mede_height);                  //Define que a interrupcao do gate do timer1 vai ser atendida pela funcao que mede altura (mede_height)
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
+    
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
-
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
+    
     setaPorta();
     LED_LAT=CMOUTbits.MC1OUT;
 

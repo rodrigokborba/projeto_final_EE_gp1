@@ -17,7 +17,6 @@
 int24_t error,errorp;               ///<error atual e error passado
 int24_t balldist,ballset,flux;      ///<distancia da bola pelo sensor, distancia da bola setada, fluxo recebido
 int24_t kpf = 21;                   ///<ganho proporcional do fluxo
-int24_t kif = 2;                    ///<ganho integrativo do fluxo
 int24_t kdf = 109;                  ///<ganho derivativo do fluxo
 int24_t kpp = 32;                    ///<ganho proporcional do pwm do motor
 int24_t kip = 17;                   ///<ganho integrativo do pwm do motor

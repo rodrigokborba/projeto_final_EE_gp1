@@ -1464,7 +1464,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FVR" name="adfvrVoltage"/>
-         <value/>
+         <value>1.024 V</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FVR" name="cdafvrVoltage"/>
@@ -1536,11 +1536,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FVR" registerAlias="FVRCON"/>
-         <value>132</value>
+         <value>133</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FVR" registerAlias="FVRCON" settingAlias="ADFVR"/>
-         <value>off</value>
+         <value>1x</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FVR" registerAlias="FVRCON" settingAlias="CDAFVR"/>
@@ -1803,7 +1803,7 @@
          <value>enabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1SEL%aux2"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1SEL%aux0"/>
          <value>RB3</value>
       </entry>
       <entry>
@@ -1871,11 +1871,11 @@
          <value/>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1CSEL%aux3"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1CSEL%aux1"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1DSEL%aux4"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="P1DSEL%aux2"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
@@ -1947,11 +1947,11 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RXDTSEL%aux1"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="RXDTSEL%aux4"/>
          <value>RB1</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="TXCKSEL%aux0"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="TXCKSEL%aux3"/>
          <value>RB2</value>
       </entry>
       <entry>

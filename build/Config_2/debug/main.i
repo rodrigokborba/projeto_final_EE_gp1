@@ -4725,7 +4725,6 @@ void WDT_Initialize(void);
 int24_t error,errorp;
 int24_t balldist,ballset,flux;
 int24_t kpf = 21;
-int24_t kif = 2;
 int24_t kdf = 109;
 int24_t kpp = 32;
 int24_t kip = 17;
@@ -4758,7 +4757,7 @@ void fluxpos();
 
 
 void controlchoose();
-# 64 "./main.h"
+# 63 "./main.h"
 union{
     uint16_t v;
     struct{
@@ -4793,11 +4792,11 @@ void analisa_Rx ();
 
 
 void envia_Tx ();
-# 109 "./main.h"
+# 108 "./main.h"
 uint16_t position = 0;
 uint16_t sp_position = 0;
 uint8_t passo;
-_Bool fim_curso;
+_Bool fim_curso = 1;
 _Bool passo_ctrl = 0;
 
 
@@ -5000,6 +4999,12 @@ void fluxpos(){
     else{
         if(sp_position>position) daUmPasso(0);
         else if(sp_position<position) daUmPasso(1);
+        else {
+            do { LATAbits.LATA4 = 0; } while(0);
+            do { LATAbits.LATA3 = 0; } while(0);
+            do { LATAbits.LATA2 = 0; } while(0);
+            do { LATAbits.LATA1 = 0; } while(0);
+        }
     }
 }
 
@@ -5015,11 +5020,6 @@ void controlchoose(){
 void fluxcontrol(){
     error = (ballset-balldist)*100;
     if(error > 150 || error < -150){
-
-
-
-
-
         outpre = (((kpf*error +kdf*(error-errorp)))+outpre);
         if (outpre > 0) output = 0;
         else if(outpre <-40000 ) output = 400;
@@ -5071,7 +5071,7 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
-                if(sp_position > 400 ) sp_position = 400;
+                if(sp_position > 420 ) sp_position = 420;
                 if(sp_position < 0) sp_position = 0;
                 vRx.vH = bufferRx[5];
                 vRx.vL = bufferRx[6];
@@ -5090,6 +5090,8 @@ void analisa_Rx (){
                 vRx.vH = bufferRx[3];
                 vRx.vL = bufferRx[4];
                 sp_position = vRx.v;
+                if(sp_position > 420 ) sp_position = 420;
+                if(sp_position < 0) sp_position = 0;
                 outputsum = 0;
                 errorp=0;
                 error =0;
@@ -5171,18 +5173,12 @@ void main(void)
 
 
 
-
     (INTCONbits.GIE = 1);
 
 
     (INTCONbits.PEIE = 1);
 
 
-
-
-
-
-    setaPorta();
     LATAbits.LATA7=CMOUTbits.MC1OUT;
 
     while (1)
