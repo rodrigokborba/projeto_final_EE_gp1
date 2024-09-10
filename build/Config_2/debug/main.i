@@ -4796,7 +4796,7 @@ void envia_Tx ();
 uint16_t position = 0;
 uint16_t sp_position = 0;
 uint8_t passo;
-_Bool fim_curso = 1;
+_Bool fim_curso;
 _Bool passo_ctrl = 0;
 
 
@@ -5041,16 +5041,16 @@ void pwmcontrol(){
         if (outputsum > 100) outputsum = 100;
         else if (outputsum< -10) outputsum = -10;
         outpre = (kpp*error + outputsum + (kdp*(error-errorp))+outpre);
-        if(outpre > 2230){
+        if(outpre > 6230){
             output = 1023;
         }
         else if(outpre <0) {
-            output= 0+800;
+            output= 0+400;
         } else {
-            output = ((uint16_t)outpre/10) + 800;
+            output = ((uint16_t)outpre/10) + 400;
         }
-        if (outpre>2230){
-            outpre = 2230;
+        if (outpre>6230){
+            outpre = 6230;
         } else if (outpre < -800){
             outpre = -800;
         }
@@ -5178,7 +5178,7 @@ void main(void)
 
     (INTCONbits.PEIE = 1);
 
-
+    setaPorta();
     LATAbits.LATA7=CMOUTbits.MC1OUT;
 
     while (1)

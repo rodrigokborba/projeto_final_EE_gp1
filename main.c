@@ -188,16 +188,16 @@ void pwmcontrol(){
         if (outputsum > 100) outputsum = 100;       //saturando o outputsum
         else if (outputsum< -10) outputsum = -10;
         outpre = (kpp*error + outputsum + (kdp*(error-errorp))+outpre); //voltando a escala padrao
-        if(outpre > 2230){     //saturando o output
+        if(outpre > 6230){     //saturando o output
             output = 1023;
         }
         else if(outpre <0) { //saturando o output novamente
-            output= 0+800;
+            output= 0+400;
         } else {
-            output = ((uint16_t)outpre/10) + 800;
+            output = ((uint16_t)outpre/10) + 400;
         }
-        if (outpre>2230){
-            outpre = 2230;
+        if (outpre>6230){
+            outpre = 6230;
         } else if (outpre < -800){
             outpre = -800;
         }

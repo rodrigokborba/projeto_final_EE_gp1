@@ -729,11 +729,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./main.h: 110: uint8_t passo;
 [v _passo `uc ~T0 @X0 1 e ]
 "111
-[; ;./main.h: 111: _Bool fim_curso = 1;
+[; ;./main.h: 111: _Bool fim_curso;
 [v _fim_curso `a ~T0 @X0 1 e ]
-[i _fim_curso
--> -> 1 `i `a
-]
 "112
 [; ;./main.h: 112: _Bool passo_ctrl = 0;
 [v _passo_ctrl `a ~T0 @X0 1 e ]
@@ -1472,8 +1469,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 190:         outpre = (kpp*error + outputsum + (kdp*(error-errorp))+outpre);
 [e = _outpre + + + * _kpp _error _outputsum * _kdp - _error _errorp _outpre ]
 "191
-[; ;main.c: 191:         if(outpre > 2230){
-[e $ ! > _outpre -> -> 2230 `i `m 525  ]
+[; ;main.c: 191:         if(outpre > 6230){
+[e $ ! > _outpre -> -> 6230 `i `m 525  ]
 {
 "192
 [; ;main.c: 192:             output = 1023;
@@ -1488,8 +1485,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! < _outpre -> -> 0 `i `m 527  ]
 {
 "195
-[; ;main.c: 195:             output= 0+800;
-[e = _output -> + -> 0 `i -> 800 `i `us ]
+[; ;main.c: 195:             output= 0+400;
+[e = _output -> + -> 0 `i -> 400 `i `us ]
 "196
 [; ;main.c: 196:         } else {
 }
@@ -1497,20 +1494,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 527 ]
 {
 "197
-[; ;main.c: 197:             output = ((uint16_t)outpre/10) + 800;
-[e = _output -> + / -> -> _outpre `us `ui -> -> 10 `i `ui -> -> 800 `i `ui `us ]
+[; ;main.c: 197:             output = ((uint16_t)outpre/10) + 400;
+[e = _output -> + / -> -> _outpre `us `ui -> -> 10 `i `ui -> -> 400 `i `ui `us ]
 "198
 [; ;main.c: 198:         }
 }
 [e :U 528 ]
 [e :U 526 ]
 "199
-[; ;main.c: 199:         if (outpre>2230){
-[e $ ! > _outpre -> -> 2230 `i `m 529  ]
+[; ;main.c: 199:         if (outpre>6230){
+[e $ ! > _outpre -> -> 6230 `i `m 529  ]
 {
 "200
-[; ;main.c: 200:             outpre = 2230;
-[e = _outpre -> -> 2230 `i `m ]
+[; ;main.c: 200:             outpre = 6230;
+[e = _outpre -> -> 6230 `i `m ]
 "201
 [; ;main.c: 201:         } else if (outpre < -800){
 }
@@ -1899,6 +1896,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "326
 [; ;main.c: 326:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"328
+[; ;main.c: 328:     setaPorta();
+[e ( _setaPorta ..  ]
 "329
 [; ;main.c: 329:     LATAbits.LATA7=CMOUTbits.MC1OUT;
 [e = . . _LATAbits 0 7 . . _CMOUTbits 0 0 ]
